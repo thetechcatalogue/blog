@@ -2,46 +2,42 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# TechCatalogue Blog
 
-Let's discover **Docusaurus in less than 5 minutes**.
+Welcome to the TechCatalogue Blog! This is where we share our thoughts, insights, and updates on various technology topics.
+
+## Table of Contents
+
+- [Introduction](./docs/intro.md)
+- [Getting Started](./docs/getting-started.md)
+- [Tutorials](./docs/tutorials.md)
+- [Case Studies](./docs/case-studies.md)
+- [Contributing](./CONTRIBUTING.md)
+- [License](./LICENSE.md)
+
+## Introduction
+
+In the [Introduction](./docs/intro.md) section, you will find an overview of our blog and what you can expect from it.
 
 ## Getting Started
 
-Get started by **creating a new site**.
+If you're new to our blog, we recommend checking out the [Getting Started](./docs/getting-started.md) guide. It will help you navigate through our content and get the most out of your reading experience.
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+## Tutorials
 
-### What you'll need
+Our [Tutorials](./docs/tutorials.md) section is where we dive deep into various technology topics and provide step-by-step guides to help you learn and implement new concepts.
 
-- [Node.js](https://nodejs.org/en/download/) version 18.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+## Case Studies
 
-## Generate a new site
+In the [Case Studies](./docs/case-studies.md) section, we analyze real-world examples and showcase how different technologies have been applied to solve specific problems.
 
-Generate a new Docusaurus site using the **classic template**.
+## Contributing
 
-The classic template will automatically be added to your project after you run the command:
+We welcome contributions from the community! If you would like to contribute to our blog, please refer to the [Contributing](./CONTRIBUTING.md) guidelines.
 
-```bash
-npm init docusaurus@latest my-website classic
-```
+## License
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+This blog is licensed under the [MIT License](./LICENSE.md). Feel free to use the content, but please attribute and link back to us.
 
-The command also installs all necessary dependencies you need to run Docusaurus.
+Happy reading!
 
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.

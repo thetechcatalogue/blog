@@ -3,8 +3,8 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'Tech Catalogue Blogs',
+  tagline: 'Learn about the latest news and updates from Tech Catalogue',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -15,11 +15,40 @@ const config: Config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'thetechcatalogue', // Usually your GitHub org/user name.
+  projectName: 'techcatalogue-blogs', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
+
+  markdown:{
+    mermaid: true,
+
+    // rehypePlugins: [
+    //   require('rehype-slug'),
+    //   require('rehype-autolink-headings'),
+    //   require('rehype-external-links'),
+    // ],
+    // remarkPlugins: [
+    //   require('remark-autolink-headings'),
+    //   require('remark-external-links'),
+    // ],
+  },  
+  themes: [
+    [require.resolve("@easyops-cn/docusaurus-search-local"), ({indexBlog: false, docsRouteBasePath: "/"})],
+    // [require.resolve("@docusaurus/theme-mermaid"), {}],
+    ['@docusaurus/theme-live-codeblock',{}]
+  ],
+
+  scripts: [
+    {
+      src: 'https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.2.2/mermaid.min.js',
+      async: true,
+    },
+  ],
+  plugins: [
+    '@docusaurus/theme-mermaid'
+  ],
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -58,9 +87,9 @@ const config: Config = {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'My Site',
+      title: 'Tech Catalogue Blogs',
       logo: {
-        alt: 'My Site Logo',
+        alt: 'Tech Catalogue Logo',
         src: 'img/logo.svg',
       },
       items: [
@@ -68,7 +97,7 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: 'learn',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
@@ -121,7 +150,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} TechCatalogue, Inc. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,

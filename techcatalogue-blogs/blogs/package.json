@@ -6,7 +6,7 @@
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "build": "docusaurus build",
-    "build:official": "docusaurus build && rm -rf '../public/docs' && mv 'build' '../public/docs'",
+    "build:official": "docusaurus build && rm -rf '../public/docs' && mv 'build' '../public/blogs'",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
@@ -18,6 +18,9 @@
   "dependencies": {
     "@docusaurus/core": "3.3.2",
     "@docusaurus/preset-classic": "3.3.2",
+    "@docusaurus/theme-live-codeblock": "^3.3.2",
+    "@docusaurus/theme-mermaid": "^3.3.2",
+    "@easyops-cn/docusaurus-search-local": "^0.41.0",
     "@mdx-js/react": "^3.0.0",
     "clsx": "^2.0.0",
     "prism-react-renderer": "^2.3.0",
