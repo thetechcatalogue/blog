@@ -1,5 +1,6 @@
 ---
 sidebar_position: 3
+tags : [system desing, ]
 ---
 
 At every moment of interview you will have mto make a choice, in-orde to make a choice , we suggest to adopt a few techniques which will help you to organize your itenrviews into logical sections as well. 

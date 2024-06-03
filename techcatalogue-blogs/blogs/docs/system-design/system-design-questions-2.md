@@ -34,10 +34,3 @@
 | Design a system to handle real-time chat messages for millions of users. | Use a distributed messaging system such as Kafka or RabbitMQ to handle real-time chat messages. Store user and message data in a distributed database such as Cassandra or HBase. Use a web socket protocol to enable real-time communication between users. |
 | Design a system to perform sentiment analysis on social media data in real-time. | Use a distributed system to collect social media data in real-time from various sources such as Twitter or Facebook. Store the data in a distributed database such as Cassandra or HBase. Use machine learning algorithms such as Naive Bayes or SVM to perform sentiment analysis on the data. Use a web interface to display the results in real-time. |
 
-
-
-
-- Can you choose a popular social media platform and explain how you would design it?
-- How would you design a limit book for a trading system?
-- Can you explain the process of creating a global file-sharing or storage system?
-- Can you explain the process for creating a chat or messaging system?
