@@ -6,7 +6,7 @@
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "build": "docusaurus build",
-    "build:official": "docusaurus build && rm -rf '../public/docs' && mv 'build' '../public/blogs'",
+    "build:official": "docusaurus build && rm -rf '../public/blogs' && mv 'build' '../public/blogs'",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
@@ -31,6 +31,9 @@
     "@docusaurus/module-type-aliases": "3.3.2",
     "@docusaurus/tsconfig": "3.3.2",
     "@docusaurus/types": "3.3.2",
+    "@types/fs-extra": "^11.0.4",
+    "i": "^0.3.7",
+    "npm": "^10.8.1",
     "typescript": "~5.2.2"
   },
   "browserslist": {

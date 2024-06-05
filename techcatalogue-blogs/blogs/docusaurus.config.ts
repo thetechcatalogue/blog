@@ -101,7 +101,7 @@ const config: Config = {
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/thetechcatalogue/blogs',
           label: 'GitHub',
           position: 'right',
         },
@@ -114,8 +114,8 @@ const config: Config = {
           title: 'Docs',
           items: [
             {
-              label: 'Tutorial',
-              to: '/docs/intro',
+              label: 'learning',
+              to: 'docs/category/learn',
             },
           ],
         },
@@ -145,7 +145,7 @@ const config: Config = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/thetechcatalogue',
             },
           ],
         },
