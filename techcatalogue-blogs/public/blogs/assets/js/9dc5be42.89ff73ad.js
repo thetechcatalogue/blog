@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdoc=self.webpackChunkdoc||[]).push([[9161],{8451:o=>{o.exports=JSON.parse('{"tags":[{"label":"networking","permalink":"/blogs/blog/tags/networking","count":1},{"label":"protocols","permalink":"/blogs/blog/tags/protocols","count":1},{"label":"networks","permalink":"/blogs/blog/tags/networks","count":1}]}')}}]);
