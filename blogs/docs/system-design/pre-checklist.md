@@ -31,6 +31,40 @@ etc.
 These can be considered as subsection in your tool-box and you will see you have a pool of choices within each sub-section and you need to make a choice , and in order to do that you need to understand the basic requirement of the problem and then basic capability of that tool , for example to make a hole in a wall you will not take out a pin-hole bit.
 
 
+### CAP 
+Always Remember Cap theorem: Choose between availability and scalability
+
+
+
+
+Most of the questions will be targeted towards understanding the data ingestion pipelines, and that involve focusing on below issues 
+
+- How various requests to service will be coming ( single/buffered/batch)
+- How will timeouts be considered depending on type of requests
+- What will API look like 
+- How does client – implement a re-try mechanism
+- Where data is getting stored temporary
+- How do you deal with duplicates 
+- How do you scale a single service
+- How the increase in database though through
+- Which type of database is required. 
+- How the incoming requests will be processed and stored. 
+- Fault handling and tolerance of the system 
+- Error Handling 
+- What happens when something goes wrong , bottle necks etc.
+
+
+Concepts while implementing a client 
+
+1) Blocking vs Non-blocking calls (threads/ asyncs )
+2) Buffering/ batching ? ( example logger client) 
+3) timeouts (request timeouts 1% of slowest requests times)
+4) retries  ( retry storm events , overload server with too many request )
+5) exponential backoff and jitter algorithms
+6) circuit breaker
+
+
+
 Below diagram talks a 1 key info you should know about you tools inside the tool box
 
 ```mermaid
