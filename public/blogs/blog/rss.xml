@@ -4,10 +4,97 @@
         <title>Tech Catalogue Blogs Blog</title>
         <link>https://your-docusaurus-site.example.com/blogs/blog</link>
         <description>Tech Catalogue Blogs Blog</description>
-        <lastBuildDate>Tue, 28 May 2024 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 22 Jun 2024 09:55:18 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[Using Azure Services for Developing Solutions]]></title>
+            <link>https://your-docusaurus-site.example.com/blogs/blog/2024.06-22-Azure-Service-OverView</link>
+            <guid>https://your-docusaurus-site.example.com/blogs/blog/2024.06-22-Azure-Service-OverView</guid>
+            <pubDate>Sat, 22 Jun 2024 09:55:18 GMT</pubDate>
+            <description><![CDATA[Repository for knowing various Azure services for developers.]]></description>
+            <content:encoded><![CDATA[<p>Repository for knowing various Azure services for developers.
+Core concept of azure are compute,storage,databases,integration,networking.
+this is a developer only guide so we are not touching other azure services but only requried by developers.</p>
+<h2 class="anchor anchorWithStickyNavbar_iXBG" id="what-azure-offers">What Azure Offers<a href="https://your-docusaurus-site.example.com/blogs/blog/2024.06-22-Azure-Service-OverView#what-azure-offers" class="hash-link" aria-label="Direct link to What Azure Offers" title="Direct link to What Azure Offers">​</a></h2>
+<ul>
+<li>Services for Running applications also known as compute<!-- -->
+<ol>
+<li>IaaS: VM, Container Services, Container Instances, Web App for Containers, Batch, Service Fabric</li>
+<li>PaaS: Cloud Services, Mobile app, Web App, Service fabric</li>
+<li>LaaS: Logic apps, Functions
+<img decoding="async" loading="lazy" alt="Compute Options" src="https://your-docusaurus-site.example.com/blogs/assets/images/ComputeOptions-fd512a607a8e2ab9315a207344d4a2f5.PNG" width="851" height="343" class="img__bLy"></li>
+</ol>
+</li>
+<li>Services for Storing data<!-- -->
+<ol>
+<li>Relational Data: Azure SQL db/MYSQL db/PostgreSQL db/Maria db</li>
+<li>Document or Unstructured Data: Cosmos DB / Azure Storage ( files, blobs, Queue, Table, Disk etc)</li>
+<li>Data Analytics : Data warehouse / Data Lake Store</li>
+</ol>
+</li>
+<li>Services for Securing applications and data<!-- -->
+<ol>
+<li>Authentication : AD (Azure Active Directory)</li>
+<li>Encryption ( protect data at rest) : Encryption features provided.</li>
+<li>Store User Identities : Azure Active Directory.</li>
+<li>Store Keys/Secrets : Key valut.</li>
+<li>Provide TLS certificate : App Service Certificate.</li>
+</ol>
+</li>
+<li>Services for Analysing data<!-- -->
+<ol>
+<li>Azure Data Factory</li>
+<li>Azure Analysis Service</li>
+<li>Azure Data Lake Analytics</li>
+<li>Azure Stream Analysis</li>
+<li>Azure Time Series Insight</li>
+<li>Azure Data Bricks</li>
+<li>Azure HD Insights</li>
+</ol>
+</li>
+<li>Services for Monitoring your applications<!-- -->
+<ol>
+<li>Azure Application Insights</li>
+<li>Azure Log Analytics</li>
+<li>Azure Network Watcher</li>
+<li>Azure Monitor</li>
+<li>Azure Security Center</li>
+<li>Azure Advisor</li>
+<li>visual studio app center</li>
+</ol>
+</li>
+<li>Services for Adding Intelligence to your applications<!-- -->
+<ol>
+<li>Machine Learning</li>
+<li>Congitive Services</li>
+<li>BOT Framework</li>
+</ol>
+</li>
+<li>Services for Event/Messaging between applications<!-- -->
+<ol>
+<li>command : azure storage queues, <a href="https://docs.microsoft.com/en-us/azure/service-bus-messaging/"> azure service bus </a>,   <a href="https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-dotnet-how-to-use-topics-subscriptions">azure servie bus topics</a> , <a href="https://docs.microsoft.com/en-us/azure/iot-hub/"> azure IOT hubs</a>, <a href="https://docs.microsoft.com/en-us/azure/logic-apps/"> Azure Logic Apps </a></li>
+<li>facts : discreet - azure event Grids , streaming - azure event hubs</li>
+<li>mass notification : azure notification hubs</li>
+</ol>
+</li>
+<li>Services for Speeding and improving performance of the applications<!-- -->
+<ol>
+<li>Redis Cache</li>
+<li>Traffic Manager</li>
+<li>CDN</li>
+</ol>
+</li>
+<li>Services for Building/Testing/Deploying<!-- -->
+<ol>
+<li>VS Team Foundation Services</li>
+<li>VS App Center
+3 Azure devops Projects</li>
+</ol>
+</li>
+</ul>]]></content:encoded>
+        </item>
         <item>
             <title><![CDATA[Network and Protocols]]></title>
             <link>https://your-docusaurus-site.example.com/blogs/blog/network-protocols</link>
