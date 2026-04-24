@@ -26,16 +26,9 @@ This command generates static content into the `build` directory and can be serv
 
 ### Deployment
 
-Using SSH:
+the blog directory contains both blogs and docs. 
+We build by running build official script
 
-```
-$ USE_SSH=true yarn deploy
-```
-
-Not using SSH:
-
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
-```
+```which copies the generated documents to the public folder, which the next app serves it.
 
 If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
