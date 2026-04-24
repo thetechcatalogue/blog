@@ -17,6 +17,11 @@ presentations/slidev/node_modules
 /.next/
 /out/
 
+# generated at build time
+/public/og/
+/public/rss.xml
+/public/atom.xml
+
 # production
 /build
 

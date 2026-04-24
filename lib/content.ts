@@ -10,11 +10,18 @@ export interface DocMeta {
   description?: string;
   sidebar_position?: number;
   tags?: string[];
+  readingTime?: number; // minutes
 }
 
 export interface DocPage {
   meta: DocMeta;
   content: string;
+}
+
+/** Estimate reading time in minutes (200 wpm average) */
+function estimateReadingTime(text: string): number {
+  const words = text.trim().split(/\s+/).length;
+  return Math.max(1, Math.ceil(words / 200));
 }
 
 /**
@@ -46,7 +53,7 @@ export function getAllContent(section: string): DocMeta[] {
   return files.map((file) => {
     const fullPath = path.join(sectionDir, file);
     const raw = fs.readFileSync(fullPath, "utf-8");
-    const { data } = matter(raw);
+    const { data, content } = matter(raw);
 
     // Convert file path to slug segments: "system-design/intro.md" → ["system-design", "intro"]
     const slug = file
@@ -59,6 +66,7 @@ export function getAllContent(section: string): DocMeta[] {
       description: data.description,
       sidebar_position: data.sidebar_position,
       tags: data.tags,
+      readingTime: estimateReadingTime(content),
     };
   });
 }
@@ -89,6 +97,7 @@ export function getContentBySlug(section: string, slug: string[]): DocPage | nul
           description: data.description,
           sidebar_position: data.sidebar_position,
           tags: data.tags,
+          readingTime: estimateReadingTime(content),
         },
         content,
       };

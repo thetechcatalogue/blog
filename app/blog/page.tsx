@@ -22,11 +22,18 @@ export default function BlogIndex() {
               <h2 className="text-xl font-semibold transition-colors group-hover:text-accent" style={{ color: "var(--text-primary)" }}>
                 {post.title}
               </h2>
-              {post.description && (
-                <p className="mt-1" style={{ color: "var(--text-secondary)" }}>
-                  {post.description}
-                </p>
-              )}
+              <div className="mt-1 flex items-center gap-3">
+                {post.readingTime && (
+                  <span className="text-xs" style={{ color: "var(--text-secondary)" }}>
+                    {post.readingTime} min read
+                  </span>
+                )}
+                {post.description && (
+                  <span className="text-sm" style={{ color: "var(--text-secondary)" }}>
+                    {post.description}
+                  </span>
+                )}
+              </div>
               {post.tags && (
                 <div className="mt-2 flex gap-2">
                   {post.tags.map((tag) => (
