@@ -7,6 +7,7 @@ import type { Metadata } from "next";
 import { Pre, Diagram } from "@/components/MdxComponents";
 import ReadingProgress from "@/components/ReadingProgress";
 import BookmarkButton from "@/components/BookmarkButton";
+import TableOfContents from "@/components/TableOfContents";
 
 interface Props {
   params: Promise<{ slug: string[] }>;
@@ -49,9 +50,10 @@ export default async function BlogPost({ params }: Props) {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-6 py-12">
+    <div className="mx-auto max-w-5xl px-6 py-12">
       <ReadingProgress />
-      <article className="prose prose-gray max-w-none dark:prose-invert">
+      <div className="flex gap-8">
+        <article className="prose prose-gray max-w-none flex-1 dark:prose-invert">
         <h1>{post.meta.title}</h1>
         <div className="not-prose mb-8 flex flex-wrap items-center gap-3">
           {post.meta.readingTime && (
@@ -91,6 +93,8 @@ export default async function BlogPost({ params }: Props) {
           }}
         />
       </article>
+      <TableOfContents />
+      </div>
     </div>
   );
 }
