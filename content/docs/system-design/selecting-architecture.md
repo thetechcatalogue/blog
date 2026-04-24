@@ -43,11 +43,19 @@ There are two primary topologies within event-driven architecture: the mediator 
 The broker topology differs from the mediator topology in that there is no central event mediator. Rather, the message flow is distributed across the event processor components in a chain-like broadcasting fashion through a lightweight message broker (such as RabbitMQ, ActiveMQ, HornetQ, and so on). This topology is useful when you have a relatively simple event processing flow and you do not need central event orchestration and coordination.
 The main issue with asynchronous communications is error handling. While responsiveness is significantly improved, it is difficult to address error conditions, adding to the complexity of the event-driven system. The next section addresses this issue with a pattern of reactive architecture called the workflow event pattern.
 
+#### Interactive: Event-Driven Mediator Topology
+
+<Diagram name="event-driven" />
+
 - Space-based architecture
 
 - Service-oriented architecture
 
 - Microservices architecture
+
+#### Interactive: Microservices with API Gateway
+
+<Diagram name="microservices" />
 
 
 

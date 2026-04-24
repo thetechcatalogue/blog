@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ThemeSwitcher from "./ThemeSwitcher";
+import Search from "./Search";
 
 const leftNav = [
   { label: "Docs", href: "/docs" },
@@ -42,6 +43,7 @@ export default function Header() {
           </div>
         </div>
         <div className="flex items-center gap-3">
+          <Search />
           <ThemeSwitcher />
           {rightNav.map((item) => (
             <a

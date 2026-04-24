@@ -4,6 +4,8 @@ import dynamic from "next/dynamic";
 
 const Mermaid = dynamic(() => import("./Mermaid"), { ssr: false });
 
+import { Diagram } from "./DiagramEmbed";
+
 export function Pre({ children, ...props }: React.HTMLAttributes<HTMLPreElement>) {
   // Check if the child is a <code> with mermaid language class
   if (
@@ -21,3 +23,5 @@ export function Pre({ children, ...props }: React.HTMLAttributes<HTMLPreElement>
 
   return <pre {...props}>{children}</pre>;
 }
+
+export { Diagram };

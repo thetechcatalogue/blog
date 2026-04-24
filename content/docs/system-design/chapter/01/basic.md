@@ -10,6 +10,12 @@ Understanding the basic request flow is fundamental to every distributed system 
 
 ![Basic Request Flow](/images/docs/Chapter-1-Basic.png)
 
+### Interactive Architecture Explorer
+
+Click any component below to see detailed explanations of its role, how it connects to other components, and real-world implementation choices.
+
+<Diagram name="request-flow" />
+
 ### What to Observe
 
 1. **Client → Load Balancer** — The request enters through a load balancer that distributes traffic across service instances.
