@@ -2,6 +2,7 @@
 title: Software Development Lifecycle
 sidebar_position: 2
 description: Understanding the SDL and cross-cutting concerns for interviews.
+tags: [interviews, fundamentals, patterns]
 --- — Software Development Lifecycle
 
 Understanding the software development lifecycle of your product is one of the most essential things you should know. It reflects how deeply you understand your product end-to-end. Many engineers focus only on the code they write and miss the bigger picture.

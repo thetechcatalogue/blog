@@ -167,3 +167,70 @@ function slugToTitle(slug: string): string {
     .replace(/-/g, " ")
     .replace(/\b\w/g, (c) => c.toUpperCase());
 }
+
+/**
+ * Get all unique tags across a section (or all sections).
+ */
+export function getAllTags(section?: string): { tag: string; count: number }[] {
+  const sections = section ? [section] : ["docs", "blog"];
+  const tagMap: Record<string, number> = {};
+
+  for (const sec of sections) {
+    for (const item of getAllContent(sec)) {
+      for (const tag of item.tags ?? []) {
+        tagMap[tag] = (tagMap[tag] || 0) + 1;
+      }
+    }
+  }
+
+  return Object.entries(tagMap)
+    .map(([tag, count]) => ({ tag, count }))
+    .sort((a, b) => b.count - a.count);
+}
+
+/**
+ * Get all content items matching a specific tag.
+ */
+export function getContentByTag(tag: string): { section: string; meta: DocMeta }[] {
+  const results: { section: string; meta: DocMeta }[] = [];
+
+  for (const section of ["docs", "blog"]) {
+    for (const item of getAllContent(section)) {
+      if (item.tags?.includes(tag)) {
+        results.push({ section, meta: item });
+      }
+    }
+  }
+
+  return results;
+}
+
+/**
+ * Get related content based on shared tags (excluding the current item).
+ */
+export function getRelatedContent(
+  section: string,
+  slug: string[],
+  tags: string[],
+  limit: number = 4
+): { section: string; meta: DocMeta }[] {
+  const currentKey = `${section}/${slug.join("/")}`;
+  const scored: { key: string; section: string; meta: DocMeta; score: number }[] = [];
+
+  for (const sec of ["docs", "blog"]) {
+    for (const item of getAllContent(sec)) {
+      const itemKey = `${sec}/${item.slug.join("/")}`;
+      if (itemKey === currentKey) continue;
+
+      const shared = (item.tags ?? []).filter((t) => tags.includes(t)).length;
+      if (shared > 0) {
+        scored.push({ key: itemKey, section: sec, meta: item, score: shared });
+      }
+    }
+  }
+
+  return scored
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit)
+    .map(({ section, meta }) => ({ section, meta }));
+}

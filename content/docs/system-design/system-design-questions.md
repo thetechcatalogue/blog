@@ -2,6 +2,7 @@
 title: Popular System Design Questions
 sidebar_position: 5
 description: Common system design interview questions with key considerations and technologies.
+tags: [system-design, interviews, architecture]
 ---
 
 ### Most popular system design questions and considerations to keep

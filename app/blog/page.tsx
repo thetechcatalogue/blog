@@ -35,15 +35,16 @@ export default function BlogIndex() {
                 )}
               </div>
               {post.tags && (
-                <div className="mt-2 flex gap-2">
+                <div className="mt-2 flex flex-wrap gap-2">
                   {post.tags.map((tag) => (
-                    <span
+                    <a
                       key={tag}
-                      className="rounded-full px-2.5 py-0.5 text-xs font-medium"
+                      href={`/tags/${tag}`}
+                      className="rounded-full px-2.5 py-0.5 text-xs font-medium transition-colors hover:opacity-80"
                       style={{ backgroundColor: "var(--tag-bg)", color: "var(--tag-text)" }}
                     >
                       {tag}
-                    </span>
+                    </a>
                   ))}
                 </div>
               )}

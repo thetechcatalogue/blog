@@ -2,6 +2,7 @@
 title: Authorization Flows
 sidebar_position: 4
 description: Common authorization flows in web applications — from Auth Code to Client Credentials.
+tags: [security, interviews, networking]
 ---
 
 There are several authorization flows commonly used in web applications. Each flow has its own purpose and is suitable for different scenarios. Here are some of the most common authorization flows:

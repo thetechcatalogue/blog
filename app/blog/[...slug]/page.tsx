@@ -1,4 +1,4 @@
-import { getAllContent, getContentBySlug } from "@/lib/content";
+import { getAllContent, getContentBySlug, getRelatedContent } from "@/lib/content";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
@@ -8,6 +8,7 @@ import { Pre, Diagram } from "@/components/MdxComponents";
 import ReadingProgress from "@/components/ReadingProgress";
 import BookmarkButton from "@/components/BookmarkButton";
 import TableOfContents from "@/components/TableOfContents";
+import RelatedContent from "@/components/RelatedContent";
 
 interface Props {
   params: Promise<{ slug: string[] }>;
@@ -49,8 +50,24 @@ export default async function BlogPost({ params }: Props) {
     notFound();
   }
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.meta.title,
+    description: post.meta.description,
+    image: `https://thetechcatalogue.github.io/og/blog/${slug.join("/")}.png`,
+    author: { "@type": "Person", name: "Ashish Kumar" },
+    publisher: { "@type": "Organization", name: "TechCatalogue" },
+    keywords: post.meta.tags?.join(", "),
+    url: `https://thetechcatalogue.github.io/blog/${slug.join("/")}`,
+  };
+
   return (
     <div className="mx-auto max-w-5xl px-6 py-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <ReadingProgress />
       <div className="flex gap-8">
         <article className="prose prose-gray max-w-none flex-1 dark:prose-invert">
@@ -69,15 +86,16 @@ export default async function BlogPost({ params }: Props) {
           )}
           <BookmarkButton slug={`blog/${slug.join("/")}`} title={post.meta.title} />
           {post.meta.tags && (
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
               {post.meta.tags.map((tag) => (
-                <span
+                <a
                   key={tag}
-                  className="rounded-full px-2.5 py-0.5 text-xs font-medium"
+                  href={`/tags/${tag}`}
+                  className="rounded-full px-2.5 py-0.5 text-xs font-medium transition-colors hover:opacity-80"
                   style={{ backgroundColor: "var(--tag-bg)", color: "var(--tag-text)" }}
                 >
                   {tag}
-                </span>
+                </a>
               ))}
             </div>
           )}
@@ -92,6 +110,7 @@ export default async function BlogPost({ params }: Props) {
             },
           }}
         />
+        <RelatedContent items={getRelatedContent("blog", slug, post.meta.tags ?? [])} />
       </article>
       <TableOfContents />
       </div>

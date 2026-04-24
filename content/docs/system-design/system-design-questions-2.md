@@ -2,6 +2,7 @@
 title: More Design Questions & Topics
 sidebar_position: 6
 description: Additional system design topics and sample questions with solutions.
+tags: [system-design, interviews, architecture]
 ---
 
 

@@ -2,6 +2,7 @@
 title: Understanding System Design Interviews
 sidebar_position: 1
 description: Fundamentals and interview mindset for system design.
+tags: [system-design, architecture, fundamentals]
 ---
 
 Architecture is one of the most used — and most misunderstood — terms in software engineering. A system can contain multiple architectures, and a good architecture always has the flexibility to evolve. There is no single way to define or represent a system; architecture is a *view* that changes over the system's lifetime.

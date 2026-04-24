@@ -2,6 +2,7 @@
 title: The Basic Toolbox
 sidebar_position: 2
 description: Building blocks, CAP theorem, and patterns for system design interviews.
+tags: [system-design, fundamentals, patterns]
 ---
 
 Design interviews are about choosing the right solution for the problem at hand based on accepted trade-offs. Most solutions are picked from a box of well-known building blocks. To choose well, you need to know what's in the box.

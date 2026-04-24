@@ -29,8 +29,25 @@ const sections = [
 ];
 
 export default function Home() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "TechCatalogue",
+    url: "https://thetechcatalogue.github.io",
+    description: "Notes, guides, and reference material for software engineers.",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: "https://thetechcatalogue.github.io/search?q={search_term_string}",
+      "query-input": "required name=search_term_string",
+    },
+  };
+
   return (
     <main className="mx-auto max-w-5xl px-6 py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="mb-16 text-center">
         <h1
           className="mb-4 text-5xl font-bold tracking-tight"

@@ -1,4 +1,4 @@
-import { getAllContent, getContentBySlug } from "@/lib/content";
+import { getAllContent, getContentBySlug, getRelatedContent } from "@/lib/content";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
@@ -7,6 +7,7 @@ import type { Metadata } from "next";
 import { Pre, Diagram } from "@/components/MdxComponents";
 import ReadingProgress from "@/components/ReadingProgress";
 import BookmarkButton from "@/components/BookmarkButton";
+import RelatedContent from "@/components/RelatedContent";
 
 interface Props {
   params: Promise<{ slug: string[] }>;
@@ -47,8 +48,23 @@ export default async function DocPage({ params }: Props) {
     notFound();
   }
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    headline: doc.meta.title,
+    description: doc.meta.description,
+    author: { "@type": "Person", name: "Ashish Kumar" },
+    publisher: { "@type": "Organization", name: "TechCatalogue" },
+    keywords: doc.meta.tags?.join(", "),
+    url: `https://thetechcatalogue.github.io/docs/${slug.join("/")}`,
+  };
+
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <ReadingProgress />
       <div className="mb-6 flex flex-wrap items-center gap-3">
         <h1 className="mr-auto text-3xl font-bold">{doc.meta.title}</h1>
@@ -80,6 +96,7 @@ export default async function DocPage({ params }: Props) {
           },
         }}
       />
+      <RelatedContent items={getRelatedContent("docs", slug, doc.meta.tags ?? [])} />
     </div>
   );
 }

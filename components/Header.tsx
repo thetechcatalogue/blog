@@ -9,6 +9,7 @@ import Search from "./Search";
 const leftNav = [
   { label: "Docs", href: "/docs" },
   { label: "Blog", href: "/blog" },
+  { label: "Tags", href: "/tags" },
 ];
 
 const rightNav = [

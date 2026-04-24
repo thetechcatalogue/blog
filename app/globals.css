@@ -4,124 +4,195 @@
 
 /* ───────────── Theme definitions ───────────── */
 
+/* --- Light: Clean warm white, easy on eyes --- */
 :root,
 [data-theme="light"] {
-  --bg: #ffffff;
-  --bg-secondary: #f8fafc;
-  --bg-tertiary: #f1f5f9;
-  --text-primary: #0f172a;
-  --text-secondary: #64748b;
+  --bg: #fafaf9;
+  --bg-secondary: #f5f5f4;
+  --bg-tertiary: #e7e5e4;
+  --text-primary: #1c1917;
+  --text-secondary: #57534e;
   --accent: 59 130 246;
   --accent-hex: #3b82f6;
   --accent-hover-hex: #2563eb;
   --accent-light: #dbeafe;
-  --border-color: #e2e8f0;
-  --header-bg: rgba(255, 255, 255, 0.8);
+  --border-color: #d6d3d1;
+  --header-bg: rgba(250, 250, 249, 0.85);
+  --card-bg: #ffffff;
   --card-hover-border: #93c5fd;
-  --tag-bg: #f1f5f9;
-  --tag-text: #475569;
+  --tag-bg: #f5f5f4;
+  --tag-text: #44403c;
 }
 
+/* --- Dark: Softer charcoal, not pure black --- */
 [data-theme="dark"] {
-  --bg: #0f172a;
-  --bg-secondary: #1e293b;
-  --bg-tertiary: #020617;
-  --text-primary: #e2e8f0;
-  --text-secondary: #94a3b8;
+  --bg: #1a1a2e;
+  --bg-secondary: #222240;
+  --bg-tertiary: #141425;
+  --text-primary: #e0dfe4;
+  --text-secondary: #9896a8;
   --accent: 96 165 250;
   --accent-hex: #60a5fa;
   --accent-hover-hex: #3b82f6;
-  --accent-light: rgba(30, 58, 138, 0.3);
-  --border-color: #334155;
-  --header-bg: rgba(2, 6, 23, 0.8);
+  --accent-light: rgba(30, 58, 138, 0.25);
+  --border-color: #2d2d4a;
+  --header-bg: rgba(20, 20, 37, 0.85);
+  --card-bg: #222240;
   --card-hover-border: #1d4ed8;
-  --tag-bg: #1e293b;
-  --tag-text: #94a3b8;
+  --tag-bg: #222240;
+  --tag-text: #9896a8;
 }
 
-[data-theme="ocean"] {
-  --bg: #0c1222;
-  --bg-secondary: #122040;
-  --bg-tertiary: #060d19;
-  --text-primary: #c7d2fe;
-  --text-secondary: #818cf8;
-  --accent: 34 211 238;
-  --accent-hex: #22d3ee;
-  --accent-hover-hex: #06b6d4;
-  --accent-light: rgba(22, 78, 99, 0.4);
-  --border-color: #1e3a5f;
-  --header-bg: rgba(6, 13, 25, 0.85);
-  --card-hover-border: #0891b2;
-  --tag-bg: #122040;
-  --tag-text: #818cf8;
+/* --- Sepia: Warm paper tone for long reading --- */
+[data-theme="sepia"] {
+  --bg: #f4ede4;
+  --bg-secondary: #ebe3d7;
+  --bg-tertiary: #ddd4c6;
+  --text-primary: #3e3228;
+  --text-secondary: #6b5d50;
+  --accent: 180 108 52;
+  --accent-hex: #b46c34;
+  --accent-hover-hex: #96581e;
+  --accent-light: rgba(180, 108, 52, 0.12);
+  --border-color: #cfc4b4;
+  --header-bg: rgba(244, 237, 228, 0.9);
+  --card-bg: #faf5ee;
+  --card-hover-border: #b46c34;
+  --tag-bg: #ebe3d7;
+  --tag-text: #6b5d50;
 }
 
+/* --- Nord: Cool muted blues, Scandinavian calm --- */
+[data-theme="nord"] {
+  --bg: #2e3440;
+  --bg-secondary: #3b4252;
+  --bg-tertiary: #262c38;
+  --text-primary: #d8dee9;
+  --text-secondary: #9aa5b4;
+  --accent: 136 192 208;
+  --accent-hex: #88c0d0;
+  --accent-hover-hex: #5e9eae;
+  --accent-light: rgba(136, 192, 208, 0.12);
+  --border-color: #434c5e;
+  --header-bg: rgba(38, 44, 56, 0.9);
+  --card-bg: #3b4252;
+  --card-hover-border: #88c0d0;
+  --tag-bg: #3b4252;
+  --tag-text: #9aa5b4;
+}
+
+/* --- Sunset: Warm peach, no harsh yellow --- */
 [data-theme="sunset"] {
-  --bg: #fffbeb;
-  --bg-secondary: #fef3c7;
-  --bg-tertiary: #fde68a;
-  --text-primary: #451a03;
-  --text-secondary: #92400e;
-  --accent: 245 158 11;
-  --accent-hex: #f59e0b;
-  --accent-hover-hex: #d97706;
-  --accent-light: rgba(254, 243, 199, 0.6);
-  --border-color: #fde68a;
-  --header-bg: rgba(255, 251, 235, 0.85);
-  --card-hover-border: #f59e0b;
-  --tag-bg: #fef3c7;
-  --tag-text: #92400e;
+  --bg: #fdf6f0;
+  --bg-secondary: #f8ede3;
+  --bg-tertiary: #f0e0d0;
+  --text-primary: #3d2e22;
+  --text-secondary: #7a6455;
+  --accent: 217 119 87;
+  --accent-hex: #d97757;
+  --accent-hover-hex: #c4613d;
+  --accent-light: rgba(217, 119, 87, 0.1);
+  --border-color: #e4d4c4;
+  --header-bg: rgba(253, 246, 240, 0.9);
+  --card-bg: #fffaf5;
+  --card-hover-border: #d97757;
+  --tag-bg: #f8ede3;
+  --tag-text: #7a6455;
 }
 
+/* --- Forest: Deep green with warm neutrals --- */
 [data-theme="forest"] {
-  --bg: #052e16;
-  --bg-secondary: #064e3b;
-  --bg-tertiary: #022c22;
-  --text-primary: #d1fae5;
-  --text-secondary: #6ee7b7;
-  --accent: 52 211 153;
-  --accent-hex: #34d399;
-  --accent-hover-hex: #10b981;
-  --accent-light: rgba(6, 95, 70, 0.4);
-  --border-color: #065f46;
-  --header-bg: rgba(2, 44, 34, 0.85);
-  --card-hover-border: #10b981;
-  --tag-bg: #064e3b;
-  --tag-text: #6ee7b7;
+  --bg: #1a2820;
+  --bg-secondary: #233028;
+  --bg-tertiary: #141f18;
+  --text-primary: #d4ddd5;
+  --text-secondary: #8fa594;
+  --accent: 106 188 132;
+  --accent-hex: #6abc84;
+  --accent-hover-hex: #4ea86c;
+  --accent-light: rgba(106, 188, 132, 0.12);
+  --border-color: #2e3d32;
+  --header-bg: rgba(20, 31, 24, 0.9);
+  --card-bg: #233028;
+  --card-hover-border: #6abc84;
+  --tag-bg: #233028;
+  --tag-text: #8fa594;
 }
 
+/* --- Rose: Soft blush, not aggressive pink --- */
 [data-theme="rose"] {
-  --bg: #fff1f2;
-  --bg-secondary: #ffe4e6;
-  --bg-tertiary: #fecdd3;
-  --text-primary: #1c1917;
-  --text-secondary: #78716c;
-  --accent: 244 63 94;
-  --accent-hex: #f43f5e;
-  --accent-hover-hex: #e11d48;
-  --accent-light: rgba(255, 228, 230, 0.6);
-  --border-color: #fecdd3;
-  --header-bg: rgba(255, 241, 242, 0.85);
-  --card-hover-border: #f43f5e;
-  --tag-bg: #ffe4e6;
-  --tag-text: #9f1239;
+  --bg: #faf5f5;
+  --bg-secondary: #f3ebec;
+  --bg-tertiary: #e8dfe0;
+  --text-primary: #2d2325;
+  --text-secondary: #75636b;
+  --accent: 190 100 120;
+  --accent-hex: #be6478;
+  --accent-hover-hex: #a64d62;
+  --accent-light: rgba(190, 100, 120, 0.1);
+  --border-color: #d9cdd0;
+  --header-bg: rgba(250, 245, 245, 0.9);
+  --card-bg: #ffffff;
+  --card-hover-border: #be6478;
+  --tag-bg: #f3ebec;
+  --tag-text: #75636b;
 }
 
+/* --- Midnight: Deep purple-blue, softer contrast --- */
 [data-theme="midnight"] {
-  --bg: #09090b;
-  --bg-secondary: #18181b;
-  --bg-tertiary: #000000;
-  --text-primary: #e4e4e7;
-  --text-secondary: #a1a1aa;
+  --bg: #151520;
+  --bg-secondary: #1e1e30;
+  --bg-tertiary: #10101a;
+  --text-primary: #d5d3e0;
+  --text-secondary: #908da0;
   --accent: 167 139 250;
   --accent-hex: #a78bfa;
   --accent-hover-hex: #8b5cf6;
-  --accent-light: rgba(46, 16, 101, 0.3);
-  --border-color: #27272a;
-  --header-bg: rgba(0, 0, 0, 0.85);
+  --accent-light: rgba(167, 139, 250, 0.1);
+  --border-color: #2a2a40;
+  --header-bg: rgba(16, 16, 26, 0.9);
+  --card-bg: #1e1e30;
   --card-hover-border: #8b5cf6;
-  --tag-bg: #18181b;
-  --tag-text: #a1a1aa;
+  --tag-bg: #1e1e30;
+  --tag-text: #908da0;
+}
+
+/* --- Sage: Muted olive-green, calming and natural --- */
+[data-theme="sage"] {
+  --bg: #f2f4ef;
+  --bg-secondary: #e8ebe3;
+  --bg-tertiary: #dbe0d3;
+  --text-primary: #2c3028;
+  --text-secondary: #5c6356;
+  --accent: 108 140 100;
+  --accent-hex: #6c8c64;
+  --accent-hover-hex: #567450;
+  --accent-light: rgba(108, 140, 100, 0.12);
+  --border-color: #c8cec0;
+  --header-bg: rgba(242, 244, 239, 0.9);
+  --card-bg: #f9faf6;
+  --card-hover-border: #6c8c64;
+  --tag-bg: #e8ebe3;
+  --tag-text: #5c6356;
+}
+
+/* --- Ocean: Deeper blue-teal, warmer text --- */
+[data-theme="ocean"] {
+  --bg: #141e2b;
+  --bg-secondary: #1a2836;
+  --bg-tertiary: #0f1820;
+  --text-primary: #cdd8e0;
+  --text-secondary: #8298a8;
+  --accent: 72 189 196;
+  --accent-hex: #48bdc4;
+  --accent-hover-hex: #32a0a7;
+  --accent-light: rgba(72, 189, 196, 0.1);
+  --border-color: #253340;
+  --header-bg: rgba(15, 24, 32, 0.9);
+  --card-bg: #1a2836;
+  --card-hover-border: #48bdc4;
+  --tag-bg: #1a2836;
+  --tag-text: #8298a8;
 }
 
 /* ───────────── Base styles ───────────── */

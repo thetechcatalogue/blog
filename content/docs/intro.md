@@ -2,6 +2,7 @@
 title: TechCatalogue
 sidebar_position: 1
 description: A collection of notes, guides, and reference material covering core software engineering topics.
+tags: [fundamentals, interviews, system-design]
 ---
 
 Welcome to TechCatalogue — a collection of notes, guides, and reference material covering core software engineering topics.

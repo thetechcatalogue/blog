@@ -2,6 +2,7 @@
 title: HTTPS / TLS Handshake Flows
 sidebar_position: 3
 description: Visual diagrams of the full HTTPS/TLS handshake process.
+tags: [networking, security, interviews]
 ---
 
 Understanding how HTTPS works under the hood is a common interview topic. The diagrams below illustrate the full TLS handshake — from the initial TCP connection, through certificate verification, to encrypted HTTP communication.

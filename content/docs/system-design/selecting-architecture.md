@@ -2,6 +2,7 @@
 title: Selecting an Architecture
 sidebar_position: 4
 description: Monolithic vs distributed patterns and how to choose.
+tags: [system-design, architecture, patterns]
 ---
 
 First step usually is to identify what kind of overall architecture might help us to achive most of the desired properties of the system. 

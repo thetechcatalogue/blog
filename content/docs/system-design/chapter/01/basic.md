@@ -2,6 +2,7 @@
 title: "Chapter 1: Basic Request Flow"
 sidebar_position: 1
 description: The fundamental request flow pattern in distributed systems.
+tags: [system-design, architecture, fundamentals]
 ---
 
 Understanding the basic request flow is fundamental to every distributed system design. The diagram below illustrates the common path a request takes from client to server and back, touching load balancing, service processing, data storage, and caching layers.

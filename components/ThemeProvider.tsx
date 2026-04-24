@@ -5,11 +5,14 @@ import { createContext, useContext, useEffect, useState, useCallback } from "rea
 export type ThemeName =
   | "light"
   | "dark"
-  | "ocean"
+  | "sepia"
+  | "nord"
   | "sunset"
   | "forest"
   | "rose"
-  | "midnight";
+  | "midnight"
+  | "sage"
+  | "ocean";
 
 export interface ThemeConfig {
   name: ThemeName;
@@ -19,16 +22,19 @@ export interface ThemeConfig {
 }
 
 export const themes: ThemeConfig[] = [
-  { name: "light", label: "Light", isDark: false, preview: ["#ffffff", "#3b82f6", "#0f172a"] },
-  { name: "dark", label: "Dark", isDark: true, preview: ["#0f172a", "#60a5fa", "#e2e8f0"] },
-  { name: "ocean", label: "Ocean", isDark: true, preview: ["#0c1222", "#22d3ee", "#c7d2fe"] },
-  { name: "sunset", label: "Sunset", isDark: false, preview: ["#fffbeb", "#f59e0b", "#451a03"] },
-  { name: "forest", label: "Forest", isDark: true, preview: ["#052e16", "#34d399", "#d1fae5"] },
-  { name: "rose", label: "Rose", isDark: false, preview: ["#fff1f2", "#f43f5e", "#1c1917"] },
-  { name: "midnight", label: "Midnight", isDark: true, preview: ["#09090b", "#a78bfa", "#e4e4e7"] },
+  { name: "light",    label: "Light",    isDark: false, preview: ["#fafaf9", "#3b82f6", "#1c1917"] },
+  { name: "dark",     label: "Dark",     isDark: true,  preview: ["#1a1a2e", "#60a5fa", "#e0dfe4"] },
+  { name: "sepia",    label: "Sepia",    isDark: false, preview: ["#f4ede4", "#b46c34", "#3e3228"] },
+  { name: "nord",     label: "Nord",     isDark: true,  preview: ["#2e3440", "#88c0d0", "#d8dee9"] },
+  { name: "sunset",   label: "Sunset",   isDark: false, preview: ["#fdf6f0", "#d97757", "#3d2e22"] },
+  { name: "forest",   label: "Forest",   isDark: true,  preview: ["#1a2820", "#6abc84", "#d4ddd5"] },
+  { name: "rose",     label: "Rosé",     isDark: false, preview: ["#faf5f5", "#be6478", "#2d2325"] },
+  { name: "midnight", label: "Midnight", isDark: true,  preview: ["#151520", "#a78bfa", "#d5d3e0"] },
+  { name: "sage",     label: "Sage",     isDark: false, preview: ["#f2f4ef", "#6c8c64", "#2c3028"] },
+  { name: "ocean",    label: "Ocean",    isDark: true,  preview: ["#141e2b", "#48bdc4", "#cdd8e0"] },
 ];
 
-const DARK_THEMES: ThemeName[] = ["dark", "ocean", "forest", "midnight"];
+const DARK_THEMES: ThemeName[] = ["dark", "nord", "forest", "midnight", "ocean"];
 
 interface ThemeContextValue {
   theme: ThemeName;
@@ -95,10 +101,10 @@ export const themeScript = `
 (function(){
   try {
     var t = localStorage.getItem('theme') || 'light';
-    var valid = ['light','dark','ocean','sunset','forest','rose','midnight'];
+    var valid = ['light','dark','sepia','nord','sunset','forest','rose','midnight','sage','ocean'];
     if (valid.indexOf(t) === -1) t = 'light';
     document.documentElement.setAttribute('data-theme', t);
-    var dark = ['dark','ocean','forest','midnight'];
+    var dark = ['dark','nord','forest','midnight','ocean'];
     if (dark.indexOf(t) !== -1) document.documentElement.classList.add('dark');
   } catch(e){}
 })();

@@ -2,6 +2,7 @@
 title: Interview Overview
 sidebar_position: 1
 description: Strategies and preparation tips for technical interviews.
+tags: [interviews, fundamentals]
 ---
 
 During technical interviews we are often faced with questions where there is a lot to say, but for some reason we struggle to present our thought process clearly.

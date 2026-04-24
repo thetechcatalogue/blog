@@ -1,7 +1,7 @@
-
 ---
 title: Famous Algorithms in Data Mining
 sidebar_position: 1
+tags: [ai, machine-learning, data-mining]
 description: The most influential algorithms in data mining — from C4.5 to Naive Bayes.
 ---
 
