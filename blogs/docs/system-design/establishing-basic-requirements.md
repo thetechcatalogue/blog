@@ -1,9 +1,9 @@
 ---
 sidebar_position: 3
-tags : [system desing, ]
+tags : [system desing, basic-deisgn ]
 ---
 
-At every moment of interview you will have mto make a choice, in-orde to make a choice , we suggest to adopt a few techniques which will help you to organize your itenrviews into logical sections as well. 
+At every moment of interview you will have to make a choice, in-orde to make a choice , we suggest to adopt a few techniques which will help you to organize your itenrviews into logical sections as well. 
 
 define how basic requirements for an system design interview  should be established between and interviewer and interviewee. 
 ```mermaid
@@ -72,16 +72,14 @@ This is by far the most troubling statement.
 
 When asked why?
 
-“"We can run each component on a separate box. If one component gets too busy we add extra boxes for it so we can load-balance our application”
+"We can run each component on a separate box. If one component gets too busy we add extra boxes for it so we can load-balance our application”
 
 #### Remote and Local Interfaces
 
 We must understand that distribution by class need not to work every time. It has to do with coarse- and fine-grained interfaces.
 When same OO principles are applied on a remote object model as for local, that might result in overhead as remote calls are costly compared to local calls which are very fast. 
 
-
-
 If you base your distribution strategy on a class, you'll end up with a system that does a lot of remote calls needs awkward coarse-grained interfaces. In the end, even with coarse-grained interfaces on every remo-table class, you'll still end up with too many remote calls and a system that's awkward to modify as a bonus
 
 How, then, do you effectively use multiple processors? In most cases the way to go is clustering
-Put all the classes into a single process and then run multiple copies of that process on the various nodes. at way each process uses local calls to get the job done and thus does things faster. You can also use fine grained interfaces for all the classes within the process and thus get better maintainability with a simpler programming model
+Put all the classes into a single process and then run multiple copies of that process on the various nodes. That way each process uses local calls to get the job done and thus does things faster. You can also use fine grained interfaces for all the classes within the process and thus get better maintainability with a simpler programming model

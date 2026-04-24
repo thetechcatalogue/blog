@@ -2,29 +2,47 @@
 sidebar_position: 1
 ---
 
-## Understanding the basic need of system design interview
+## Understanding System Design Interviews
 
-Architecture is the most used and yet most misunderstood term today. There can be multiple architectures inside any system and a good architecture always has a flexibility and desire to improve.  There is no one way to define or state a system, rather architecture is a view that can change over a systems’ lifetime.
+Architecture is one of the most used — and most misunderstood — terms in software engineering. A system can contain multiple architectures, and a good architecture always has the flexibility to evolve. There is no single way to define or represent a system; architecture is a *view* that changes over the system's lifetime.
 
-Most of the cloud architecture and designs in principle take ideas from system and OS design, be it thread pool, retry, caching etc. 
-It is useful to understand the concepts rather than names, which often find easy penetration into the common communication style among developers. Enterprise application doesn’t essentially means a very large application, but a system which helps enterprise to be productive and achieve it’s business. 
+Most cloud architecture and design principles borrow ideas from operating systems and low-level system design: thread pools, retries, caching, and more. It is more useful to understand the **concepts** rather than just the names that frequently appear in developer conversations.
 
-System design is a crucial aspect of software development that involves designing the architecture and components of a system to meet specific requirements. It encompasses various elements such as scalability, reliability, performance, and security. By carefully considering these factors, system designers can create robust and efficient solutions that can handle large amounts of data and user traffic.
+"Enterprise application" doesn't necessarily mean a very large application — it means a system that helps an enterprise be productive and achieve its business goals.
 
-A system design or architecture for an online retailer like Amazon will be very different than that of a video streaming service like Netflix or a photo posting service like Instagram. But basics of all the important considerations while designing any service like, reliability, scale, performance etc. remains same. 
+### Why System Design Matters
 
-Performance of your single system/ container can impact overall latency of your whole cloud. So, in principle everything is correlated. For example, for increasing performance different developers will look at different points of latency, 
-For a cloud developer or architect, will throw away some jargons like, scaling up or load-balancer and caching etc.
-While a system developer will might ask to replace the NIC interfaces with high bandwidth interfaces or add more cores or update the edge-router. So, the idea of making an over all system better comes from analysing each and every point of possible improvement. 
+System design is a crucial aspect of software development that involves designing the architecture and components of a system to meet specific requirements. It encompasses scalability, reliability, performance, and security. By carefully considering these factors, designers can create robust and efficient solutions that handle large amounts of data and user traffic.
 
+A system design for an online retailer like Amazon will look very different from a video streaming service like Netflix or a photo-sharing service like Instagram. But the fundamental considerations — reliability, scale, performance — remain the same across all of them.
 
-In this section, we will explore the fundamentals of system design and delve into different strategies and techniques used to design scalable and reliable systems. We will look at some popular design questions , some more specific design questions and how someone should prepare themseleves for handling those problems. 
+### Everything Is Correlated
 
-Again , individual choice of design is dependent upon various factors and no best design can be declared mere based on few points. Only after a longer run , with enough analytical data in hand a design can be evaluated for it's particular aspect. 
+The performance of a single container can impact the overall latency of your entire cloud. Different engineers will look at different points of latency:
 
-When you are stepping a foot in an interview for design , it's rather important you relize, you are there for find a solution that is needed rather than telling a solution that you know. 
+- A **cloud developer or architect** might reach for scaling, load balancing, or caching.
+- A **systems engineer** might ask to replace NIC interfaces with higher-bandwidth ones, add cores, or upgrade edge routers.
 
-Only way to achieve this is to understand the problem space, ask clarifying questions instead of making assumptions , define key constraints and boundaries , ponder on different options , think about key aspects of design , suggest a solution that works, refine or improve. 
+The key insight: making a system better requires analyzing **every** point of possible improvement.
 
+### What We'll Cover
 
-We will talk about different strategies which can help you to organize your interview process in a better flow. 
+In this section we explore the fundamentals of system design and dive into strategies and techniques for designing scalable, reliable systems. We'll look at popular design questions, more specific problems, and how to prepare yourself for tackling them.
+
+Individual design choices depend on many factors — no "best" design can be declared based on a few data points. Only after a longer run, with enough analytical data in hand, can a design be evaluated for its particular aspects.
+
+### The Interview Mindset
+
+When you step into a design interview, realize that you are there to **find the solution that is needed**, not to recite a solution you already know.
+
+The only way to achieve this:
+
+1. Understand the problem space
+2. Ask clarifying questions instead of making assumptions
+3. Define key constraints and boundaries
+4. Consider different options
+5. Think about key aspects of the design
+6. Suggest a solution that works
+7. Refine and improve
+
+We'll talk about strategies that help you organize your interview process into a clear, logical flow.

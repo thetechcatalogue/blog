@@ -1,4 +1,3 @@
-
 ---
 sidebar_position: 2
 ---
@@ -6,11 +5,10 @@ sidebar_position: 2
 
 ### Basic Stationery Box 
 
-Design interviews mostly talk about choice the right solution for the problem in hand, but most of solutions are picked up from a box of several choices. 
+Design interviews mostly talk about chosing the right solution for the problem in hand based on accepted tarde-offs, but most of solutions are picked up from a box of several choices. 
 In-order for someone to choose from a box, somene must put something in the box , and this is where the box of tools comes into picture. 
 
 Mostly in interviews a few things are common amongst which you need to make a choice. 
-
 
 - Services
 - Databases
@@ -24,22 +22,17 @@ Mostly in interviews a few things are common amongst which you need to make a ch
 - Data Structures
 - Messaging 
 - Algorithms 
-- integration patterns
-
-etc. 
-
-These can be considered as subsection in your tool-box and you will see you have a pool of choices within each sub-section and you need to make a choice , and in order to do that you need to understand the basic requirement of the problem and then basic capability of that tool , for example to make a hole in a wall you will not take out a pin-hole bit.
-
+- integration patterns etc.
 
 ### CAP 
-Always Remember Cap theorem: Choose between availability and scalability
-
+Always Remember Cap theorem: Consistency , Availability and Partition tolerence. You can not avoid parition tolerence in distributed system, so yo design to handle it.
+So one of the other thing will get impacted either availability or consistency , so CA systems don't exists.  either you have AP or CP systems. 
 
 
 
 Most of the questions will be targeted towards understanding the data ingestion pipelines, and that involve focusing on below issues 
 
-- How various requests to service will be coming ( single/buffered/batch)
+- How various requests to service will be coming ( single/buffered/batch )
 - How will timeouts be considered depending on type of requests
 - What will API look like 
 - How does client – implement a re-try mechanism
@@ -61,7 +54,7 @@ Concepts while implementing a client
 3) timeouts (request timeouts 1% of slowest requests times)
 4) retries  ( retry storm events , overload server with too many request )
 5) exponential backoff and jitter algorithms
-6) circuit breaker
+6) circuit breaker.
 
 
 

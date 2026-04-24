@@ -2,26 +2,29 @@
 sidebar_position: 2
 ---
 
-## SDL - Software Development lifecycle
+## SDL — Software Development Lifecycle
 
-software development lifecycle of your product is an essential or say most essential aspect that everyone should be knowing. 
-It reflects as to what level you go to understand your product. 
-Many times people only focus on what they work on and can miss the part of the flow 
+Understanding the software development lifecycle of your product is one of the most essential things you should know. It reflects how deeply you understand your product end-to-end. Many engineers focus only on the code they write and miss the bigger picture.
 
+### Key Stages to Think About
 
-here are a few thoughts to keep in mind when questions related to sdl are asked
+When SDL questions come up in an interview, walk through each stage:
 
-- We hae think about the product so we need some documents, designs 
-- We have to write a code so we need some IDE, language , platform and collaborative code repo
-- We have to build the code and for that will need a build infra structure 
-- we have to deploy the code and for that will need a deployment pipeline or infra
-- we have to run services on some infra so need that infra or system so think about cloud
-- we have to monitor the services so need monitoring and logging 
-- we can't build everything ourselves so will need some third party depdencies
+| Stage | What You Need |
+|-------|---------------|
+| **Plan** | Requirements documents, designs, specifications |
+| **Code** | IDE, programming language, platform, collaborative code repository (e.g., Git) |
+| **Build** | Build infrastructure — CI systems, artifact registries |
+| **Deploy** | Deployment pipeline, infrastructure-as-code, release strategy |
+| **Run** | Cloud or on-prem infrastructure to host services |
+| **Monitor** | Observability — monitoring, logging, alerting |
+| **Dependencies** | Third-party libraries, external services, SLAs |
 
+### Cross-Cutting Concerns
 
-now in each of these lines think about 5 pieces
-- security  - you need to secure everything that you do in above steps
-- maintainbility 
-- scale
-- reliability
+For **every** stage above, consider these four dimensions:
+
+- **Security** — Secure everything: code, dependencies, pipelines, infrastructure
+- **Maintainability** — Can the team evolve this over time without pain?
+- **Scale** — Will it handle 10x or 100x growth?
+- **Reliability** — What happens when something fails?

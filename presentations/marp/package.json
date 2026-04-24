@@ -1,0 +1,14 @@
+{
+  "name": "techcatalogue-marp-presentations",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "marp --input-dir ./slides --output ./dist --html",
+    "build:single": "marp",
+    "preview": "marp --input-dir ./slides --output ./dist --html --watch --server",
+    "convert:blog": "node convert-blog.mjs"
+  },
+  "devDependencies": {
+    "@marp-team/marp-cli": "^4.1.1"
+  }
+}

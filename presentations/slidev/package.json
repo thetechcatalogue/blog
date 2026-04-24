@@ -1,0 +1,16 @@
+{
+  "name": "techcatalogue-slidev-presentations",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "slidev slides/sample-network-protocols.md --open",
+    "build": "slidev build slides/sample-network-protocols.md --out ../dist --base ./",
+    "serve": "npx serve dist",
+    "export": "slidev export slides/sample-network-protocols.md"
+  },
+  "dependencies": {
+    "@slidev/cli": "^51.4.3",
+    "@slidev/theme-default": "latest",
+    "@slidev/theme-seriph": "latest"
+  }
+}

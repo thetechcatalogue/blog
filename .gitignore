@@ -2,6 +2,10 @@
 
 # dependencies
 /node_modules
+/.yarn/cache
+presentations/marp/node_modules
+presentations/slidev/node_modules
+**/node_modules
 /.pnp
 .pnp.js
 .yarn/install-state.gz
@@ -27,6 +31,7 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.env
 
 # vercel
 .vercel
@@ -34,3 +39,40 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Python virtual environments
+.venv/
+venv/
+env/
+.virtualenv/
+**/.venv/
+**/venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+*.egg
+
+# IDE / Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+Thumbs.db
+
+# Logs
+*.log
+
+# Azurite
+__azurite_db_*
+__blobstorage__/
+__queuestorage__/
+
+# Docusaurus build output
+blogs/build/

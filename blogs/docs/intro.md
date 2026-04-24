@@ -2,17 +2,25 @@
 sidebar_position: 1
 ---
 
-# TechCatalogue Blog
+# TechCatalogue
 
-Welcome to the TechCatalogue Blog! This is where we share our thoughts, insights, and updates on various technology topics.
+Welcome to TechCatalogue — a collection of notes, guides, and reference material covering core software engineering topics.
 
-## Table of Contents
+## What's Inside
 
-- [Introduction](./intro.md)
+### [System Design](/docs/system-design/intro)
+A comprehensive guide to system design interviews — from understanding the basics, selecting architectures, and establishing requirements, to tackling the most popular design questions (URL shorteners, chat systems, video streaming, and more).
 
-## Introduction
+### [Interview Preparation](/docs/category/learn)
+Practical strategies for technical interviews, including the Software Development Lifecycle (SDL), common authorization flows, HTTPS/TLS handshake flows, and tips on how to tell a great story during your interview.
 
-In the [Introduction](./intro.md) section, you will find an overview of our blog and what you can expect from it.
+### [AI & Machine Learning](/docs/ai-machine-learning/famous-data-mining-algos)
+An overview of the most famous data mining algorithms — from decision trees and SVMs to PageRank and Naive Bayes.
 
-Happy reading!
+### [Recommended Reading](/docs/all-books-we-know)
+A curated list of books every software engineer should have on their shelf.
+
+---
+
+Pick a section and dive in. Happy reading!
 
