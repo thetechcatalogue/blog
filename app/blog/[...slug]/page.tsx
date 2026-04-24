@@ -4,6 +4,7 @@ import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { Pre } from "@/components/MdxComponents";
 
 interface Props {
   params: Promise<{ slug: string[] }>;
@@ -41,7 +42,8 @@ export default async function BlogPost({ params }: Props) {
             {post.meta.tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-600 dark:bg-gray-800 dark:text-gray-400"
+                className="rounded-full px-2.5 py-0.5 text-xs font-medium"
+                style={{ backgroundColor: "var(--tag-bg)", color: "var(--tag-text)" }}
               >
                 {tag}
               </span>
@@ -50,6 +52,7 @@ export default async function BlogPost({ params }: Props) {
         )}
         <MDXRemote
           source={post.content}
+          components={{ pre: Pre }}
           options={{
             mdxOptions: {
               remarkPlugins: [remarkGfm],

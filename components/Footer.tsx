@@ -28,12 +28,18 @@ const footerSections = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-950">
+    <footer
+      className="border-t"
+      style={{ borderColor: "var(--border-color)", backgroundColor: "var(--bg-secondary)" }}
+    >
       <div className="mx-auto max-w-7xl px-6 py-12">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {footerSections.map((section) => (
             <div key={section.title}>
-              <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-gray-900 dark:text-white">
+              <h3
+                className="mb-3 text-sm font-semibold uppercase tracking-wider"
+                style={{ color: "var(--text-primary)" }}
+              >
                 {section.title}
               </h3>
               <ul className="space-y-2">
@@ -44,14 +50,16 @@ export default function Footer() {
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+                        className="text-sm transition-colors"
+                        style={{ color: "var(--text-secondary)" }}
                       >
                         {link.label}
                       </a>
                     ) : (
                       <Link
                         href={link.href}
-                        className="text-sm text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+                        className="text-sm transition-colors"
+                        style={{ color: "var(--text-secondary)" }}
                       >
                         {link.label}
                       </Link>
@@ -62,8 +70,11 @@ export default function Footer() {
             </div>
           ))}
         </div>
-        <div className="mt-10 border-t border-gray-200 pt-6 text-center dark:border-gray-800">
-          <p className="text-sm text-gray-500 dark:text-gray-400">
+        <div
+          className="mt-10 border-t pt-6 text-center"
+          style={{ borderColor: "var(--border-color)" }}
+        >
+          <p className="text-sm" style={{ color: "var(--text-secondary)" }}>
             Copyright &copy; {new Date().getFullYear()} TechCatalogue. Built with Next.js.
           </p>
         </div>

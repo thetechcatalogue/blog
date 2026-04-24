@@ -4,6 +4,7 @@ import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { Pre } from "@/components/MdxComponents";
 
 interface Props {
   params: Promise<{ slug: string[] }>;
@@ -42,6 +43,7 @@ export default async function DocPage({ params }: Props) {
       )}
       <MDXRemote
         source={doc.content}
+        components={{ pre: Pre }}
         options={{
           mdxOptions: {
             remarkPlugins: [remarkGfm],

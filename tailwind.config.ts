@@ -9,6 +9,11 @@ const config: Config = {
   darkMode: "class",
   theme: {
     extend: {
+      colors: {
+        accent: {
+          DEFAULT: "rgb(var(--accent) / <alpha-value>)",
+        },
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":

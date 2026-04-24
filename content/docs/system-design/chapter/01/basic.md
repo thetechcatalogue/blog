@@ -8,7 +8,7 @@ Understanding the basic request flow is fundamental to every distributed system 
 
 ### Request Flow Diagram
 
-![Basic Request Flow](./Chapter-1-Basic.png)
+![Basic Request Flow](/images/docs/Chapter-1-Basic.png)
 
 ### What to Observe
 

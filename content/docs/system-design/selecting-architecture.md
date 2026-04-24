@@ -14,7 +14,7 @@ Distributed architectures may feature finer-grained deployment models, where eac
 
 Here you must understand what monolithic architecure means and what distributed arch means.
 
-Distributed (multiple deployment units connected through remote access protocols) [ref: https://learning.oreilly.com/library/view/fundamentals-of-software/9781492043447/ch09.xhtml#idm46005304152280]
+Distributed (multiple deployment units connected through remote access protocols) ([Ref: Fundamentals of Software Architecture, Ch. 9](https://learning.oreilly.com/library/view/fundamentals-of-software/9781492043447/ch09.xhtml#idm46005304152280))
 
 
 But within these systems there are other specific patterns of achitecture which is work getting familiar with. 
@@ -35,7 +35,7 @@ Visual studio Code is an excellent example of such system with such arch.
 **Distributed**
 - Service-based architecture
 Although service-based architecture is a distributed architecture, it doesn’t have the same level of complexity and cost as other distributed architectures, such as microservices or event-driven architecture, making it a very popular choice for many business-related applications.
-[ref:https://learning.oreilly.com/library/view/fundamentals-of-software/9781492043447/ch13.xhtml]
+([Ref: Fundamentals of Software Architecture, Ch. 13](https://learning.oreilly.com/library/view/fundamentals-of-software/9781492043447/ch13.xhtml))
 
 - Event-driven architecture
 The event-driven architecture style is a popular distributed asynchronous architecture style used to produce highly scalable and high-performance applications. It is also highly adaptable and can be used for small applications and as well as large, complex ones. Event-driven architecture is made up of decoupled event processing components that asynchronously receive and process events. It can be used as a standalone architecture style or embedded within other architecture styles.

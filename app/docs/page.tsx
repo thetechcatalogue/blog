@@ -3,6 +3,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
 import type { Metadata } from "next";
+import { Pre } from "@/components/MdxComponents";
 
 export const metadata: Metadata = {
   title: "Docs | TechCatalogue",
@@ -26,6 +27,7 @@ export default async function DocsIndex() {
       )}
       <MDXRemote
         source={doc.content}
+        components={{ pre: Pre }}
         options={{
           mdxOptions: {
             remarkPlugins: [remarkGfm],

@@ -11,7 +11,7 @@ There are various network protocols and they works at different layers of OSI mo
 
 Advice is to have an understanding of these protocols. 
 
-![network layers](./images/network-layers.png)
+![network layers](/images/blog/network-layers.png)
 
 
 ### Networking Devices 

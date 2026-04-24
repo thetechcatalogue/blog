@@ -32,10 +32,16 @@ export default function Home() {
   return (
     <main className="mx-auto max-w-5xl px-6 py-16">
       <div className="mb-16 text-center">
-        <h1 className="mb-4 text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
+        <h1
+          className="mb-4 text-5xl font-bold tracking-tight"
+          style={{ color: "var(--text-primary)" }}
+        >
           TechCatalogue
         </h1>
-        <p className="mx-auto max-w-2xl text-lg text-gray-500 dark:text-gray-400">
+        <p
+          className="mx-auto max-w-2xl text-lg"
+          style={{ color: "var(--text-secondary)" }}
+        >
           Notes, guides, and reference material covering system design, interviews,
           AI/ML, and software engineering fundamentals.
         </p>
@@ -46,15 +52,15 @@ export default function Home() {
           <Link
             key={section.href}
             href={section.href}
-            className="group rounded-xl border border-gray-200 p-6 transition-all hover:border-blue-300 hover:shadow-md dark:border-gray-800 dark:hover:border-blue-800"
+            className="card-themed group rounded-xl border p-6 transition-all hover:shadow-lg"
           >
-            <h2 className="mb-2 text-lg font-semibold text-gray-900 group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400">
+            <h2 className="card-title mb-2 text-lg font-semibold">
               {section.title}
               <span className="ml-1 inline-block transition-transform group-hover:translate-x-1">
                 &rarr;
               </span>
             </h2>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
+            <p className="card-desc text-sm">
               {section.description}
             </p>
           </Link>

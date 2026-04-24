@@ -14,16 +14,16 @@ export default function BlogIndex() {
 
   return (
     <div className="mx-auto max-w-3xl px-6 py-12">
-      <h1 className="mb-8 text-3xl font-bold text-gray-900 dark:text-white">Blog</h1>
+      <h1 className="mb-8 text-3xl font-bold" style={{ color: "var(--text-primary)" }}>Blog</h1>
       <div className="space-y-8">
         {posts.map((post) => (
           <article key={post.slug.join("/")} className="group">
             <Link href={`/blog/${post.slug.join("/")}`}>
-              <h2 className="text-xl font-semibold text-gray-900 transition-colors group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400">
+              <h2 className="text-xl font-semibold transition-colors group-hover:text-accent" style={{ color: "var(--text-primary)" }}>
                 {post.title}
               </h2>
               {post.description && (
-                <p className="mt-1 text-gray-500 dark:text-gray-400">
+                <p className="mt-1" style={{ color: "var(--text-secondary)" }}>
                   {post.description}
                 </p>
               )}
@@ -32,7 +32,8 @@ export default function BlogIndex() {
                   {post.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-600 dark:bg-gray-800 dark:text-gray-400"
+                      className="rounded-full px-2.5 py-0.5 text-xs font-medium"
+                      style={{ backgroundColor: "var(--tag-bg)", color: "var(--tag-text)" }}
                     >
                       {tag}
                     </span>
