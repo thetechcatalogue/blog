@@ -150,69 +150,69 @@ export default function InteractiveDiagram({ title, nodes: archNodes, edges: arc
     <div className="not-prose my-8 rounded-xl border overflow-hidden" style={{ borderColor: "var(--border-color)" }}>
       {/* Header */}
       <div
-        className="flex items-center justify-between border-b px-4 py-2.5"
+        className="flex flex-col gap-1 border-b px-4 py-2.5 sm:flex-row sm:items-center sm:justify-between"
         style={{ backgroundColor: "var(--bg-secondary)", borderColor: "var(--border-color)" }}
       >
         <h3 className="text-sm font-semibold" style={{ color: "var(--text-primary)" }}>
           🔍 {title}
         </h3>
-        <span className="text-xs" style={{ color: "var(--text-secondary)" }}>
+        <span className="hidden text-xs sm:inline" style={{ color: "var(--text-secondary)" }}>
           Click a component to explore • Drag to pan • Scroll to zoom
+        </span>
+        <span className="text-xs sm:hidden" style={{ color: "var(--text-secondary)" }}>
+          Tap to explore • Pinch to zoom
         </span>
       </div>
 
-      <div className="flex" style={{ height: 420 }}>
-        {/* Diagram canvas */}
-        <div className="flex-1" style={{ backgroundColor: "var(--bg-tertiary)" }}>
-          <ReactFlow
-            nodes={nodes}
-            edges={edges}
-            onNodesChange={onNodesChange}
-            onEdgesChange={onEdgesChange}
-            onNodeClick={onNodeClick}
-            onPaneClick={onPaneClick}
-            nodeTypes={nodeTypes}
-            fitView
-            fitViewOptions={{ padding: 0.3 }}
-            proOptions={{ hideAttribution: true }}
-          >
-            <Background color="var(--border-color)" gap={20} size={1} />
-            <Controls
-              showInteractive={false}
-              className="!bg-[var(--bg)] !border-[var(--border-color)] !shadow-lg [&>button]:!bg-[var(--bg)] [&>button]:!border-[var(--border-color)] [&>button]:!fill-[var(--text-secondary)] [&>button:hover]:!bg-[var(--bg-secondary)]"
-            />
-          </ReactFlow>
-        </div>
-
-        {/* Detail panel */}
-        <div
-          className="w-72 shrink-0 overflow-y-auto border-l p-4"
-          style={{
-            borderColor: "var(--border-color)",
-            backgroundColor: "var(--bg)",
-          }}
+      {/* Diagram canvas */}
+      <div className="h-[300px] sm:h-[420px]" style={{ backgroundColor: "var(--bg-tertiary)" }}>
+        <ReactFlow
+          nodes={nodes}
+          edges={edges}
+          onNodesChange={onNodesChange}
+          onEdgesChange={onEdgesChange}
+          onNodeClick={onNodeClick}
+          onPaneClick={onPaneClick}
+          nodeTypes={nodeTypes}
+          fitView
+          fitViewOptions={{ padding: 0.2 }}
+          proOptions={{ hideAttribution: true }}
+          minZoom={0.3}
         >
-          {selectedNode ? (
-            <div className="animate-in">
-              <div className="mb-3 flex items-center gap-2">
-                {selectedNode.icon && <span className="text-2xl">{selectedNode.icon}</span>}
-                <h4 className="text-base font-bold" style={{ color: "var(--text-primary)" }}>
-                  {selectedNode.label}
-                </h4>
-              </div>
-              <p className="text-sm leading-relaxed" style={{ color: "var(--text-secondary)" }}>
-                {selectedNode.description}
-              </p>
+          <Background color="var(--border-color)" gap={20} size={1} />
+          <Controls
+            showInteractive={false}
+            className="!bg-[var(--bg)] !border-[var(--border-color)] !shadow-lg [&>button]:!bg-[var(--bg)] [&>button]:!border-[var(--border-color)] [&>button]:!fill-[var(--text-secondary)] [&>button:hover]:!bg-[var(--bg-secondary)]"
+          />
+        </ReactFlow>
+      </div>
+
+      {/* Detail panel — below canvas on mobile, beside on desktop */}
+      <div
+        className="border-t p-4"
+        style={{
+          borderColor: "var(--border-color)",
+          backgroundColor: "var(--bg)",
+          minHeight: 80,
+        }}
+      >
+        {selectedNode ? (
+          <div className="animate-in">
+            <div className="mb-2 flex items-center gap-2">
+              {selectedNode.icon && <span className="text-2xl">{selectedNode.icon}</span>}
+              <h4 className="text-base font-bold" style={{ color: "var(--text-primary)" }}>
+                {selectedNode.label}
+              </h4>
             </div>
-          ) : (
-            <div className="flex h-full flex-col items-center justify-center text-center">
-              <span className="mb-2 text-3xl opacity-40">👆</span>
-              <p className="text-sm" style={{ color: "var(--text-secondary)" }}>
-                Click any component in the diagram to see its details
-              </p>
-            </div>
-          )}
-        </div>
+            <p className="text-sm leading-relaxed" style={{ color: "var(--text-secondary)" }}>
+              {selectedNode.description}
+            </p>
+          </div>
+        ) : (
+          <p className="text-center text-sm" style={{ color: "var(--text-secondary)" }}>
+            👆 Tap any component in the diagram to see its details
+          </p>
+        )}
       </div>
     </div>
   );
