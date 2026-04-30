@@ -54,7 +54,7 @@ export const SeriesHubPlayer: React.FC<Props> = ({
               onClick={() => setSelectedIdx(i)}
               className={`text-left px-3 py-2.5 rounded-lg transition-colors flex items-start gap-2.5 group ${
                 isActive
-                  ? "bg-indigo-600 text-white"
+                  ? "bg-indigo-100 text-indigo-950 ring-1 ring-indigo-200 dark:bg-indigo-600 dark:text-white dark:ring-0"
                   : "text-zinc-700 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-zinc-200"
               }`}
             >
@@ -62,7 +62,7 @@ export const SeriesHubPlayer: React.FC<Props> = ({
               <span
                 className={`mt-0.5 shrink-0 w-5 h-5 rounded-full text-xs flex items-center justify-center font-bold ${
                   isActive
-                    ? "bg-indigo-500 text-white"
+                    ? "bg-indigo-600 text-white dark:bg-indigo-500"
                     : "bg-zinc-300 text-zinc-700 dark:bg-zinc-700 dark:text-zinc-400 group-hover:bg-zinc-400 dark:group-hover:bg-zinc-600"
                 }`}
               >
@@ -75,11 +75,23 @@ export const SeriesHubPlayer: React.FC<Props> = ({
                   {ep.title}
                 </span>
                 {ep.description && (
-                  <span className="text-xs text-zinc-500 dark:text-zinc-500 truncate mt-0.5">
+                  <span
+                    className={`text-xs truncate mt-0.5 ${
+                      isActive
+                        ? "text-indigo-800/80 dark:text-indigo-100/80"
+                        : "text-zinc-500 dark:text-zinc-500"
+                    }`}
+                  >
                     {ep.description}
                   </span>
                 )}
-                <span className="text-xs text-zinc-500 dark:text-zinc-600 mt-1">
+                <span
+                  className={`text-xs mt-1 ${
+                    isActive
+                      ? "text-indigo-800/80 dark:text-indigo-100/80"
+                      : "text-zinc-500 dark:text-zinc-600"
+                  }`}
+                >
                   {CONTENT_TYPE_BADGE[ep.contentType] ?? ep.contentType}
                 </span>
               </div>
@@ -105,8 +117,8 @@ export const SeriesHubPlayer: React.FC<Props> = ({
             boxShadow: "0 18px 40px -16px rgba(0, 0, 0, 0.25)",
           }}
           controls
-          autoPlay
           loop
+          acknowledgeRemotionLicense
         />
 
         {/* Current episode meta */}

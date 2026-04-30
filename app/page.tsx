@@ -22,6 +22,11 @@ const sections = [
     href: "/blog",
   },
   {
+    title: "Video Series",
+    description: "Watch interactive engineering series with animated walkthroughs.",
+    href: "/series",
+  },
+  {
     title: "Recommended Reading",
     description: "Curated books every software engineer should read.",
     href: "/docs/all-books-we-know",

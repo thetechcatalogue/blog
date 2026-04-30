@@ -21,6 +21,7 @@ export const VideoPlayer: React.FC = () => {
       controls
       autoPlay
       loop
+      acknowledgeRemotionLicense
     />
   );
 };

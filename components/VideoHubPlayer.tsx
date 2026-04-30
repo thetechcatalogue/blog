@@ -83,6 +83,7 @@ export const VideoHubPlayer: React.FC<VideoHubPlayerProps> = ({
         controls
         autoPlay
         loop
+        acknowledgeRemotionLicense
       />
     </div>
   );
