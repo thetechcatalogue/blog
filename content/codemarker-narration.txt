@@ -1,0 +1,17 @@
+AI coding assistants start every session completely blind. They have no memory of your code structure, no understanding of relationships. So every time you ask a question, they waste five to seven tool calls grinding through grep and read operations just to figure out what matters. That's forty-two thousand tokens burned — every single session.
+
+CodeMarker fixes this with one powerful idea: pre-compute your code structure once, and query it forever.
+
+Without CodeMarker, you're looking at five to seven tool calls per question, forty-two thousand tokens per deep query, no memory across sessions, and thirty-plus minutes to diagnose incidents. With CodeMarker, it's one tool call, five hundred tokens, persistent structural memory, and three minutes from alert to root cause. That's a ninety-nine point eight percent context reduction.
+
+At the heart of CodeMarker are Anchor Points — human-curated landmarks on your most critical code. Entry points like API handlers. Security boundaries like auth and input validation. Core logic like payment retry. Integrations, performance hot paths, error handlers. Each anchor carries rich metadata: purpose, security implications, performance notes, and known issues. And critical anchors automatically sync to your Copilot instructions — so every inline completion is aware of your constraints.
+
+From these anchors, CodeMarker builds a Condensed Knowledge Graph in just fourteen seconds. Eighty-eight nodes, three hundred fifty-one edges, thirty auto-detected communities. The graph has three tiers: anchor nodes weighted three-x in search, bridge nodes that auto-detect undocumented connectors between anchors, and summary nodes that collapse entire directories into compact representations. What used to be four hundred and twenty thousand tokens of raw source becomes eight hundred tokens of precise context.
+
+CodeMarker exposes nineteen MCP tools with zero configuration. Six anchor tools for creating and querying landmarks. Seven graph tools for search, pathfinding, blast radius, and community detection. Three enrichment tools for AI-generated file descriptions. And three TSG tools for troubleshooting guide generation. It works everywhere — Copilot, Claude Desktop, Cursor, Windsurf, or any MCP client.
+
+Here's where it all comes together: incident response. An alert fires — high latency on dependencies validation. You call graphSearch. Instantly, it finds DependenciesValidation at line forty with full context. GraphNeighbors reveals the API client has a hundred-twenty-second timeout with no retry — that's your root cause. Blast radius? All five validation pipelines are affected. Auto-generate a TSG with code context, escalation paths, and past incidents. Five minutes from alert to root cause — versus thirty-plus minutes of manual investigation.
+
+The numbers speak for themselves. Sixteen times fewer tokens per question. Ninety-nine point eight percent context reduction. Fourteen seconds to build the complete graph. One tool call instead of five to seven. Nineteen MCP tools ready out of the box. Fifteen programming languages supported.
+
+CodeMarker. Pre-compute once. Query forever. Anchor points, knowledge graph, nineteen MCP tools, auto-generated troubleshooting guides, file enrichments, and code comments — all in one extension. Install it from the VS Code Marketplace today.

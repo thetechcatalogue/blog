@@ -14,7 +14,7 @@ Advice is to have an understanding of these protocols.
 ![network layers](/images/blog/network-layers.png)
 
 
-### Networking Devices 
+### Networking Devices ¯
 
 
 Hub | Multiport repeater, Half Duplex, No intelligence, connect Devices together
