@@ -18,11 +18,7 @@ export default async function SeriesIndexPage() {
       <header className="w-full max-w-4xl mb-10 text-center">
         <h1 className="text-4xl font-bold text-zinc-900 dark:text-white mb-2">📚 Video Series</h1>
         <p className="text-zinc-600 dark:text-zinc-400">
-          Welcome to learning series from Tech Catalogue in{" "}
-          {/* <code className="bg-zinc-200 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 px-1.5 py-0.5 rounded text-xs">
-            src/content/series/
-          </code>{" "}
-          to add a new series. */}
+          Follow curated learning tracks with animated walkthroughs and practical episodes.
         </p>
       </header>
 
@@ -30,7 +26,7 @@ export default async function SeriesIndexPage() {
         <p className="text-zinc-600 dark:text-zinc-400 text-sm">
           No series found. Add a folder to{" "}
           <code className="bg-zinc-200 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-400 px-1 rounded">
-            src/content/series/
+            content/series/
           </code>
           .
         </p>

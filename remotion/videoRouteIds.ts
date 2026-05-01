@@ -5,6 +5,7 @@ export const STATIC_VIDEO_IDS = [
   "agent-architecture",
   "database-types",
   "codemarker",
+  "distributed-systems-map",
 ] as const;
 
 export const isStaticVideoId = (id: string): boolean => {

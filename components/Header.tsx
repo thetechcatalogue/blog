@@ -66,8 +66,16 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm font-medium transition-colors hover:opacity-100"
-                style={{ color: "var(--text-secondary)" }}
+                aria-current={pathname.startsWith(item.href) ? "page" : undefined}
+                className="rounded-md px-2 py-1 text-sm font-medium transition-colors hover:opacity-100"
+                style={{
+                  color: pathname.startsWith(item.href)
+                    ? "var(--accent-hex)"
+                    : "var(--text-secondary)",
+                  backgroundColor: pathname.startsWith(item.href)
+                    ? "var(--accent-light)"
+                    : "transparent",
+                }}
               >
                 {item.label}
               </Link>

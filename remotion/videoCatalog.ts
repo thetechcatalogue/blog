@@ -5,6 +5,7 @@ import { httpRequestFlow, apiAuthFlow } from "@/remotion/diagrams/flows";
 import { AgentArchitecture } from "@/remotion/diagrams/AgentArchitecture";
 import { DatabaseTypes } from "@/remotion/diagrams/DatabaseTypes";
 import { CodeMarkerPitch } from "@/remotion/diagrams/CodeMarkerPitch";
+import { DistributedSystemsMap } from "@/remotion/diagrams/DistributedSystemsMap";
 import type { MarkdownVideoContent } from "@/remotion/videoContentTypes";
 
 export type VideoDefinition = {
@@ -41,17 +42,17 @@ export const buildVideoCatalog = ({
   }));
 
   return [
-    {
-      id: "intro",
-      label: "Hello Remotion",
-      description: "Simple intro composition",
-      accentClass: "bg-zinc-700 hover:bg-zinc-600",
-      component: MyComposition as React.ComponentType<Record<string, unknown>>,
-      durationInFrames: 90,
-      fps: 30,
-      compositionWidth: 1920,
-      compositionHeight: 1080,
-    },
+    // {
+    //   id: "intro",
+    //   label: "Hello Remotion",
+    //   description: "Simple intro composition",
+    //   accentClass: "bg-zinc-700 hover:bg-zinc-600",
+    //   component: MyComposition as React.ComponentType<Record<string, unknown>>,
+    //   durationInFrames: 90,
+    //   fps: 30,
+    //   compositionWidth: 1920,
+    //   compositionHeight: 1080,
+    // },
     ...markdownEntries,
     {
       id: "http-flow",
@@ -118,6 +119,17 @@ export const buildVideoCatalog = ({
         bgmSrc: undefined,
       },
       durationInFrames: 6308,
+      fps: 30,
+      compositionWidth: 1920,
+      compositionHeight: 1080,
+    },
+    {
+      id: "distributed-systems-map",
+      label: "Distributed Systems Map",
+      description: "Requests, queues, caches, replicas, and failure boundaries",
+      accentClass: "bg-fuchsia-600 hover:bg-fuchsia-500",
+      component: DistributedSystemsMap as React.ComponentType<Record<string, unknown>>,
+      durationInFrames: 1320,
       fps: 30,
       compositionWidth: 1920,
       compositionHeight: 1080,

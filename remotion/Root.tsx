@@ -7,6 +7,7 @@ import { httpRequestFlow, apiAuthFlow } from "./diagrams/flows";
 import { AgentArchitecture } from "./diagrams/AgentArchitecture";
 import { DatabaseTypes } from "./diagrams/DatabaseTypes";
 import { CodeMarkerPitch } from "./diagrams/CodeMarkerPitch";
+import { DistributedSystemsMap } from "./diagrams/DistributedSystemsMap";
 
 const designPatternsMarkdown = `# What Are Design Patterns?
 
@@ -164,6 +165,14 @@ export const RemotionRoot: React.FC = () => {
           narrationSrc: staticFile("codemarker.mp3"),
           bgmSrc: undefined,
         }}
+      />
+      <Composition
+        id="DistributedSystemsMap"
+        component={DistributedSystemsMap}
+        durationInFrames={1320}
+        fps={30}
+        width={1920}
+        height={1080}
       />
     </>
   );

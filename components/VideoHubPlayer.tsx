@@ -51,7 +51,7 @@ export const VideoHubPlayer: React.FC<VideoHubPlayerProps> = ({
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                 isSelected
                   ? `${video.accentClass} text-white`
-                  : "bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
+                  : "bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 hover:bg-zinc-300 dark:hover:bg-zinc-700"
               }`}
             >
               {video.label}
@@ -61,8 +61,8 @@ export const VideoHubPlayer: React.FC<VideoHubPlayerProps> = ({
       </div>
 
       <div className="text-center">
-        <h3 className="text-xl font-semibold text-white">{selectedVideo.label}</h3>
-        <p className="text-zinc-400 text-sm">{selectedVideo.description}</p>
+        <h3 className="text-xl font-semibold text-zinc-900 dark:text-white">{selectedVideo.label}</h3>
+        <p className="text-zinc-600 dark:text-zinc-400 text-sm">{selectedVideo.description}</p>
       </div>
 
       <Player
@@ -78,7 +78,7 @@ export const VideoHubPlayer: React.FC<VideoHubPlayerProps> = ({
           maxWidth: 960,
           borderRadius: 12,
           overflow: "hidden",
-          boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.4)",
+          boxShadow: "0 18px 40px -16px rgba(0, 0, 0, 0.25)",
         }}
         controls
         autoPlay
