@@ -23,19 +23,33 @@ export const SectionScene: React.FC<{
   return (
     <AbsoluteFill
       style={{
-        backgroundColor: "#0f0f1a",
+        background:
+          "radial-gradient(circle at 16% 18%, rgba(34, 211, 238, 0.17), transparent 36%), radial-gradient(circle at 86% 84%, rgba(167, 139, 250, 0.16), transparent 40%), linear-gradient(180deg, #080a16, #0f1324)",
         justifyContent: "center",
-        padding: "0 120px",
-        fontFamily: "system-ui, sans-serif",
+        padding: "0 100px",
+        fontFamily: "Manrope, system-ui, sans-serif",
       }}
     >
       <div
         style={{
+          position: "absolute",
+          inset: 0,
+          background:
+            "linear-gradient(rgba(148,163,184,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,0.04) 1px, transparent 1px)",
+          backgroundSize: "64px 64px",
+        }}
+      />
+      <div
+        style={{
           transform: `translateX(${translateX}px)`,
-          color: "#6366f1",
-          fontSize: 48,
-          fontWeight: 700,
-          marginBottom: 24,
+          color: "#7dd3fc",
+          fontSize: 86,
+          fontWeight: 800,
+          letterSpacing: -1,
+          lineHeight: 1.05,
+          marginBottom: 30,
+          maxWidth: "92%",
+          textShadow: "0 8px 30px rgba(56, 189, 248, 0.2)",
         }}
       >
         {heading}
@@ -44,10 +58,10 @@ export const SectionScene: React.FC<{
         <div
           style={{
             opacity: bodyOpacity,
-            color: "#d1d5db",
-            fontSize: 28,
-            lineHeight: 1.6,
-            maxWidth: "80%",
+            color: "#d6e1f7",
+            fontSize: 46,
+            lineHeight: 1.45,
+            maxWidth: "90%",
           }}
         >
           {body}

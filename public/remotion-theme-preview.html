@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Remotion Markdown Theme Preview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;700&family=Manrope:wght@500;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --surface: #f3f5f9;
+        --ink: #0d1321;
+        --muted: #5a6272;
+        --card: #ffffff;
+        --line: #d8deeb;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: radial-gradient(circle at 12% 8%, #ffffff, var(--surface) 60%);
+        color: var(--ink);
+        font-family: "IBM Plex Sans", sans-serif;
+      }
+
+      .wrap {
+        width: min(1240px, 92vw);
+        margin: 40px auto 80px;
+      }
+
+      .header {
+        margin-bottom: 28px;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: #e9eefb;
+        color: #1d3e85;
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+
+      h1 {
+        margin: 14px 0 8px;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(32px, 5vw, 46px);
+        line-height: 1.1;
+      }
+
+      .sub {
+        margin: 0;
+        color: var(--muted);
+        max-width: 70ch;
+        line-height: 1.55;
+      }
+
+      .grid {
+        margin-top: 28px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+        gap: 22px;
+      }
+
+      .theme-card {
+        border-radius: 24px;
+        border: 1px solid var(--line);
+        background: var(--card);
+        overflow: hidden;
+        box-shadow: 0 18px 40px rgba(16, 24, 40, 0.08);
+      }
+
+      .theme-head {
+        padding: 18px 18px 14px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .theme-name {
+        margin: 0;
+        font-size: 22px;
+        font-weight: 800;
+      }
+
+      .theme-tag {
+        margin-top: 8px;
+        display: inline-block;
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-weight: 700;
+        opacity: 0.8;
+      }
+
+      .scene {
+        margin: 14px;
+        padding: 16px;
+        border-radius: 16px;
+        min-height: 118px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .scene h3 {
+        margin: 0;
+        font-size: 20px;
+        line-height: 1.15;
+      }
+
+      .scene p {
+        margin: 10px 0 0;
+        line-height: 1.45;
+        font-size: 14px;
+      }
+
+      .code {
+        margin-top: 10px;
+        border-radius: 12px;
+        padding: 12px;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 12px;
+        line-height: 1.5;
+        white-space: pre;
+      }
+
+      .legend {
+        padding: 0 16px 18px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .chip {
+        border-radius: 999px;
+        font-size: 11px;
+        padding: 6px 10px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+      }
+
+      .pick {
+        margin-top: 26px;
+        padding: 16px 18px;
+        border-radius: 14px;
+        border: 1px solid #cdd6ea;
+        background: #eef3ff;
+        color: #1e2a46;
+        line-height: 1.5;
+      }
+
+      /* Blueprint Lab */
+      .blueprint {
+        background: linear-gradient(180deg, #0b1d34, #061323);
+        color: #e7f2ff;
+      }
+
+      .blueprint .theme-tag,
+      .blueprint .chip {
+        color: #8be8ff;
+        background: rgba(139, 232, 255, 0.14);
+      }
+
+      .blueprint .scene {
+        border: 1px solid rgba(142, 209, 255, 0.24);
+        background-image:
+          linear-gradient(rgba(129, 198, 255, 0.07) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(129, 198, 255, 0.07) 1px, transparent 1px);
+        background-size: 26px 26px;
+        background-color: rgba(8, 25, 43, 0.85);
+      }
+
+      .blueprint .scene p {
+        color: #b8d4ef;
+      }
+
+      .blueprint .code {
+        background: #021325;
+        border: 1px solid rgba(122, 201, 255, 0.28);
+        color: #c9ebff;
+      }
+
+      /* Paper + Marker */
+      .paper {
+        background: linear-gradient(180deg, #f7eedf, #f4e6d1);
+        color: #302219;
+        font-family: "Archivo", sans-serif;
+      }
+
+      .paper .theme-tag,
+      .paper .chip {
+        color: #8c4b1f;
+        background: rgba(236, 151, 76, 0.2);
+      }
+
+      .paper .scene {
+        border: 1px solid rgba(170, 126, 88, 0.32);
+        background: repeating-linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.56),
+          rgba(255, 255, 255, 0.56) 24px,
+          rgba(247, 230, 204, 0.8) 24px,
+          rgba(247, 230, 204, 0.8) 25px
+        );
+      }
+
+      .paper .scene p {
+        color: #69452f;
+      }
+
+      .paper .code {
+        background: #fff8ec;
+        border: 1px dashed #ca935f;
+        color: #3b281a;
+      }
+
+      /* Glass Console */
+      .glass {
+        background:
+          radial-gradient(circle at 15% 20%, rgba(34, 211, 238, 0.25), transparent 40%),
+          radial-gradient(circle at 85% 15%, rgba(167, 139, 250, 0.24), transparent 40%),
+          linear-gradient(180deg, #080a16, #0f1324);
+        color: #f1f5ff;
+        font-family: "Manrope", sans-serif;
+      }
+
+      .glass .theme-tag,
+      .glass .chip {
+        color: #d8ccff;
+        background: rgba(167, 139, 250, 0.2);
+      }
+
+      .glass .scene {
+        border: 1px solid rgba(205, 220, 255, 0.2);
+        background: rgba(255, 255, 255, 0.06);
+        backdrop-filter: blur(8px);
+      }
+
+      .glass .scene::after {
+        content: "";
+        position: absolute;
+        inset: -30% auto auto -10%;
+        width: 50%;
+        height: 140%;
+        transform: rotate(20deg);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.22), transparent);
+        pointer-events: none;
+      }
+
+      .glass .scene p {
+        color: #bec8e8;
+      }
+
+      .glass .code {
+        background: rgba(2, 6, 22, 0.72);
+        border: 1px solid rgba(130, 161, 255, 0.35);
+        color: #ddedff;
+      }
+
+      @media (max-width: 720px) {
+        .wrap {
+          width: min(1200px, 94vw);
+          margin-top: 24px;
+        }
+
+        .scene {
+          min-height: 96px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <header class="header">
+        <span class="eyebrow">Preview Board</span>
+        <h1>Markdown Animation Themes</h1>
+        <p class="sub">
+          These are visual mockups for how your markdown scenes can look after theming.
+          Each card previews title, section, and code blocks in a distinct style.
+        </p>
+      </header>
+
+      <section class="grid">
+        <article class="theme-card blueprint">
+          <div class="theme-head">
+            <h2 class="theme-name">Blueprint Lab</h2>
+            <span class="theme-tag">System Design / Infra</span>
+          </div>
+          <div class="scene">
+            <h3>Distributed Systems Map</h3>
+            <p>Request flow, cache checks, event queue, and replica lag in one technical visual language.</p>
+            <div class="code">if (cache.hit(key)) return cache.get(key)
+queue.publish(event)
+replica.sync(primary)</div>
+          </div>
+          <div class="legend">
+            <span class="chip">Grid background</span>
+            <span class="chip">Cyan highlights</span>
+            <span class="chip">Terminal code window</span>
+          </div>
+        </article>
+
+        <article class="theme-card paper">
+          <div class="theme-head">
+            <h2 class="theme-name">Paper + Marker</h2>
+            <span class="theme-tag">Interview / Teaching</span>
+          </div>
+          <div class="scene">
+            <h3>Consistency and Tradeoffs</h3>
+            <p>Warm notebook style with high readability and concept-focused pacing.</p>
+            <div class="code">CAP theorem:
+- choose consistency
+- or choose availability
+- under partition you trade off</div>
+          </div>
+          <div class="legend">
+            <span class="chip">Paper texture</span>
+            <span class="chip">Marker accents</span>
+            <span class="chip">Readable serif tone</span>
+          </div>
+        </article>
+
+        <article class="theme-card glass">
+          <div class="theme-head">
+            <h2 class="theme-name">Glass Console</h2>
+            <span class="theme-tag">AI / Product Story</span>
+          </div>
+          <div class="scene">
+            <h3>How Agents Coordinate</h3>
+            <p>Futuristic translucent cards, soft glow transitions, and cinematic depth.</p>
+            <div class="code">agent.plan(goal)
+agent.callTool("search")
+agent.reflect(response)</div>
+          </div>
+          <div class="legend">
+            <span class="chip">Blur glass cards</span>
+            <span class="chip">Aurora gradients</span>
+            <span class="chip">Neon code accents</span>
+          </div>
+        </article>
+      </section>
+
+      <section class="pick">
+        Pick 1-2 themes, and I will convert them into reusable Remotion scene templates
+        with tokens so each markdown video can choose theme from frontmatter.
+      </section>
+    </main>
+  </body>
+</html>

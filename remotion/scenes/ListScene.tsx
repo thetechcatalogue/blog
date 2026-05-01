@@ -20,19 +20,32 @@ export const ListScene: React.FC<{
   return (
     <AbsoluteFill
       style={{
-        backgroundColor: "#0f0f1a",
+        background:
+          "radial-gradient(circle at 18% 14%, rgba(34, 211, 238, 0.18), transparent 38%), radial-gradient(circle at 84% 24%, rgba(167, 139, 250, 0.18), transparent 40%), linear-gradient(180deg, #080a16, #0f1324)",
         justifyContent: "center",
-        padding: "0 120px",
-        fontFamily: "system-ui, sans-serif",
+        padding: "0 96px",
+        fontFamily: "Manrope, system-ui, sans-serif",
       }}
     >
       <div
         style={{
+          position: "absolute",
+          inset: 0,
+          background:
+            "linear-gradient(rgba(148,163,184,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,0.04) 1px, transparent 1px)",
+          backgroundSize: "64px 64px",
+        }}
+      />
+      <div
+        style={{
           transform: `scale(${headingScale})`,
-          color: "#6366f1",
-          fontSize: 44,
-          fontWeight: 700,
+          color: "#7dd3fc",
+          fontSize: 80,
+          fontWeight: 800,
+          letterSpacing: -1,
+          lineHeight: 1.05,
           marginBottom: body ? 16 : 36,
+          maxWidth: "92%",
         }}
       >
         {heading}
@@ -40,15 +53,17 @@ export const ListScene: React.FC<{
       {body && (
         <div
           style={{
-            color: "#9ca3af",
-            fontSize: 24,
-            marginBottom: 30,
+            color: "#d6e1f7",
+            fontSize: 40,
+            lineHeight: 1.4,
+            marginBottom: 32,
+            maxWidth: "90%",
           }}
         >
           {body}
         </div>
       )}
-      <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 20, maxWidth: "92%" }}>
         {items.map((item, i) => {
           const itemSpring = spring({
             fps,
@@ -71,14 +86,15 @@ export const ListScene: React.FC<{
             >
               <div
                 style={{
-                  width: 10,
-                  height: 10,
+                  width: 16,
+                  height: 16,
                   borderRadius: "50%",
-                  backgroundColor: "#6366f1",
+                  backgroundColor: "#22d3ee",
+                  boxShadow: "0 0 18px rgba(34, 211, 238, 0.65)",
                   flexShrink: 0,
                 }}
               />
-              <div style={{ color: "#e2e8f0", fontSize: 28 }}>{item}</div>
+              <div style={{ color: "#e2ebff", fontSize: 42, lineHeight: 1.3 }}>{item}</div>
             </div>
           );
         })}

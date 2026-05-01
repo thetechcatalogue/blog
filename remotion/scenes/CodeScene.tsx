@@ -31,29 +31,47 @@ export const CodeScene: React.FC<{
   return (
     <AbsoluteFill
       style={{
-        backgroundColor: "#0f0f1a",
+        background:
+          "radial-gradient(circle at 14% 14%, rgba(34, 211, 238, 0.2), transparent 38%), radial-gradient(circle at 84% 18%, rgba(167, 139, 250, 0.2), transparent 40%), linear-gradient(180deg, #080a16, #0f1324)",
         justifyContent: "center",
         alignItems: "center",
-        fontFamily: "system-ui, sans-serif",
+        fontFamily: "Manrope, system-ui, sans-serif",
+        padding: "0 72px",
       }}
     >
       <div
         style={{
+          position: "absolute",
+          inset: 0,
+          background:
+            "linear-gradient(rgba(148,163,184,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,0.035) 1px, transparent 1px)",
+          backgroundSize: "64px 64px",
+        }}
+      />
+      <div
+        style={{
           opacity: headingOpacity,
-          color: "#6366f1",
-          fontSize: 36,
-          fontWeight: 700,
-          marginBottom: 30,
+          color: "#7dd3fc",
+          fontSize: 72,
+          fontWeight: 800,
+          letterSpacing: -1,
+          marginBottom: 26,
+          textAlign: "center",
+          maxWidth: "90%",
         }}
       >
         {heading}
       </div>
       <div
         style={{
-          backgroundColor: "#1e1e2e",
-          borderRadius: 16,
-          padding: 32,
-          width: "75%",
+          backgroundColor: "rgba(4, 10, 30, 0.78)",
+          border: "1px solid rgba(125, 211, 252, 0.32)",
+          borderRadius: 22,
+          boxShadow: "0 24px 60px rgba(2, 6, 23, 0.45)",
+          backdropFilter: "blur(8px)",
+          padding: 34,
+          width: "92%",
+          minHeight: 680,
           position: "relative",
         }}
       >
@@ -61,12 +79,13 @@ export const CodeScene: React.FC<{
           <div
             style={{
               position: "absolute",
-              top: 12,
-              right: 16,
-              color: "#6366f1",
-              fontSize: 14,
-              fontFamily: "monospace",
-              opacity: 0.7,
+              top: 14,
+              right: 18,
+              color: "#67e8f9",
+              fontSize: 24,
+              fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
+              fontWeight: 700,
+              opacity: 0.88,
             }}
           >
             {language}
@@ -75,10 +94,11 @@ export const CodeScene: React.FC<{
         <pre
           style={{
             margin: 0,
-            fontFamily: "'JetBrains Mono', 'Fira Code', monospace",
-            fontSize: 22,
-            lineHeight: 1.6,
-            color: "#e2e8f0",
+            fontFamily: "'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
+            fontSize: 34,
+            lineHeight: 1.5,
+            color: "#e2ebff",
+            paddingTop: 22,
           }}
         >
           {codeLines
