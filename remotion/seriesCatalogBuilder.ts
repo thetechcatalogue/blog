@@ -67,9 +67,6 @@ export function buildSeriesEpisodeCatalog(
         (v) => v.id === episode.compositionId
       );
       if (existing) {
-        console.log(
-          `[DEBUG] Found composition: ${episode.compositionId}, duration: ${existing.durationInFrames}`
-        );
         return { ...existing, id, label: episode.title };
       }
     }

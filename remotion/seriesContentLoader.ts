@@ -10,10 +10,10 @@ import type {
 type Frontmatter = Record<string, string>;
 
 function parseFrontmatter(raw: string): { content: string; data: Frontmatter } {
-  const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
+  const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n([\s\S]*))?$/);
   if (!match) return { content: raw, data: {} };
   const data: Frontmatter = {};
-  for (const line of match[1].split("\n")) {
+  for (const line of match[1].split(/\r?\n/)) {
     const idx = line.indexOf(":");
     if (idx <= 0) continue;
     const key = line.slice(0, idx).trim();
@@ -23,7 +23,7 @@ function parseFrontmatter(raw: string): { content: string; data: Frontmatter } {
       .replace(/^['\"]|['\"]$/g, "");
     data[key] = val;
   }
-  return { content: match[2], data };
+  return { content: match[2] ?? "", data };
 }
 
 function toTitleCase(input: string): string {
@@ -101,8 +101,13 @@ export async function loadSeriesFromFolder(
           const { content, data } = parseFrontmatter(raw);
           const fileBase = basename(fileName, ".md");
           const slug = data.slug?.trim() || fileBase.replace(/^\d+-/, "");
-          const contentType = (data.contentType?.trim() ||
-            "markdown") as EpisodeContentType;
+          const rawContentType = (data.contentType?.trim() || "markdown").toLowerCase();
+          const contentType: EpisodeContentType =
+            rawContentType === "markdown" ||
+            rawContentType === "flow" ||
+            rawContentType === "composition"
+              ? rawContentType
+              : "markdown";
           // Prefer explicit order frontmatter, fall back to numeric filename prefix
           const order = parseInt(
             data.order || fileBase.match(/^(\d+)/)?.[1] || "0",

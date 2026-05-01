@@ -1,6 +1,5 @@
 import {
   AbsoluteFill,
-  Audio,
   interpolate,
   spring,
   useCurrentFrame,
@@ -265,7 +264,13 @@ const centerOf = (node: Node) => ({
   y: node.y + node.height / 2,
 });
 
-const getNode = (id: string) => NODES.find((n) => n.id === id)!;
+const getNode = (id: string) => {
+  const node = NODES.find((n) => n.id === id);
+  if (!node) {
+    console.warn(`Node not found: ${id}`);
+  }
+  return node!;
+};
 
 const packetPosition = (fromId: string, toId: string, progress: number) => {
   const from = centerOf(getNode(fromId));
@@ -277,50 +282,48 @@ const packetPosition = (fromId: string, toId: string, progress: number) => {
 };
 
 export const DistributedSystemsMap: React.FC<{
-  narrationSrc?: string;
-}> = ({ narrationSrc }) => {
+}> = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  // Animation timing
-  const titleScale = spring({ fps, frame, config: { damping: 12, stiffness: 110 } });
-  const subtitleOpacity = interpolate(frame, [15, 35], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
+  try {
+    // Animation timing
+    const titleScale = spring({ fps, frame, config: { damping: 12, stiffness: 110 } });
+    const subtitleOpacity = interpolate(frame, [15, 35], [0, 1], {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+    });
 
-  // Pulsing glow effect
-  const pulsePhase = Math.sin(frame * 0.08) * 0.5 + 0.5;
+    // Pulsing glow effect
+    const pulsePhase = Math.sin(frame * 0.08) * 0.5 + 0.5;
 
-  // Intro panel
-  const introPanelOpacity = interpolate(frame, [40, 70], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
+    // Intro panel
+    const introPanelOpacity = interpolate(frame, [40, 70], [0, 1], {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+    });
 
-  // Failure visualization
-  const failureOpacity = interpolate(frame, [960, 1020, 1080, 1140], [0, 1, 1, 0], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
+    // Failure visualization
+    const failureOpacity = interpolate(frame, [960, 1020, 1080, 1140], [0, 1, 1, 0], {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+    });
 
-  // Metrics footer
-  const metricsOpacity = interpolate(frame, [1150, 1190], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
+    // Metrics footer
+    const metricsOpacity = interpolate(frame, [1150, 1190], [0, 1], {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+    });
 
-  return (
-    <AbsoluteFill
-      style={{
-        background: "linear-gradient(135deg, #0f172a 0%, #111827 50%, #020617 100%)",
-        fontFamily: "system-ui, sans-serif",
-        color: "#e5eefb",
-        overflow: "hidden",
-      }}
-    >
-      {/* Narration audio */}
-      {narrationSrc && <Audio src={narrationSrc} volume={0.9} />}
+    return (
+      <AbsoluteFill
+        style={{
+          background: "linear-gradient(135deg, #0f172a 0%, #111827 50%, #020617 100%)",
+          fontFamily: "system-ui, sans-serif",
+          color: "#e5eefb",
+          overflow: "hidden",
+        }}
+      >
 
       {/* Background grid */}
       <div
@@ -385,9 +388,25 @@ export const DistributedSystemsMap: React.FC<{
         style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
         pointerEvents="none"
       >
+        <defs>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+            <feMerge>
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+
         {CONNECTIONS.map((conn, idx) => {
           const fromNode = getNode(conn.from);
           const toNode = getNode(conn.to);
+          
+          if (!fromNode || !toNode) {
+            console.warn(`Connection ${idx} has missing nodes`);
+            return null;
+          }
+          
           const fromCenter = centerOf(fromNode);
           const toCenter = centerOf(toNode);
 
@@ -436,19 +455,6 @@ export const DistributedSystemsMap: React.FC<{
                   fill={conn.color}
                   filter="url(#glow)"
                 />
-              )}
-
-              {/* Defs for glow */}
-              {idx === 0 && (
-                <defs>
-                  <filter id="glow">
-                    <feGaussianBlur stdDeviation="4" result="coloredBlur" />
-                    <feMerge>
-                      <feMergeNode in="coloredBlur" />
-                      <feMergeNode in="SourceGraphic" />
-                    </feMerge>
-                  </filter>
-                </defs>
               )}
 
               {/* Label */}
@@ -549,6 +555,11 @@ export const DistributedSystemsMap: React.FC<{
 
       {/* Traffic particles / animated packets */}
       {CONNECTIONS.slice(0, 8).map((conn, idx) => {
+        const fromNode = getNode(conn.from);
+        const toNode = getNode(conn.to);
+        
+        if (!fromNode || !toNode) return null;
+        
         const trafficProgress = interpolate(
           frame,
           [conn.appearAt + 40, conn.appearAt + 80],
@@ -682,5 +693,13 @@ export const DistributedSystemsMap: React.FC<{
         })}
       </div>
     </AbsoluteFill>
-  );
+    );
+  } catch (error) {
+    console.error("[DistributedSystemsMap] Error rendering:", error);
+    return (
+      <AbsoluteFill style={{ background: "#000", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <div>Error rendering DistributedSystemsMap: {String(error)}</div>
+      </AbsoluteFill>
+    );
+  }
 };

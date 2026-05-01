@@ -50,7 +50,7 @@ export const OutroScene: React.FC<{
           marginTop: 20,
         }}
       >
-        Built with Remotion + Next.js
+        Techcatalogue - Your Ultimate Tech Resource
       </div>
     </AbsoluteFill>
   );

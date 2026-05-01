@@ -1,5 +1,4 @@
 import { Composition, staticFile } from "remotion";
-import { MyComposition } from "./MyComposition";
 import { MarkdownVideo } from "./MarkdownVideo";
 import { parseMarkdownToScenes } from "./parseMarkdown";
 import { ClientServerFlow } from "./diagrams/ClientServerFlow";
@@ -86,14 +85,6 @@ const networkTotalFrames = networkScenes.reduce((sum, s) => sum + s.duration, 0)
 export const RemotionRoot: React.FC = () => {
   return (
     <>
-      <Composition
-        id="MyVideo"
-        component={MyComposition}
-        durationInFrames={90}
-        fps={30}
-        width={1920}
-        height={1080}
-      />
       <Composition
         id="DesignPatterns"
         component={MarkdownVideo}

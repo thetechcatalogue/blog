@@ -1,4 +1,3 @@
-import { MyComposition } from "@/remotion/MyComposition";
 import { MarkdownVideo } from "@/remotion/MarkdownVideo";
 import { ClientServerFlow } from "@/remotion/diagrams/ClientServerFlow";
 import { httpRequestFlow, apiAuthFlow } from "@/remotion/diagrams/flows";
@@ -129,6 +128,7 @@ export const buildVideoCatalog = ({
       description: "Requests, queues, caches, replicas, and failure boundaries",
       accentClass: "bg-fuchsia-600 hover:bg-fuchsia-500",
       component: DistributedSystemsMap as React.ComponentType<Record<string, unknown>>,
+      inputProps: {},
       durationInFrames: 1320,
       fps: 30,
       compositionWidth: 1920,
