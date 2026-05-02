@@ -2,8 +2,10 @@
 title: "Caching, Retries, and Idempotency"
 slug: "caching-retries-and-idempotency"
 order: 4
+narrationSrc: /audio/series/distributed-systems/caching-retries-and-idempotency.mp3
 contentType: "markdown"
 description: "The small mechanisms that decide whether a system bends gracefully or amplifies failure"
+audioDurationSec: 119.978
 ---
 
 ## Caches Buy Speed by Risking Drift

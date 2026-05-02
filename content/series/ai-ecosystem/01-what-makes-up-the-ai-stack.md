@@ -2,8 +2,10 @@
 title: "What Makes Up the AI Stack?"
 slug: "what-makes-up-the-ai-stack"
 order: 1
+narrationSrc: /audio/series/ai-ecosystem/what-makes-up-the-ai-stack.mp3
 contentType: "markdown"
 description: "Models, prompts, retrieval, tools, agents, evaluation, and product UX"
+audioDurationSec: 148.829
 ---
 
 ## The AI Stack Is Not Just the Model

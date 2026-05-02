@@ -34,6 +34,48 @@ function toTitleCase(input: string): string {
     .join(" ");
 }
 
+function normalizePublicPath(src: string): string {
+  return src.startsWith("/") ? src : `/${src}`;
+}
+
+function toKebabCase(input: string): string {
+  return input
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+/**
+ * Scale scene durations so their total matches the audio duration.
+ * Proportions are preserved; the last scene absorbs any rounding remainder.
+ */
+function scaleScenesToAudio(scenes: import("@/remotion/types").Scene[], audioDurationSec: number, fps = 30) {
+  const targetFrames = Math.max(1, Math.round(audioDurationSec * fps));
+  const currentTotal = scenes.reduce((s, sc) => s + sc.duration, 0);
+  if (currentTotal === 0) return scenes;
+  let assigned = 0;
+  return scenes.map((sc, i) => {
+    if (i === scenes.length - 1) {
+      return { ...sc, duration: Math.max(1, targetFrames - assigned) };
+    }
+    const scaled = Math.max(1, Math.round((sc.duration / currentTotal) * targetFrames));
+    assigned += scaled;
+    return { ...sc, duration: scaled };
+  });
+}
+
+function resolveNarrationSrc(
+  id: string,
+  frontmatterNarrationSrc?: string
+): string {
+  if (frontmatterNarrationSrc?.trim()) {
+    return normalizePublicPath(frontmatterNarrationSrc.trim());
+  }
+
+  return `/audio/videos/${toKebabCase(id)}.mp3`;
+}
+
 export async function loadMarkdownVideosFromFolder(
   folder = "src/content/videos"
 ): Promise<MarkdownVideoContent[]> {
@@ -77,6 +119,15 @@ export async function loadMarkdownVideosFromFolder(
       const accentClass =
         data.accentClass?.trim() || "bg-indigo-600 hover:bg-indigo-500";
       const order = Number.parseInt(data.order || "0", 10) || 0;
+      const narrationSrc = resolveNarrationSrc(id, data.narrationSrc?.trim());
+      const audioDurationSec = data.audioDurationSec
+        ? parseFloat(data.audioDurationSec)
+        : undefined;
+      const rawScenes = parseMarkdownToScenes(content);
+      const scenes =
+        audioDurationSec && audioDurationSec > 0
+          ? scaleScenesToAudio(rawScenes, audioDurationSec)
+          : rawScenes;
 
       return {
         id,
@@ -84,7 +135,9 @@ export async function loadMarkdownVideosFromFolder(
         description,
         accentClass,
         order,
-        scenes: parseMarkdownToScenes(content),
+        narrationSrc,
+        audioDurationSec,
+        scenes,
       } satisfies MarkdownVideoContent;
     })
   );

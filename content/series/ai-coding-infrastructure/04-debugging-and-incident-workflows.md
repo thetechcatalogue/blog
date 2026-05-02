@@ -2,8 +2,10 @@
 title: "Debugging and Incident Workflows"
 slug: "debugging-and-incident-workflows"
 order: 4
+narrationSrc: /audio/series/ai-coding-infrastructure/debugging-and-incident-workflows.mp3
 contentType: "markdown"
 description: "How structured context shortens mean time to understand and repair failures"
+audioDurationSec: 74.768
 ---
 
 ## Incidents Need Navigation, Not Just Search

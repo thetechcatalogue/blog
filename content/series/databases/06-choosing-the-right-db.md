@@ -2,8 +2,10 @@
 title: "Choosing the Right Database"
 slug: "choosing-the-right-db"
 order: 6
+narrationSrc: /audio/series/databases/choosing-the-right-db.mp3
 contentType: "markdown"
 description: "A decision framework for every real-world scenario"
+audioDurationSec: 156.019
 ---
 
 ## The Right Question to Start With

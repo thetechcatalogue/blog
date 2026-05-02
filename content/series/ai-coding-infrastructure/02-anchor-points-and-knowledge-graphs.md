@@ -2,8 +2,10 @@
 title: "Anchor Points and Knowledge Graphs"
 slug: "anchor-points-and-knowledge-graphs"
 order: 2
+narrationSrc: /audio/series/ai-coding-infrastructure/anchor-points-and-knowledge-graphs.mp3
 contentType: "markdown"
 description: "How teams pre-compute the important parts of a codebase for faster agent reasoning"
+audioDurationSec: 101.438
 ---
 
 ## Anchor Points

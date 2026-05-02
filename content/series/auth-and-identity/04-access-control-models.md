@@ -2,8 +2,10 @@
 title: "Access Control Models"
 slug: "access-control-models"
 order: 4
+narrationSrc: /audio/series/auth-and-identity/access-control-models.mp3
 contentType: "markdown"
 description: "RBAC, ABAC, scopes, and policy-driven authorization"
+audioDurationSec: 76.327
 ---
 
 ## Authorization Models Encode Policy

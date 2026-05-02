@@ -1,4 +1,12 @@
-
+---
+title: Interview Prep Checklist
+slug: interview-prep-checklist
+description: Architecture and communication checklists for interview scenarios
+accentClass: bg-indigo-600 hover:bg-indigo-500
+order: 30
+narrationSrc: /audio/videos/interview-prep-checklist.mp3
+audioDurationSec: 291.945
+---
 
 #### Decision matrix
 

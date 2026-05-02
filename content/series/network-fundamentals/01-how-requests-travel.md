@@ -2,8 +2,10 @@
 title: "How Requests Travel"
 slug: "how-requests-travel"
 order: 1
+narrationSrc: /audio/series/network-fundamentals/how-requests-travel.mp3
 contentType: "markdown"
 description: "From browser intent to server response"
+audioDurationSec: 96.945
 ---
 
 ## A Request Is a Journey

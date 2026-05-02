@@ -3,7 +3,7 @@ import { Inter, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { ThemeProvider, themeScript } from "@/components/ThemeProvider";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const inter = Inter({
   variable: "--font-geist-sans",
@@ -51,9 +51,6 @@ export default function RootLayout({
       className={`${inter.variable} ${mono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-      </head>
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
         <ThemeProvider>
           <Header />

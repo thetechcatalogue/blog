@@ -4,6 +4,8 @@ slug: design-patterns
 description: Markdown to animated video
 accentClass: bg-indigo-600 hover:bg-indigo-500
 order: 10
+narrationSrc: /audio/videos/design-patterns.mp3
+audioDurationSec: 147.993
 ---
 
 # What Are Design Patterns?

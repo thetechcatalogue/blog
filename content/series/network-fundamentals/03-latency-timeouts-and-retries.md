@@ -2,8 +2,10 @@
 title: "Latency, Timeouts, and Retries"
 slug: "latency-timeouts-and-retries"
 order: 3
+narrationSrc: /audio/series/network-fundamentals/latency-timeouts-and-retries.mp3
 contentType: "markdown"
 description: "The operational tradeoffs behind resilient request handling"
+audioDurationSec: 92.134
 ---
 
 ## Latency Is a Budget

@@ -2,8 +2,10 @@
 title: "Protocols and Connection Patterns"
 slug: "protocols-and-connection-patterns"
 order: 4
+narrationSrc: /audio/series/network-fundamentals/protocols-and-connection-patterns.mp3
 contentType: "markdown"
 description: "When to use request-response, streaming, pub-sub, and persistent connections"
+audioDurationSec: 116.436
 ---
 
 ## Protocols Encode Communication Style

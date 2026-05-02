@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import ReactFlow, {
   Background,
   Controls,
@@ -83,13 +83,17 @@ function ArchitectureNode({ data }: { data: { label: string; icon?: string; desc
   );
 }
 
-const nodeTypes: NodeTypes = {
-  architecture: ArchitectureNode,
-};
-
 /* ─── Main diagram component ─── */
 export default function InteractiveDiagram({ title, nodes: archNodes, edges: archEdges }: ArchDiagramProps) {
   const [selectedNode, setSelectedNode] = useState<ArchNode | null>(null);
+  const nodeTypes = useMemo<NodeTypes>(
+    () => ({
+      architecture: ArchitectureNode,
+    }),
+    []
+  );
+  const fitViewOptions = useMemo(() => ({ padding: 0.2 }), []);
+  const proOptions = useMemo(() => ({ hideAttribution: true }), []);
 
   const initialNodes: Node[] = archNodes.map((n) => ({
     id: n.id,
@@ -175,8 +179,8 @@ export default function InteractiveDiagram({ title, nodes: archNodes, edges: arc
           onPaneClick={onPaneClick}
           nodeTypes={nodeTypes}
           fitView
-          fitViewOptions={{ padding: 0.2 }}
-          proOptions={{ hideAttribution: true }}
+          fitViewOptions={fitViewOptions}
+          proOptions={proOptions}
           minZoom={0.3}
         >
           <Background color="var(--border-color)" gap={20} size={1} />

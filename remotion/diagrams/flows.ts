@@ -88,3 +88,49 @@ export const sqlQueryFlow: FlowConfig = {
     { from: "server", to: "client", label: "200 OK + JSON",        sublabel: "gzip · 42 records",                   color: actorColor("server", "#34d399") },
   ],
 };
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Incident Triage Flow
+// ─────────────────────────────────────────────────────────────────────────────
+export const incidentTriageFlow: FlowConfig = {
+  title: "Incident Triage Flow",
+  subtitle: "How on-call responds from alert to stabilized service",
+  actors: [
+    { id: "client", entityId: ACTOR_ENTITY_MAP.client, label: "Monitoring",        icon: actorEmoji("client", "📟"), color: actorColor("client", "#60a5fa") },
+    { id: "server", entityId: ACTOR_ENTITY_MAP.server, label: "On-Call Engineer",  icon: actorEmoji("server", "🧑‍💻"), color: actorColor("server", "#34d399") },
+    { id: "cache", entityId: ACTOR_ENTITY_MAP.cache, label: "Runbook",            icon: actorEmoji("cache", "📘"), color: actorColor("cache", "#f59e0b") },
+    { id: "db", entityId: ACTOR_ENTITY_MAP.db, label: "Service",                  icon: actorEmoji("db", "🧩"), color: actorColor("db", "#f472b6") },
+  ],
+  steps: [
+    { from: "client", to: "server", label: "Page Triggered",      sublabel: "Error budget burn-rate alert",        color: actorColor("client", "#60a5fa") },
+    { from: "server", to: "cache", label: "Open Runbook",         sublabel: "Check severity and first-response steps", color: actorColor("server", "#34d399") },
+    { from: "server", to: "db", label: "Validate User Impact",     sublabel: "Reproduce with customer-facing checks", color: actorColor("server", "#34d399") },
+    { from: "db", to: "server", label: "Identify Blast Radius",    sublabel: "One region, one endpoint, one tenant", color: actorColor("db", "#f472b6") },
+    { from: "server", to: "db", label: "Apply Mitigation",         sublabel: "Rate-limit, failover, feature-flag off", color: actorColor("server", "#34d399") },
+    { from: "db", to: "client", label: "Service Stabilized",       sublabel: "Errors down, latency recovering",        color: actorColor("db", "#f472b6") },
+    { from: "server", to: "cache", label: "Record Follow-ups",     sublabel: "Postmortem + action items",             color: actorColor("server", "#34d399") },
+  ],
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Safe Deployment and Rollback Flow
+// ─────────────────────────────────────────────────────────────────────────────
+export const safeDeploymentRollbackFlow: FlowConfig = {
+  title: "Safe Deployment and Rollback",
+  subtitle: "Canary release with automated health checks and fast rollback",
+  actors: [
+    { id: "client", entityId: ACTOR_ENTITY_MAP.client, label: "CI/CD",             icon: actorEmoji("client", "🚀"), color: actorColor("client", "#60a5fa") },
+    { id: "lb", entityId: ACTOR_ENTITY_MAP.lb, label: "Traffic Router",            icon: actorEmoji("lb", "⚖️"), color: actorColor("lb", "#a78bfa") },
+    { id: "server", entityId: ACTOR_ENTITY_MAP.server, label: "Canary Service",    icon: actorEmoji("server", "🧪"), color: actorColor("server", "#34d399") },
+    { id: "db", entityId: ACTOR_ENTITY_MAP.db, label: "Metrics + Logs",            icon: actorEmoji("db", "📊"), color: actorColor("db", "#f472b6") },
+  ],
+  steps: [
+    { from: "client", to: "lb", label: "Start Canary",            sublabel: "Deploy vNext to 5% traffic",              color: actorColor("client", "#60a5fa") },
+    { from: "lb", to: "server", label: "Route Sample Traffic",    sublabel: "User sessions to canary",                 color: actorColor("lb", "#a78bfa") },
+    { from: "server", to: "db", label: "Emit Health Metrics",     sublabel: "Error rate, latency, saturation",        color: actorColor("server", "#34d399") },
+    { from: "db", to: "client", label: "Policy Check",            sublabel: "Compare against SLO guardrails",          color: actorColor("db", "#f472b6") },
+    { from: "client", to: "lb", label: "Decision",                sublabel: "Promote to 100% or trigger rollback",    color: actorColor("client", "#60a5fa") },
+    { from: "lb", to: "server", label: "Rollback if Needed",      sublabel: "Re-route to stable version",             color: actorColor("lb", "#a78bfa") },
+    { from: "server", to: "db", label: "Confirm Recovery",        sublabel: "Metrics return to baseline",             color: actorColor("server", "#34d399") },
+  ],
+};

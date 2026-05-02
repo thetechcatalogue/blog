@@ -2,8 +2,10 @@
 title: "Why Agents Need Structured Context"
 slug: "why-agents-need-structured-context"
 order: 1
+narrationSrc: /audio/series/ai-coding-infrastructure/why-agents-need-structured-context.mp3
 contentType: "markdown"
 description: "Why raw code search is not enough for reliable AI coding workflows"
+audioDurationSec: 65.072
 ---
 
 ## Raw Code Is Too Expensive to Reconstruct Repeatedly

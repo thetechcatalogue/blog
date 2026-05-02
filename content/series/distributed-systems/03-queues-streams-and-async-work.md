@@ -2,8 +2,10 @@
 title: "Queues, Streams, and Async Work"
 slug: "queues-streams-and-async-work"
 order: 3
+narrationSrc: /audio/series/distributed-systems/queues-streams-and-async-work.mp3
 contentType: "markdown"
 description: "How systems decouple work in time and scale without turning everything into a blocking request"
+audioDurationSec: 101.747
 ---
 
 ## Not Every Task Belongs in the Request Path

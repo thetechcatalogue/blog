@@ -2,8 +2,10 @@
 title: "Sessions, Cookies, and JWTs"
 slug: "sessions-cookies-and-jwts"
 order: 2
+narrationSrc: /audio/series/auth-and-identity/sessions-cookies-and-jwts.mp3
 contentType: "markdown"
 description: "Stateful and stateless approaches for maintaining user identity"
+audioDurationSec: 108.585
 ---
 
 ## Sessions vs Tokens

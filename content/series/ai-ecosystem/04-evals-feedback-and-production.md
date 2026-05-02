@@ -2,8 +2,10 @@
 title: "Evals, Feedback, and Production Readiness"
 slug: "evals-feedback-and-production"
 order: 4
+narrationSrc: /audio/series/ai-ecosystem/evals-feedback-and-production.mp3
 contentType: "markdown"
 description: "How AI teams turn demos into dependable systems"
+audioDurationSec: 116.700
 ---
 
 ## Demos Break Because Production Is Different

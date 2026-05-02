@@ -2,8 +2,10 @@
 title: "Why Distributed Systems Are Hard"
 slug: "why-distributed-systems-are-hard"
 order: 1
+narrationSrc: /audio/series/distributed-systems/why-distributed-systems-are-hard.mp3
 contentType: "markdown"
 description: "Latency, partial failure, and coordination make simple code behave differently at scale"
+audioDurationSec: 101.277
 ---
 
 ## One Program Becomes Many Conversations

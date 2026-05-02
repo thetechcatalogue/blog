@@ -1,6 +1,11 @@
 import { MarkdownVideo } from "@/remotion/MarkdownVideo";
 import { ClientServerFlow } from "@/remotion/diagrams/ClientServerFlow";
-import { httpRequestFlow, apiAuthFlow } from "@/remotion/diagrams/flows";
+import {
+  httpRequestFlow,
+  apiAuthFlow,
+  incidentTriageFlow,
+  safeDeploymentRollbackFlow,
+} from "@/remotion/diagrams/flows";
 import { AgentArchitecture } from "@/remotion/diagrams/AgentArchitecture";
 import { DatabaseTypes } from "@/remotion/diagrams/DatabaseTypes";
 import { CodeMarkerPitch } from "@/remotion/diagrams/CodeMarkerPitch";
@@ -33,7 +38,10 @@ export const buildVideoCatalog = ({
     description: video.description,
     accentClass: video.accentClass,
     component: MarkdownVideo as React.ComponentType<Record<string, unknown>>,
-    inputProps: { scenes: video.scenes },
+    inputProps: {
+      scenes: video.scenes,
+      narrationSrc: video.narrationSrc,
+    },
     durationInFrames: video.scenes.reduce((sum, scene) => sum + scene.duration, 0),
     fps: 30,
     compositionWidth: 1920,
@@ -73,6 +81,30 @@ export const buildVideoCatalog = ({
       component: ClientServerFlow as React.ComponentType<Record<string, unknown>>,
       inputProps: { config: apiAuthFlow },
       durationInFrames: 60 + apiAuthFlow.steps.length * 60,
+      fps: 30,
+      compositionWidth: 1920,
+      compositionHeight: 1080,
+    },
+    {
+      id: "incident-triage-flow",
+      label: "Incident Triage Flow",
+      description: "Alert validation, mitigation, and follow-up actions",
+      accentClass: "bg-emerald-600 hover:bg-emerald-500",
+      component: ClientServerFlow as React.ComponentType<Record<string, unknown>>,
+      inputProps: { config: incidentTriageFlow },
+      durationInFrames: 60 + incidentTriageFlow.steps.length * 60,
+      fps: 30,
+      compositionWidth: 1920,
+      compositionHeight: 1080,
+    },
+    {
+      id: "safe-deployment-and-rollback-flow",
+      label: "Safe Deployment and Rollback",
+      description: "Canary release with health policies and automatic rollback",
+      accentClass: "bg-emerald-600 hover:bg-emerald-500",
+      component: ClientServerFlow as React.ComponentType<Record<string, unknown>>,
+      inputProps: { config: safeDeploymentRollbackFlow },
+      durationInFrames: 60 + safeDeploymentRollbackFlow.steps.length * 60,
       fps: 30,
       compositionWidth: 1920,
       compositionHeight: 1080,

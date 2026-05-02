@@ -18,7 +18,7 @@ export default function BlogIndex() {
       <div className="space-y-8">
         {posts.map((post) => (
           <article key={post.slug.join("/")} className="group">
-            <Link href={`/blog/${post.slug.join("/")}`}>
+            <Link href={`/blog/${post.slug.join("/")}`} className="block">
               <h2 className="text-xl font-semibold transition-colors group-hover:text-accent" style={{ color: "var(--text-primary)" }}>
                 {post.title}
               </h2>
@@ -34,21 +34,21 @@ export default function BlogIndex() {
                   </span>
                 )}
               </div>
-              {post.tags && (
-                <div className="mt-2 flex flex-wrap gap-2">
-                  {post.tags.map((tag) => (
-                    <a
-                      key={tag}
-                      href={`/tags/${tag}`}
-                      className="rounded-full px-2.5 py-0.5 text-xs font-medium transition-colors hover:opacity-80"
-                      style={{ backgroundColor: "var(--tag-bg)", color: "var(--tag-text)" }}
-                    >
-                      {tag}
-                    </a>
-                  ))}
-                </div>
-              )}
             </Link>
+            {post.tags && (
+              <div className="mt-2 flex flex-wrap gap-2">
+                {post.tags.map((tag) => (
+                  <Link
+                    key={tag}
+                    href={`/tags/${tag}`}
+                    className="rounded-full px-2.5 py-0.5 text-xs font-medium transition-colors hover:opacity-80"
+                    style={{ backgroundColor: "var(--tag-bg)", color: "var(--tag-text)" }}
+                  >
+                    {tag}
+                  </Link>
+                ))}
+              </div>
+            )}
           </article>
         ))}
       </div>

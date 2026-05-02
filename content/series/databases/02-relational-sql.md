@@ -2,8 +2,10 @@
 title: "Relational Databases & SQL"
 slug: "relational-sql"
 order: 3
+narrationSrc: /audio/series/databases/relational-sql.mp3
 contentType: "markdown"
 description: "Tables, schemas, joins, and ACID transactions"
+audioDurationSec: 182.467
 ---
 
 ## Relational Databases

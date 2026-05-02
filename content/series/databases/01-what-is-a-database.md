@@ -2,8 +2,10 @@
 title: "What is a Database?"
 slug: "what-is-a-database"
 order: 1
+narrationSrc: /audio/series/databases/what-is-a-database.mp3
 contentType: "markdown"
 description: "Storage, retrieval, and why not just use files"
+audioDurationSec: 141.129
 ---
 
 ## What is a Database?

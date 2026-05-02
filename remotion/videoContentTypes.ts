@@ -7,4 +7,6 @@ export type MarkdownVideoContent = {
   accentClass: string;
   order: number;
   scenes: Scene[];
+  narrationSrc?: string;
+  audioDurationSec?: number;
 };

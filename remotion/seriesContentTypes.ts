@@ -15,6 +15,8 @@ export type EpisodeContent = {
   order: number;
   description?: string;
   contentType: EpisodeContentType;
+  narrationSrc?: string;
+  audioDurationSec?: number;
 
   // markdown
   scenes?: Scene[];

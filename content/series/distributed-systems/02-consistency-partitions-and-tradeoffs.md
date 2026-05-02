@@ -2,8 +2,10 @@
 title: "Consistency, Partitions, and Tradeoffs"
 slug: "consistency-partitions-and-tradeoffs"
 order: 2
+narrationSrc: /audio/series/distributed-systems/consistency-partitions-and-tradeoffs.mp3
 contentType: "markdown"
 description: "Why correctness, availability, and network behavior have to be balanced explicitly"
+audioDurationSec: 160.195
 ---
 
 ## Distributed Systems Need a Policy for Disagreement

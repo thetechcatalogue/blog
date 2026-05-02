@@ -2,8 +2,10 @@
 title: "CAP Theorem"
 slug: "cap-theorem"
 order: 5
+narrationSrc: /audio/series/databases/cap-theorem.mp3
 contentType: "markdown"
 description: "Consistency, Availability, Partition tolerance — pick two"
+audioDurationSec: 168.655
 ---
 
 ## The CAP Theorem

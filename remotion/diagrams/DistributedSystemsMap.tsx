@@ -351,7 +351,7 @@ export const DistributedSystemsMap: React.FC<{
         <div style={{ fontSize: 52, fontWeight: 800, letterSpacing: -1.2 }}>
           Distributed Systems
         </div>
-        <div style={{ fontSize: 20, color: "#60a5fa", marginTop: 6, opacity: subtitleOpacity }}>
+        <div style={{ fontSize: 20, color: "#60a5fa", marginTop: 6, opacity: subtitleOpacity , marginBottom: 40}}>
           A visual journey through request flows, caching, queues, and data replication
         </div>
       </div>
@@ -360,10 +360,10 @@ export const DistributedSystemsMap: React.FC<{
       <div
         style={{
           position: "absolute",
-          top: 110,
+          top: "120px",
           left: 60,
           width: 380,
-          padding: "20px 24px",
+          padding: "30px 24px",
           borderRadius: 20,
           background: "linear-gradient(180deg, rgba(30,41,59,0.9), rgba(15,23,42,0.85))",
           border: "1px solid rgba(96,165,250,0.3)",

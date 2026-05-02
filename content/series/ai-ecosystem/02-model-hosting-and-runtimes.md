@@ -2,8 +2,10 @@
 title: "Model Hosting and Runtimes"
 slug: "model-hosting-and-runtimes"
 order: 2
+narrationSrc: /audio/series/ai-ecosystem/model-hosting-and-runtimes.mp3
 contentType: "markdown"
 description: "Hosted APIs, self-hosted inference, gateways, quotas, and latency tradeoffs"
+audioDurationSec: 114.675
 ---
 
 ## Where the Model Runs Shapes the Product

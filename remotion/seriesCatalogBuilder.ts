@@ -39,7 +39,10 @@ export function buildSeriesEpisodeCatalog(
       return {
         ...base,
         component: MarkdownVideo as React.ComponentType<Record<string, unknown>>,
-        inputProps: { scenes: episode.scenes },
+        inputProps: {
+          scenes: episode.scenes,
+          narrationSrc: episode.narrationSrc,
+        },
         durationInFrames: Math.max(
           90,
           episode.scenes.reduce((s, sc) => s + sc.duration, 0)

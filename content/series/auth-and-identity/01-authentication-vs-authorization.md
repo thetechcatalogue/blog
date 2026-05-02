@@ -2,8 +2,10 @@
 title: "Authentication vs Authorization"
 slug: "authentication-vs-authorization"
 order: 1
+narrationSrc: /audio/series/auth-and-identity/authentication-vs-authorization.mp3
 contentType: "markdown"
 description: "Who are you, and what are you allowed to do?"
+audioDurationSec: 91.965
 ---
 
 ## Two Questions, Two Systems

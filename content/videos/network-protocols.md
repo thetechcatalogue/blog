@@ -4,6 +4,8 @@ slug: network-protocols
 description: A quick reference of network protocols and the OSI layers they operate at.
 accentClass: bg-indigo-600 hover:bg-indigo-500
 order: 20
+narrationSrc: /audio/videos/network-protocols.mp3
+audioDurationSec: 163.137
 ---
 
 There are various network protocols and they work at different layers of OSI model.
