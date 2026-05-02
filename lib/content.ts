@@ -2,7 +2,10 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
-const CONTENT_DIR = path.join(process.cwd(), "content");
+const CONTENT_DIR = path.join(
+  /*turbopackIgnore: true*/ process.cwd(),
+  "content"
+);
 
 export interface DocMeta {
   slug: string[];
@@ -28,8 +31,8 @@ function estimateReadingTime(text: string): number {
  * Recursively get all .md / .mdx files under a content subdirectory.
  */
 function getFilesRecursive(dir: string, base: string = ""): string[] {
-  if (!fs.existsSync(dir)) return [];
-  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  if (!/*turbopackIgnore: true*/ fs.existsSync(dir)) return [];
+  const entries = /*turbopackIgnore: true*/ fs.readdirSync(dir, { withFileTypes: true });
   const files: string[] = [];
 
   for (const entry of entries) {
@@ -52,7 +55,7 @@ export function getAllContent(section: string): DocMeta[] {
 
   return files.map((file) => {
     const fullPath = path.join(sectionDir, file);
-    const raw = fs.readFileSync(fullPath, "utf-8");
+    const raw = /*turbopackIgnore: true*/ fs.readFileSync(fullPath, "utf-8");
     const { data, content } = matter(raw);
 
     // Convert file path to slug segments: "system-design/intro.md" → ["system-design", "intro"]
@@ -86,8 +89,8 @@ export function getContentBySlug(section: string, slug: string[]): DocPage | nul
   ];
 
   for (const fullPath of candidates) {
-    if (fs.existsSync(fullPath)) {
-      const raw = fs.readFileSync(fullPath, "utf-8");
+    if (/*turbopackIgnore: true*/ fs.existsSync(fullPath)) {
+      const raw = /*turbopackIgnore: true*/ fs.readFileSync(fullPath, "utf-8");
       const { data, content } = matter(raw);
 
       return {

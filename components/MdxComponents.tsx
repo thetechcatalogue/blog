@@ -66,7 +66,7 @@ function extractText(node: React.ReactNode): string {
   if (!node) return "";
   if (Array.isArray(node)) return node.map(extractText).join("");
   if (typeof node === "object" && "props" in node) {
-    return extractText(node.props.children);
+    return extractText((node as any).props.children);
   }
   return "";
 }
@@ -77,11 +77,11 @@ export function Pre({ children, ...props }: React.HTMLAttributes<HTMLPreElement>
     children &&
     typeof children === "object" &&
     "props" in children &&
-    typeof children.props?.className === "string" &&
-    children.props.className.includes("language-mermaid")
+    typeof (children as any).props?.className === "string" &&
+    (children as any).props.className.includes("language-mermaid")
   ) {
-    const chart = typeof children.props.children === "string"
-      ? children.props.children.trim()
+    const chart = typeof (children as any).props.children === "string"
+      ? (children as any).props.children.trim()
       : "";
     return <Mermaid chart={chart} />;
   }
