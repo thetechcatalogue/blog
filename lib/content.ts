@@ -14,6 +14,8 @@ export interface DocMeta {
   sidebar_position?: number;
   tags?: string[];
   readingTime?: number; // minutes
+  date?: string;
+  author?: string;
 }
 
 export interface DocPage {
@@ -70,6 +72,8 @@ export function getAllContent(section: string): DocMeta[] {
       sidebar_position: data.sidebar_position,
       tags: data.tags,
       readingTime: estimateReadingTime(content),
+      date: data.date ? String(data.date) : undefined,
+      author: data.author,
     };
   });
 }
@@ -101,6 +105,8 @@ export function getContentBySlug(section: string, slug: string[]): DocPage | nul
           sidebar_position: data.sidebar_position,
           tags: data.tags,
           readingTime: estimateReadingTime(content),
+          date: data.date ? String(data.date) : undefined,
+          author: data.author,
         },
         content,
       };

@@ -24,14 +24,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getContentBySlug("blog", slug);
   if (!post) return {};
   const ogImage = `/og/blog/${slug.join("/")}.png`;
+  const canonical = `https://thetechcatalogue.github.io/blog/${slug.join("/")}`;
   return {
     title: `${post.meta.title} | TechCatalogue`,
     description: post.meta.description,
+    alternates: { canonical },
     openGraph: {
       title: post.meta.title,
       description: post.meta.description,
       images: [{ url: ogImage, width: 1200, height: 630 }],
       type: "article",
+      ...(post.meta.date && { publishedTime: new Date(post.meta.date).toISOString() }),
+      ...(post.meta.author && { authors: [post.meta.author] }),
     },
     twitter: {
       card: "summary_large_image",
@@ -56,10 +60,12 @@ export default async function BlogPost({ params }: Props) {
     headline: post.meta.title,
     description: post.meta.description,
     image: `https://thetechcatalogue.github.io/og/blog/${slug.join("/")}.png`,
-    author: { "@type": "Person", name: "Ashish Kumar" },
+    author: { "@type": "Person", name: post.meta.author || "Ashish Kumar" },
     publisher: { "@type": "Organization", name: "TechCatalogue" },
     keywords: post.meta.tags?.join(", "),
     url: `https://thetechcatalogue.github.io/blog/${slug.join("/")}`,
+    ...(post.meta.date && { datePublished: new Date(post.meta.date).toISOString() }),
+    ...(post.meta.date && { dateModified: new Date(post.meta.date).toISOString() }),
   };
 
   return (

@@ -9,7 +9,11 @@ export const metadata: Metadata = {
 
 export default function BlogIndex() {
   const posts = getAllContent("blog").sort(
-    (a, b) => (b.sidebar_position ?? 0) - (a.sidebar_position ?? 0)
+    (a, b) => {
+      // Sort by date descending, then by sidebar_position
+      if (a.date && b.date) return new Date(b.date).getTime() - new Date(a.date).getTime();
+      return (b.sidebar_position ?? 0) - (a.sidebar_position ?? 0);
+    }
   );
 
   return (
@@ -23,6 +27,19 @@ export default function BlogIndex() {
                 {post.title}
               </h2>
               <div className="mt-1 flex items-center gap-3">
+                {post.date && (
+                  <time
+                    dateTime={new Date(post.date).toISOString().split("T")[0]}
+                    className="text-xs"
+                    style={{ color: "var(--text-secondary)" }}
+                  >
+                    {new Date(post.date).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </time>
+                )}
                 {post.readingTime && (
                   <span className="text-xs" style={{ color: "var(--text-secondary)" }}>
                     {post.readingTime} min read

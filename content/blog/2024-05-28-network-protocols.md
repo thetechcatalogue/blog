@@ -1,20 +1,20 @@
 ---
-title: Network and Protocols
+title: Network Protocols and the OSI Model
 slug: network-protocols
 date: 2024-05-28
 author: Ashish Kumar
-tags: [networking, protocols, networks]
-description: A quick reference of network protocols and the OSI layers they operate at.
+tags: [networking, protocols, osi-model, ports]
+description: A quick reference guide covering common network protocols, the OSI layers they operate at, networking devices, and well-known port numbers.
 ---
 
-There are various network protocols and they works at different layers of OSI model. The digaram below gives a quick reference of protocols and layers at which they work. There are more than these protocols but we hae just mentioned the common ones. 
+There are various network protocols and they work at different layers of the OSI model. The diagram below gives a quick reference of protocols and the layers at which they work. There are more than these protocols but we have just mentioned the common ones.
 
-Advice is to have an understanding of these protocols. 
+Advice is to have an understanding of these protocols.
 
-![network layers](/images/blog/network-layers.png)
+![Network protocols mapped to OSI model layers](/images/blog/network-layers.png)
 
 
-### Networking Devices ¯
+### Networking Devices
 
 
 Hub | Multiport repeater, Half Duplex, No intelligence, connect Devices together
@@ -23,7 +23,7 @@ Switch | Forward traffic to right destination
 Router | Route Tables, forwarding based on IP Table , connected multiple type of networks
 Access Point | Wireless router or WAP , Bridge to connect, wired or wireless
 DSL |  
-Repeater | Regenrates signals
+Repeater | Regenerates signals
 FireWall | Filters traffic , routers or dedicated hardware
 Bridge |  
 Patch Panels |  

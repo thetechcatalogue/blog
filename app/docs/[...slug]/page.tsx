@@ -23,13 +23,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const doc = getContentBySlug("docs", slug);
   if (!doc) return {};
   const ogImage = `/og/docs/${slug.join("/")}.png`;
+  const canonical = `https://thetechcatalogue.github.io/docs/${slug.join("/")}`;
   return {
     title: `${doc.meta.title} | TechCatalogue`,
     description: doc.meta.description,
+    alternates: { canonical },
     openGraph: {
       title: doc.meta.title,
       description: doc.meta.description,
       images: [{ url: ogImage, width: 1200, height: 630 }],
+      type: "article",
     },
     twitter: {
       card: "summary_large_image",
