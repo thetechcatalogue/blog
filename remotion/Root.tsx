@@ -7,6 +7,9 @@ import { AgentArchitecture } from "./diagrams/AgentArchitecture";
 import { DatabaseTypes } from "./diagrams/DatabaseTypes";
 import { CodeMarkerPitch } from "./diagrams/CodeMarkerPitch";
 import { DistributedSystemsMap } from "./diagrams/DistributedSystemsMap";
+import { SeriesCompilation } from "./SeriesCompilation";
+import { buildSeriesEpisodeCatalog } from "./seriesCatalogBuilder";
+import type { SeriesContent } from "./seriesContentTypes";
 
 const designPatternsMarkdown = `# What Are Design Patterns?
 
@@ -81,6 +84,17 @@ const designTotalFrames = designScenes.reduce((sum, s) => sum + s.duration, 0);
 
 const networkScenes = parseMarkdownToScenes(networkProtocolsMarkdown);
 const networkTotalFrames = networkScenes.reduce((sum, s) => sum + s.duration, 0);
+
+const emptySeries: SeriesContent = {
+  id: "series-placeholder",
+  slug: "series-placeholder",
+  title: "Series Placeholder",
+  description: "",
+  icon: "📹",
+  accentClass: "from-slate-900 to-slate-950",
+  order: 0,
+  episodes: [],
+};
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -164,6 +178,26 @@ export const RemotionRoot: React.FC = () => {
         fps={30}
         width={1920}
         height={1080}
+      />
+      <Composition
+        id="SeriesCompilation"
+        component={SeriesCompilation}
+        durationInFrames={1}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{ series: emptySeries }}
+        calculateMetadata={({ props }) => {
+          const series = (props as { series: SeriesContent }).series;
+          const durationInFrames = buildSeriesEpisodeCatalog(series).reduce(
+            (sum, episode) => sum + episode.durationInFrames,
+            0
+          );
+
+          return {
+            durationInFrames: Math.max(1, durationInFrames),
+          };
+        }}
       />
     </>
   );

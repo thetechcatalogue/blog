@@ -1,16 +1,16 @@
-import { MarkdownVideo } from "@/remotion/MarkdownVideo";
-import { ClientServerFlow } from "@/remotion/diagrams/ClientServerFlow";
+import { MarkdownVideo } from "./MarkdownVideo";
+import { ClientServerFlow } from "./diagrams/ClientServerFlow";
 import {
   httpRequestFlow,
   apiAuthFlow,
   incidentTriageFlow,
   safeDeploymentRollbackFlow,
-} from "@/remotion/diagrams/flows";
-import { AgentArchitecture } from "@/remotion/diagrams/AgentArchitecture";
-import { DatabaseTypes } from "@/remotion/diagrams/DatabaseTypes";
-import { CodeMarkerPitch } from "@/remotion/diagrams/CodeMarkerPitch";
-import { DistributedSystemsMap } from "@/remotion/diagrams/DistributedSystemsMap";
-import type { MarkdownVideoContent } from "@/remotion/videoContentTypes";
+} from "./diagrams/flows";
+import { AgentArchitecture } from "./diagrams/AgentArchitecture";
+import { DatabaseTypes } from "./diagrams/DatabaseTypes";
+import { CodeMarkerPitch } from "./diagrams/CodeMarkerPitch";
+import { DistributedSystemsMap } from "./diagrams/DistributedSystemsMap";
+import type { MarkdownVideoContent } from "./videoContentTypes";
 
 export type VideoDefinition = {
   id: string;

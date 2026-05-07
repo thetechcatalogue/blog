@@ -1,10 +1,10 @@
 "use client";
 
-import { MarkdownVideo } from "@/remotion/MarkdownVideo";
-import { ClientServerFlow } from "@/remotion/diagrams/ClientServerFlow";
-import { FLOW_REGISTRY } from "@/remotion/diagrams/flowRegistry";
-import { buildVideoCatalog, type VideoDefinition } from "@/remotion/videoCatalog";
-import type { SeriesContent } from "@/remotion/seriesContentTypes";
+import { MarkdownVideo } from "./MarkdownVideo";
+import { ClientServerFlow } from "./diagrams/ClientServerFlow";
+import { FLOW_REGISTRY } from "./diagrams/flowRegistry";
+import { buildVideoCatalog, type VideoDefinition } from "./videoCatalog";
+import type { SeriesContent } from "./seriesContentTypes";
 
 /**
  * Client-side builder that turns a series's episodes into VideoDefinitions.

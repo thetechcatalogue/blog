@@ -1,11 +1,11 @@
 import { readdir, readFile } from "node:fs/promises";
 import { join, basename } from "node:path";
-import { parseMarkdownToScenes } from "@/remotion/parseMarkdown";
+import { parseMarkdownToScenes } from "./parseMarkdown";
 import type {
   SeriesContent,
   EpisodeContent,
   EpisodeContentType,
-} from "@/remotion/seriesContentTypes";
+} from "./seriesContentTypes";
 
 type Frontmatter = Record<string, string>;
 
@@ -51,7 +51,7 @@ function toKebabCase(input: string): string {
  * Scale scene durations so their total matches the audio duration.
  * Proportions are preserved; the last scene absorbs any rounding remainder.
  */
-function scaleScenesToAudio(scenes: import("@/remotion/types").Scene[], audioDurationSec: number, fps = 30) {
+function scaleScenesToAudio(scenes: import("./types").Scene[], audioDurationSec: number, fps = 30) {
   const targetFrames = Math.max(1, Math.round(audioDurationSec * fps));
   const currentTotal = scenes.reduce((s, sc) => s + sc.duration, 0);
   if (currentTotal === 0) return scenes;
