@@ -134,3 +134,27 @@ export const safeDeploymentRollbackFlow: FlowConfig = {
     { from: "server", to: "db", label: "Confirm Recovery",        sublabel: "Metrics return to baseline",             color: actorColor("server", "#34d399") },
   ],
 };
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Context Assembly Flow
+// ─────────────────────────────────────────────────────────────────────────────
+export const contextAssemblyFlow: FlowConfig = {
+  title: "Context Assembly Flow",
+  subtitle: "How search, ranking, and prompt building shape the model input",
+  actors: [
+    { id: "client", entityId: ACTOR_ENTITY_MAP.client, label: "User Query",       icon: actorEmoji("client", "❓"), color: actorColor("client", "#60a5fa") },
+    { id: "cdn", entityId: ACTOR_ENTITY_MAP.cdn, label: "Query Rewrite",          icon: actorEmoji("cdn", "✍️"), color: actorColor("cdn", "#f59e0b") },
+    { id: "cache", entityId: ACTOR_ENTITY_MAP.cache, label: "Retriever",          icon: actorEmoji("cache", "🔎"), color: actorColor("cache", "#f59e0b") },
+    { id: "db", entityId: ACTOR_ENTITY_MAP.db, label: "Knowledge Index",          icon: actorEmoji("db", "🗂️"), color: actorColor("db", "#336791") },
+    { id: "lb", entityId: ACTOR_ENTITY_MAP.lb, label: "Ranker",                   icon: actorEmoji("lb", "🏁"), color: actorColor("lb", "#a78bfa") },
+    { id: "server", entityId: ACTOR_ENTITY_MAP.server, label: "Prompt Builder",  icon: actorEmoji("server", "🧱"), color: actorColor("server", "#34d399") },
+  ],
+  steps: [
+    { from: "client", to: "cdn", label: "Ask Question",         sublabel: "Raw task or search request",                color: actorColor("client", "#60a5fa") },
+    { from: "cdn", to: "cache", label: "Rewrite Query",         sublabel: "Expand intent and key terms",               color: actorColor("cdn", "#f59e0b") },
+    { from: "cache", to: "db", label: "Retrieve Candidates",    sublabel: "Vector and keyword search",                color: actorColor("cache", "#f59e0b") },
+    { from: "db", to: "lb", label: "Return Chunks",             sublabel: "Candidate passages with metadata",         color: actorColor("db", "#336791") },
+    { from: "lb", to: "server", label: "Re-rank Results",       sublabel: "Keep only the strongest evidence",         color: actorColor("lb", "#a78bfa") },
+    { from: "server", to: "client", label: "Assemble Context",  sublabel: "Prompt + top chunks + instructions",      color: actorColor("server", "#34d399") },
+  ],
+};

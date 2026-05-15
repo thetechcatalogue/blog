@@ -1,5 +1,5 @@
 import type { FlowConfig } from "./types";
-import { httpRequestFlow, apiAuthFlow, sqlQueryFlow } from "./flows";
+import { httpRequestFlow, apiAuthFlow, sqlQueryFlow, contextAssemblyFlow } from "./flows";
 
 /**
  * Registry mapping flowId strings (used in episode frontmatter) to FlowConfig objects.
@@ -13,4 +13,5 @@ export const FLOW_REGISTRY: Record<string, FlowConfig> = {
   httpRequestFlow,
   apiAuthFlow,
   sqlQueryFlow,
+  contextAssemblyFlow,
 };

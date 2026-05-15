@@ -111,8 +111,14 @@ function toKebab(s) {
   return s.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
 }
 
+function estimateNarrationTargetWords(markdownContent) {
+  const headingCount = (markdownContent.match(/^##?\s+/gm) || []).length;
+  return Math.min(140, Math.max(75, headingCount * 16));
+}
+
 /** Generate narration script text via local chat API */
 async function generateNarration(markdownContent) {
+  const targetWords = estimateNarrationTargetWords(markdownContent);
   const systemPrompt =
     "You are a voice-over narrator for technical explainer videos. " +
     "Your job: turn markdown slide content into a natural, conversational spoken script. " +
@@ -120,8 +126,10 @@ async function generateNarration(markdownContent) {
     "- Output ONLY the spoken narration. No intro like 'Sure!' or 'Here is the narration'. No outro.\n" +
     "- No markdown syntax: no **, *, #, `, -, bullet points, numbered lists, or headings.\n" +
     "- No section labels, no 'Section 1:' or 'Slide 1:' prefixes.\n" +
-    "- Write flowing prose, as if speaking to a curious colleague.\n" +
-    "- Cover every concept in the slides — don't skip anything.\n" +
+    "- Write flowing prose, as if speaking to a curious colleague, but stay concise.\n" +
+    "- Stay very close to the source. Do not add examples, analogies, or extra explanation that is not already implied by the slides.\n" +
+    "- Cover every concept in the slides, but compress repeated ideas instead of restating them.\n" +
+    `- Target about ${targetWords} words total unless the slide content clearly requires less.\n` +
     "- Speak at a natural pace: roughly 130 words per minute.\n" +
     "- Start directly with the first sentence of the narration.";
 

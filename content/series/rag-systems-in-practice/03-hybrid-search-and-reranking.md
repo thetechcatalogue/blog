@@ -4,30 +4,30 @@ slug: "hybrid-search-and-reranking"
 order: 3
 narrationSrc: /audio/series/rag-systems-in-practice/hybrid-search-and-reranking.mp3
 contentType: "markdown"
-description: "Why vector similarity alone is not enough and how better ranking improves grounded answers"
-audioDurationSec: 121.791
+description: "Why retrieval quality improves when semantic search is combined with better ranking"
+audioDurationSec: 97.022
 ---
 
 ## Vector Search Is Useful But Incomplete
 
-Semantic similarity is strong for concept matching, but it can miss exact identifiers, error codes, field names, product SKUs, and short keyword-heavy queries.
+Vector search is good for concept matching, but it can miss exact identifiers and short keyword-heavy queries.
 
 ## Why Hybrid Retrieval Wins So Often
 
-Hybrid search combines vector retrieval with lexical signals such as keyword search or BM25. That mix helps the system find both semantically related text and exact string matches.
+Hybrid search combines vector retrieval with keyword signals such as BM25. That helps the system find both semantic matches and exact strings.
 
 ## Re-Ranking Improves The Final Cut
 
-Initial retrieval is usually optimized for recall. Re-ranking takes a larger candidate set and reorders it with a more expensive relevance model so the final prompt contains the strongest evidence.
+Initial retrieval is usually optimized for recall. Re-ranking reorders the candidate set so the final prompt contains stronger evidence.
 
 ## The Practical Pipeline
 
-A common pattern is query embedding, hybrid retrieval for top twenty candidates, re-ranking down to the best few chunks, and then prompt assembly for the model.
+A common pattern is query embedding, hybrid retrieval, re-ranking, and then prompt assembly.
 
 ## Debugging Retrieval Means Looking At Misses
 
-When answers are weak, inspect what was retrieved but also what was not retrieved. The failure may come from indexing, query phrasing, lexical gaps, or poor rank fusion.
+When answers are weak, inspect what was retrieved and what was missed. Failures often come from indexing, query phrasing, or weak rank fusion.
 
 ## Summary
 
-Strong RAG systems do not rely on vector search alone. They combine retrieval signals and spend ranking budget where it changes the prompt most.
+Strong RAG systems combine retrieval signals and spend ranking budget where it matters most.
