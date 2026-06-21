@@ -29,6 +29,7 @@ export function buildSeriesEpisodeCatalog(
       label: episode.title,
       description: episode.description ?? "",
       accentClass: series.accentClass,
+      category: "ai" as const,
       fps: 30,
       compositionWidth: 1920 as const,
       compositionHeight: 1080 as const,

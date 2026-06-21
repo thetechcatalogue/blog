@@ -1,9 +1,17 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useCallback } from "react";
+import { useSearchParams } from "next/navigation";
 import { Player } from "@remotion/player";
 import { buildVideoCatalog } from "@/remotion/videoCatalog";
-import type { MarkdownVideoContent } from "@/remotion/videoContentTypes";
+import type { MarkdownVideoContent, VideoCategory } from "@/remotion/videoContentTypes";
+
+const CATEGORY_OPTIONS: { value: VideoCategory | "all"; label: string }[] = [
+  { value: "all", label: "All" },
+  { value: "ai", label: "AI / LLM" },
+  { value: "engineering", label: "Engineering" },
+  { value: "diagrams", label: "Diagrams" },
+];
 
 type VideoHubSidebarPlayerProps = {
   markdownVideos: MarkdownVideoContent[];
@@ -14,25 +22,70 @@ export const VideoHubSidebarPlayer: React.FC<VideoHubSidebarPlayerProps> = ({
   markdownVideos,
   initialVideoId,
 }) => {
+  const searchParams = useSearchParams();
+
   const videoCatalog = useMemo(
     () => buildVideoCatalog({ markdownVideos }),
     [markdownVideos]
   );
 
+  const categoryParam = (searchParams.get("category") as VideoCategory | "all") || "all";
+  const [activeCategory, setActiveCategory] = useState<VideoCategory | "all">(
+    CATEGORY_OPTIONS.some((o) => o.value === categoryParam) ? categoryParam : "all"
+  );
+
+  const filteredCatalog = useMemo(() => {
+    if (activeCategory === "all") return videoCatalog;
+    return videoCatalog.filter((v) => v.category === activeCategory);
+  }, [videoCatalog, activeCategory]);
+
+  const videoParam = searchParams.get("v");
   const safeInitialId =
-    initialVideoId && videoCatalog.some((video) => video.id === initialVideoId)
-      ? initialVideoId
-      : videoCatalog[0]?.id;
+    (videoParam && videoCatalog.some((v) => v.id === videoParam) ? videoParam : null) ||
+    (initialVideoId && videoCatalog.some((v) => v.id === initialVideoId) ? initialVideoId : null) ||
+    filteredCatalog[0]?.id;
 
   const [selectedId, setSelectedId] = useState<string>(safeInitialId || "");
+
+  const updateUrl = useCallback(
+    (videoId: string, category: VideoCategory | "all") => {
+      const params = new URLSearchParams();
+      params.set("v", videoId);
+      if (category !== "all") params.set("category", category);
+      window.history.replaceState(null, "", `?${params.toString()}`);
+    },
+    []
+  );
+
+  const handleSelectVideo = useCallback(
+    (id: string) => {
+      setSelectedId(id);
+      updateUrl(id, activeCategory);
+    },
+    [activeCategory, updateUrl]
+  );
+
+  const handleCategoryChange = useCallback(
+    (cat: VideoCategory | "all") => {
+      setActiveCategory(cat);
+      const filtered =
+        cat === "all" ? videoCatalog : videoCatalog.filter((v) => v.category === cat);
+      if (filtered.length > 0 && !filtered.some((v) => v.id === selectedId)) {
+        setSelectedId(filtered[0].id);
+        updateUrl(filtered[0].id, cat);
+      } else {
+        updateUrl(selectedId, cat);
+      }
+    },
+    [videoCatalog, selectedId, updateUrl]
+  );
 
   const selectedVideo = useMemo(() => {
     return (
       videoCatalog.find((video) => video.id === selectedId) ??
-      videoCatalog.find((video) => video.id === safeInitialId) ??
-      videoCatalog[0]
+      filteredCatalog[0]
     );
-  }, [safeInitialId, selectedId, videoCatalog]);
+  }, [selectedId, videoCatalog, filteredCatalog]);
 
   if (!selectedVideo) {
     return (
@@ -46,15 +99,32 @@ export const VideoHubSidebarPlayer: React.FC<VideoHubSidebarPlayerProps> = ({
     <div className="w-full flex flex-col lg:flex-row gap-6">
       {/* ── Video sidebar ──────────────────────────────────────────────── */}
       <aside className="w-full lg:w-64 shrink-0 flex flex-col gap-1">
+        {/* Category filter tabs */}
+        <div className="flex flex-wrap gap-1.5 mb-3 px-1">
+          {CATEGORY_OPTIONS.map((opt) => (
+            <button
+              key={opt.value}
+              onClick={() => handleCategoryChange(opt.value)}
+              className={`px-2.5 py-1 rounded-md text-xs font-medium transition-colors ${
+                activeCategory === opt.value
+                  ? "bg-indigo-600 text-white dark:bg-indigo-500"
+                  : "bg-zinc-200 text-zinc-700 hover:bg-zinc-300 dark:bg-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-700"
+              }`}
+            >
+              {opt.label}
+            </button>
+          ))}
+        </div>
+
         <p className="text-zinc-600 dark:text-zinc-500 text-xs uppercase tracking-widest font-semibold mb-2 px-2">
-          Videos ({videoCatalog.length})
+          Videos ({filteredCatalog.length})
         </p>
-        {videoCatalog.map((video, i) => {
+        {filteredCatalog.map((video, i) => {
           const isActive = video.id === selectedVideo.id;
           return (
             <button
               key={video.id}
-              onClick={() => setSelectedId(video.id)}
+              onClick={() => handleSelectVideo(video.id)}
               className={`text-left px-3 py-2.5 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/70 flex items-start gap-2.5 group ${
                 isActive
                   ? "bg-indigo-100 text-indigo-950 ring-1 ring-indigo-200 dark:bg-indigo-600 dark:text-white dark:ring-0"

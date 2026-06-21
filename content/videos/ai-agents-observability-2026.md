@@ -3,9 +3,10 @@ title: AI Agent Observability 2026
 slug: ai-agents-observability-2026
 description: Practical telemetry patterns for reliable agentic systems in 2026
 accentClass: bg-indigo-600 hover:bg-indigo-500
+category: ai
 order: 40
 narrationSrc: /audio/videos/ai-agents-observability-2026.mp3
-audioDurationSec: 117.320
+audioDurationSec: 30.498
 ---
 
 # AI Agent Observability in 2026

@@ -25,9 +25,11 @@ export const SectionScene: React.FC<{
       style={{
         background:
           "radial-gradient(circle at 16% 18%, rgba(34, 211, 238, 0.17), transparent 36%), radial-gradient(circle at 86% 84%, rgba(167, 139, 250, 0.16), transparent 40%), linear-gradient(180deg, #080a16, #0f1324)",
-        justifyContent: "center",
-        padding: "0 100px",
+        justifyContent: "flex-start",
+        padding: "60px 80px",
         fontFamily: "Manrope, system-ui, sans-serif",
+        display: "flex",
+        flexDirection: "column",
       }}
     >
       <div
@@ -43,12 +45,12 @@ export const SectionScene: React.FC<{
         style={{
           transform: `translateX(${translateX}px)`,
           color: "#7dd3fc",
-          fontSize: 86,
+          fontSize: 58,
           fontWeight: 800,
           letterSpacing: -1,
-          lineHeight: 1.05,
-          marginBottom: 30,
-          maxWidth: "92%",
+          lineHeight: 1.1,
+          marginBottom: 26,
+          maxWidth: "100%",
           textShadow: "0 8px 30px rgba(56, 189, 248, 0.2)",
         }}
       >
@@ -60,8 +62,8 @@ export const SectionScene: React.FC<{
             opacity: bodyOpacity,
             color: "#d6e1f7",
             fontSize: 46,
-            lineHeight: 1.45,
-            maxWidth: "90%",
+            lineHeight: 1.35,
+            maxWidth: "100%",
           }}
         >
           {body}

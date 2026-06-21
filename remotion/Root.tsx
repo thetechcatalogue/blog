@@ -2,11 +2,12 @@ import { Composition, staticFile } from "remotion";
 import { MarkdownVideo } from "./MarkdownVideo";
 import { parseMarkdownToScenes } from "./parseMarkdown";
 import { ClientServerFlow } from "./diagrams/ClientServerFlow";
-import { httpRequestFlow, apiAuthFlow } from "./diagrams/flows";
+import { httpRequestFlow, apiAuthFlow, ragEvaluationFlow, reactToolUseFlow, plannerExecutorFlow, multiAgentHandoffFlow } from "./diagrams/flows";
 import { AgentArchitecture } from "./diagrams/AgentArchitecture";
 import { DatabaseTypes } from "./diagrams/DatabaseTypes";
 import { CodeMarkerPitch } from "./diagrams/CodeMarkerPitch";
 import { DistributedSystemsMap } from "./diagrams/DistributedSystemsMap";
+import { McpSecurityBoundary } from "./diagrams/McpSecurityBoundary";
 import { SeriesCompilation } from "./SeriesCompilation";
 import { buildSeriesEpisodeCatalog } from "./seriesCatalogBuilder";
 import type { SeriesContent } from "./seriesContentTypes";
@@ -100,6 +101,23 @@ export const RemotionRoot: React.FC = () => {
   return (
     <>
       <Composition
+        id="MarkdownVideoRender"
+        component={MarkdownVideo}
+        durationInFrames={designTotalFrames}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{ scenes: designScenes, narrationSrc: undefined }}
+        calculateMetadata={({ props }) => {
+          const scenes = (props as { scenes?: Array<{ duration: number }> }).scenes ?? [];
+          const durationInFrames = scenes.reduce((sum, scene) => sum + scene.duration, 0);
+
+          return {
+            durationInFrames: Math.max(1, durationInFrames),
+          };
+        }}
+      />
+      <Composition
         id="DesignPatterns"
         component={MarkdownVideo}
         durationInFrames={designTotalFrames}
@@ -134,6 +152,29 @@ export const RemotionRoot: React.FC = () => {
         width={1920}
         height={1080}
         defaultProps={{ config: apiAuthFlow }}
+      />
+      <Composition
+        id="RagEvaluationFlow"
+        component={ClientServerFlow}
+        durationInFrames={2700}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          config: ragEvaluationFlow,
+          narrationSrc: staticFile("audio/videos/rag-evaluation-flow.mp3"),
+        }}
+      />
+      <Composition
+        id="McpSecurityBoundary"
+        component={McpSecurityBoundary}
+        durationInFrames={2700}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          narrationSrc: staticFile("audio/videos/mcp-security-boundaries.mp3"),
+        }}
       />
       <Composition
         id="AgentArchitecture"
@@ -178,6 +219,33 @@ export const RemotionRoot: React.FC = () => {
         fps={30}
         width={1920}
         height={1080}
+      />
+      <Composition
+        id="ReactToolUseFlow"
+        component={ClientServerFlow}
+        durationInFrames={60 + reactToolUseFlow.steps.length * 60}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{ config: reactToolUseFlow }}
+      />
+      <Composition
+        id="PlannerExecutorFlow"
+        component={ClientServerFlow}
+        durationInFrames={60 + plannerExecutorFlow.steps.length * 60}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{ config: plannerExecutorFlow }}
+      />
+      <Composition
+        id="MultiAgentHandoffFlow"
+        component={ClientServerFlow}
+        durationInFrames={60 + multiAgentHandoffFlow.steps.length * 60}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{ config: multiAgentHandoffFlow }}
       />
       <Composition
         id="SeriesCompilation"

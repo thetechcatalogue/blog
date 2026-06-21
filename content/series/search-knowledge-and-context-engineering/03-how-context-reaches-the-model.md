@@ -6,4 +6,5 @@ narrationSrc: /audio/series/search-knowledge-and-context-engineering/how-context
 contentType: "flow"
 flowId: "contextAssemblyFlow"
 description: "Animated step-by-step: query rewrite, retrieval, ranking, and prompt assembly"
+audioDurationSec: 59.762
 ---

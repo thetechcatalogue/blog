@@ -1,0 +1,13 @@
+# MCP Server Security and Permission Boundaries — Narration
+
+Welcome to this animated explainer on MCP server security and permission boundaries. In modern cloud environments, security is not just about firewalls—it's about defining clear boundaries for every service and user.
+
+First, let's look at the core concept: the MCP server acts as a gatekeeper, enforcing strict access controls. Each API endpoint is protected by authentication and authorization checks, ensuring only permitted users or services can access sensitive operations.
+
+Next, we define permission boundaries. These boundaries specify what actions a user or service can perform. For example, an admin might have full access, while a regular user can only read data. Service accounts are often restricted to the minimum permissions needed for their tasks, following the principle of least privilege.
+
+The server also logs every access attempt, successful or not, creating an audit trail for security reviews. If a request crosses a defined boundary, it's denied and logged for further analysis.
+
+Finally, regular reviews and updates to permission boundaries are essential. As your system evolves, so do security risks. Automated tools can help detect and remediate overly broad permissions.
+
+In summary, MCP server security is about clear boundaries, strict enforcement, and continuous monitoring. By following these practices, you can protect your cloud services from unauthorized access and reduce your attack surface.

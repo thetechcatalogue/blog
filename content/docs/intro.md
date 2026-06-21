@@ -21,6 +21,9 @@ An overview of the most famous data mining algorithms — from decision trees an
 ### [Recommended Reading](/docs/all-books-we-know)
 A curated list of books every software engineer should have on their shelf.
 
+### [Video Workflow](/docs/video-workflow)
+The exact path for turning a topic into a narrated markdown video, including audio conversion, OG generation, and final render.
+
 ---
 
 Pick a section and dive in. Happy reading!

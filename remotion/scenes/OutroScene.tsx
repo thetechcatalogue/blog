@@ -26,7 +26,7 @@ export const OutroScene: React.FC<{
         justifyContent: "center",
         alignItems: "center",
         fontFamily: "Manrope, system-ui, sans-serif",
-        padding: "0 100px",
+        padding: "0 82px",
       }}
     >
       <div
@@ -43,12 +43,12 @@ export const OutroScene: React.FC<{
           transform: `scale(${scale})`,
           opacity: fadeOut,
           color: "#f4f8ff",
-          fontSize: 96,
+          fontSize: 82,
           fontWeight: 800,
           letterSpacing: -1,
           lineHeight: 1.08,
           textAlign: "center",
-          maxWidth: "90%",
+          maxWidth: "96%",
         }}
       >
         {heading}
@@ -60,7 +60,7 @@ export const OutroScene: React.FC<{
             extrapolateRight: "clamp",
           }),
           color: "#67e8f9",
-          fontSize: 42,
+          fontSize: 52,
           fontWeight: 700,
           letterSpacing: 0.2,
           marginTop: 26,

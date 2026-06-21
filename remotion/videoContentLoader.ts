@@ -1,7 +1,7 @@
 import { readdir, readFile } from "node:fs/promises";
 import { join, basename } from "node:path";
 import { parseMarkdownToScenes } from "@/remotion/parseMarkdown";
-import type { MarkdownVideoContent } from "@/remotion/videoContentTypes";
+import type { MarkdownVideoContent, VideoCategory } from "@/remotion/videoContentTypes";
 
 type Frontmatter = Record<string, string>;
 
@@ -119,6 +119,8 @@ export async function loadMarkdownVideosFromFolder(
       const accentClass =
         data.accentClass?.trim() || "bg-indigo-600 hover:bg-indigo-500";
       const order = Number.parseInt(data.order || "0", 10) || 0;
+      const category: VideoCategory =
+        (data.category?.trim() as VideoCategory) || "ai";
       const narrationSrc = resolveNarrationSrc(id, data.narrationSrc?.trim());
       const audioDurationSec = data.audioDurationSec
         ? parseFloat(data.audioDurationSec)
@@ -134,6 +136,7 @@ export async function loadMarkdownVideosFromFolder(
         label,
         description,
         accentClass,
+        category,
         order,
         narrationSrc,
         audioDurationSec,

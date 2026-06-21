@@ -5,6 +5,7 @@ order: 3
 narrationSrc: /audio/series/reliability-engineering-playbook/blameless-postmortems-that-improve-systems.mp3
 contentType: "markdown"
 description: "How to turn incidents into concrete, high-leverage reliability improvements"
+audioDurationSec: 75.430
 ---
 
 ## Postmortems Are a Learning Tool

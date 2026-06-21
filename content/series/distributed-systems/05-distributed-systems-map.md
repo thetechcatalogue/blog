@@ -6,5 +6,5 @@ narrationSrc: /audio/series/distributed-systems/distributed-systems-map.mp3
 contentType: "composition"
 compositionId: "distributed-systems-map"
 description: "Original visual composition of gateways, services, queues, caches, and replica lag"
-audioDurationSec: 9.602
+audioDurationSec: 88.593
 ---

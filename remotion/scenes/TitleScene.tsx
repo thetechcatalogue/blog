@@ -31,7 +31,7 @@ export const TitleScene: React.FC<{
         justifyContent: "center",
         alignItems: "center",
         fontFamily: "Manrope, system-ui, sans-serif",
-        padding: "0 110px",
+        padding: "0 80px",
       }}
     >
       <div
@@ -47,12 +47,12 @@ export const TitleScene: React.FC<{
         style={{
           transform: `scale(${scale})`,
           color: "#f5f8ff",
-          fontSize: 124,
+          fontSize: 80,
           fontWeight: 800,
           textAlign: "center",
           letterSpacing: -2,
           lineHeight: 1.05,
-          maxWidth: "90%",
+          maxWidth: "96%",
           textShadow: "0 10px 40px rgba(56, 189, 248, 0.16)",
         }}
       >
@@ -64,11 +64,11 @@ export const TitleScene: React.FC<{
             opacity: subtitleOpacity,
             transform: `translateY(${subtitleY}px)`,
             color: "#c7d6f3",
-            fontSize: 46,
-            marginTop: 30,
+            fontSize: 44,
+            marginTop: 28,
             textAlign: "center",
             lineHeight: 1.3,
-            maxWidth: "86%",
+            maxWidth: "94%",
           }}
         >
           {subtitle}

@@ -6,5 +6,5 @@ narrationSrc: /audio/series/databases/how-a-query-travels.mp3
 contentType: "flow"
 flowId: "sqlQueryFlow"
 description: "Animated step-by-step: browser → API → cache → PostgreSQL → back"
-audioDurationSec: 7.649
+audioDurationSec: 44.237
 ---

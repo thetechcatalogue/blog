@@ -1,5 +1,6 @@
 import {
   AbsoluteFill,
+  Audio,
   useCurrentFrame,
   useVideoConfig,
   interpolate,
@@ -21,7 +22,8 @@ function getActorPositions(count: number, totalWidth: number) {
 
 export const ClientServerFlow: React.FC<{
   config: FlowConfig;
-}> = ({ config }) => {
+  narrationSrc?: string;
+}> = ({ config, narrationSrc }) => {
   const frame = useCurrentFrame();
   const { fps, width, height } = useVideoConfig();
 
@@ -55,6 +57,8 @@ export const ClientServerFlow: React.FC<{
         fontFamily: "system-ui, sans-serif",
       }}
     >
+      {narrationSrc && <Audio src={narrationSrc} volume={1} />}
+
       {/* Title */}
       <div
         style={{
@@ -66,14 +70,14 @@ export const ClientServerFlow: React.FC<{
           transform: `scale(${titleScale})`,
         }}
       >
-        <div style={{ color: "#fff", fontSize: 36, fontWeight: 700 }}>
+        <div style={{ color: "#fff", fontSize: 42, fontWeight: 700 }}>
           {title}
         </div>
         {subtitle && (
           <div
             style={{
               color: "#6366f1",
-              fontSize: 18,
+              fontSize: 20,
               marginTop: 6,
               opacity: subtitleOpacity,
             }}
@@ -154,7 +158,10 @@ export const ClientServerFlow: React.FC<{
 
       {/* Animated arrows for each step */}
       {steps.map((step, stepIdx) => {
-        const stepStart = INTRO_DURATION + stepIdx * STEP_DURATION;
+        // Use explicit appearAt if present, else default timing
+        const stepStart = typeof step.appearAt === "number"
+          ? step.appearAt
+          : INTRO_DURATION + stepIdx * STEP_DURATION;
         const fromIdx = actors.findIndex((a) => a.id === step.from);
         const toIdx = actors.findIndex((a) => a.id === step.to);
         if (fromIdx === -1 || toIdx === -1) return null;
@@ -267,7 +274,7 @@ export const ClientServerFlow: React.FC<{
               <span
                 style={{
                   color: "#fff",
-                  fontSize: 15,
+                  fontSize: 16,
                   fontWeight: 600,
                   backgroundColor: "#0a0a1a",
                   padding: "2px 10px",

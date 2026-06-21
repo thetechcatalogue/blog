@@ -116,9 +116,39 @@ function estimateNarrationTargetWords(markdownContent) {
   return Math.min(140, Math.max(75, headingCount * 16));
 }
 
+function buildNarrationSource({ data, mdContent, type, seriesSlug }) {
+  const trimmedContent = mdContent.trim();
+  const contentType = data.contentType?.trim().toLowerCase() || "markdown";
+
+  if (trimmedContent) {
+    return { source: trimmedContent };
+  }
+
+  const title = data.title?.trim() || data.slug?.trim() || "Untitled episode";
+  const description = data.description?.trim() || "";
+  const visualId = data.compositionId?.trim() || data.flowId?.trim() || data.slug?.trim() || "";
+  const lines = [
+    `# ${title}`,
+    description,
+    "## Episode Context",
+    `Series: ${seriesSlug || "standalone"}`,
+    `Format: ${type === "episode" ? `series ${contentType}` : contentType}`,
+    visualId ? `Visual ID: ${visualId}` : "",
+    "## Narration Goals",
+    "- Explain what the visual is showing.",
+    "- Walk through the major stages or components in a clear order.",
+    "- End with the main takeaway the viewer should remember.",
+  ].filter(Boolean);
+
+  return {
+    source: lines.join("\n\n"),
+    targetWords: 55,
+  };
+}
+
 /** Generate narration script text via local chat API */
-async function generateNarration(markdownContent) {
-  const targetWords = estimateNarrationTargetWords(markdownContent);
+async function generateNarration(markdownContent, targetWordsOverride) {
+  const targetWords = targetWordsOverride ?? estimateNarrationTargetWords(markdownContent);
   const systemPrompt =
     "You are a voice-over narrator for technical explainer videos. " +
     "Your job: turn markdown slide content into a natural, conversational spoken script. " +
@@ -289,6 +319,30 @@ async function convertWavToMp3(wavBuffer, outPath) {
   }
 }
 
+async function convertAudioFileToMp3(inputPath, outPath) {
+  await execFileAsync("ffmpeg", [
+    "-y",
+    "-i", inputPath,
+    "-codec:a", "libmp3lame",
+    "-qscale:a", "2",
+    outPath,
+  ]);
+}
+
+async function synthesiseSpeechWithSay(narrationText, destPath) {
+  const tmpAiff = `${destPath}.tmp.aiff`;
+  try {
+    await execFileAsync("say", [
+      "-o",
+      tmpAiff,
+      narrationText,
+    ]);
+    await convertAudioFileToMp3(tmpAiff, destPath);
+  } finally {
+    try { await unlink(tmpAiff); } catch {}
+  }
+}
+
 /** Get audio duration in seconds using ffprobe */
 async function getAudioDuration(mp3Path) {
   const { stdout } = await execFileAsync("ffprobe", [
@@ -376,7 +430,12 @@ async function synthesiseNarrationToMp3(narrationText, destPath) {
 
 /** Save audio and return duration in seconds */
 async function saveAudio(narrationText, destPath) {
-  await synthesiseNarrationToMp3(narrationText, destPath);
+  try {
+    await synthesiseNarrationToMp3(narrationText, destPath);
+  } catch (error) {
+    warn(`  Primary TTS failed, falling back to macOS say: ${error.message}`);
+    await synthesiseSpeechWithSay(narrationText, destPath);
+  }
 
   const duration = await getAudioDuration(destPath);
   return duration;
@@ -417,11 +476,6 @@ async function discoverFiles() {
         const raw = await readFile(mdPath, "utf8");
         const { data } = parseFrontmatter(raw);
         const audioPublicPath = resolveAudioPath(data, "episode", seriesSlug);
-        const contentType = data.contentType?.trim().toLowerCase() || "markdown";
-        if (contentType !== "markdown") {
-          // composition/flow episodes have no markdown body — skip narration generation
-          continue;
-        }
         files.push({ mdPath, audioPublicPath, type: "episode", seriesSlug });
       }
     }
@@ -434,24 +488,57 @@ async function discoverFiles() {
 
 async function processFile({ mdPath, audioPublicPath, type, seriesSlug }) {
   const root = process.cwd();
-  const slug = basename(mdPath, ".md");
-  const label = `${type === "episode" ? `${seriesSlug}/` : ""}${slug}`;
-
-  if (ONLY_FILTER && !label.includes(ONLY_FILTER)) return;
+  const fileSlug = basename(mdPath, ".md");
 
   const destPath = join(root, "public", audioPublicPath);
+  const raw = await readFile(mdPath, "utf8");
+  const { data, content: mdContent } = parseFrontmatter(raw);
+  const effectiveSlug = data.slug?.trim() || fileSlug;
+  const label = `${type === "episode" ? `${seriesSlug}/` : ""}${effectiveSlug}`;
+
+  if (
+    ONLY_FILTER &&
+    !label.includes(ONLY_FILTER) &&
+    !fileSlug.includes(ONLY_FILTER) &&
+    !effectiveSlug.includes(ONLY_FILTER)
+  ) {
+    return;
+  }
+
+  const expectedNarrationSrc = audioPublicPath;
+  const narrationInput = buildNarrationSource({
+    data,
+    mdContent,
+    type,
+    seriesSlug,
+  });
 
   if (!FORCE && existsSync(destPath)) {
-    log(`SKIP ${label} — audio already exists (use --force to overwrite)`);
+    const missingNarrationSrc = data.narrationSrc?.trim() !== expectedNarrationSrc;
+    const missingDuration = !data.audioDurationSec?.trim();
+
+    if (missingNarrationSrc || missingDuration) {
+      let updated = raw;
+      updated = upsertFrontmatterField(updated, "narrationSrc", expectedNarrationSrc);
+
+      if (missingDuration) {
+        const durationSec = await getAudioDuration(destPath);
+        updated = upsertFrontmatterField(updated, "audioDurationSec", durationSec.toFixed(3));
+        log(`BACKFILL ${label} — audio exists, wrote narrationSrc and audioDurationSec=${durationSec.toFixed(3)}`);
+      } else {
+        log(`BACKFILL ${label} — audio exists, wrote narrationSrc`);
+      }
+
+      await writeFile(mdPath, updated, "utf8");
+    } else {
+      log(`SKIP ${label} — audio already exists (use --force to overwrite)`);
+    }
     return;
   }
 
   log(`\nProcessing: ${label}`);
   log(`  MD:    ${mdPath}`);
   log(`  Audio: ${destPath}`);
-
-  const raw = await readFile(mdPath, "utf8");
-  const { content: mdContent } = parseFrontmatter(raw);
 
   if (DRY_RUN) {
     log(`  DRY RUN — would generate audio and write to ${destPath}`);
@@ -462,7 +549,10 @@ async function processFile({ mdPath, audioPublicPath, type, seriesSlug }) {
   log(`  Generating narration text via chat API ...`);
   let narrationText;
   try {
-    narrationText = await generateNarration(mdContent);
+    narrationText = await generateNarration(
+      narrationInput.source,
+      narrationInput.targetWords
+    );
   } catch (err) {
     warn(`  Chat API failed for ${label}: ${err.message}`);
     return;
@@ -482,9 +572,10 @@ async function processFile({ mdPath, audioPublicPath, type, seriesSlug }) {
   log(`  Duration: ${durationSec.toFixed(2)}s`);
 
   // 4. Update frontmatter with audioDurationSec
-  const updated = upsertFrontmatterField(raw, "audioDurationSec", durationSec.toFixed(3));
+  let updated = upsertFrontmatterField(raw, "narrationSrc", expectedNarrationSrc);
+  updated = upsertFrontmatterField(updated, "audioDurationSec", durationSec.toFixed(3));
   await writeFile(mdPath, updated, "utf8");
-  log(`  Updated frontmatter: audioDurationSec=${durationSec.toFixed(3)}`);
+  log(`  Updated frontmatter: narrationSrc=${expectedNarrationSrc}, audioDurationSec=${durationSec.toFixed(3)}`);
 
   log(`  Done: ${label}`);
 }

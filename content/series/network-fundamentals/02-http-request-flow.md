@@ -6,5 +6,5 @@ narrationSrc: /audio/series/network-fundamentals/http-request-flow.mp3
 contentType: "composition"
 compositionId: "http-flow"
 description: "Visual sequence of a request moving through client and server layers"
-audioDurationSec: 11.234
+audioDurationSec: 63.684
 ---

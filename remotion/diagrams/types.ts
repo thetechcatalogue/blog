@@ -4,6 +4,10 @@ export interface FlowStep {
   label: string;
   sublabel?: string;
   color?: string;
+  /**
+   * Optional: frame offset at which this step should appear (overrides default timing)
+   */
+  appearAt?: number;
 }
 
 export interface FlowConfig {

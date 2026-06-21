@@ -136,6 +136,31 @@ export const safeDeploymentRollbackFlow: FlowConfig = {
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
+// RAG Evaluation and Quality Scoring
+// ─────────────────────────────────────────────────────────────────────────────
+export const ragEvaluationFlow: FlowConfig = {
+  title: "RAG Evaluation and Quality Scoring",
+  subtitle: "How test cases, scoring, and review loops improve retrieval quality",
+  actors: [
+    { id: "client", entityId: ACTOR_ENTITY_MAP.client, label: "Eval Dataset", icon: actorEmoji("client", "🧪"), color: actorColor("client", "#60a5fa") },
+    { id: "cdn", entityId: ACTOR_ENTITY_MAP.cdn, label: "Test Harness", icon: actorEmoji("cdn", "🧵"), color: actorColor("cdn", "#f59e0b") },
+    { id: "server", entityId: ACTOR_ENTITY_MAP.server, label: "RAG App", icon: actorEmoji("server", "🤖"), color: actorColor("server", "#34d399") },
+    { id: "cache", entityId: ACTOR_ENTITY_MAP.cache, label: "Judge Model", icon: actorEmoji("cache", "⚖️"), color: actorColor("cache", "#a78bfa") },
+    { id: "db", entityId: ACTOR_ENTITY_MAP.db, label: "Metrics Store", icon: actorEmoji("db", "📊"), color: actorColor("db", "#f472b6") },
+    { id: "lb", entityId: ACTOR_ENTITY_MAP.lb, label: "Human Review", icon: actorEmoji("lb", "👀"), color: actorColor("lb", "#fde047") },
+  ],
+  steps: [
+    { from: "client", to: "cdn", label: "Load Test Set", sublabel: "Questions + ground truth answers", color: actorColor("client", "#60a5fa"), appearAt: 60 },
+    { from: "cdn", to: "server", label: "Run Query", sublabel: "Retrieval + generation per test case", color: actorColor("cdn", "#f59e0b"), appearAt: 420 },
+    { from: "server", to: "cache", label: "Score Output", sublabel: "Groundedness, relevance, completeness", color: actorColor("server", "#34d399"), appearAt: 900 },
+    { from: "cache", to: "db", label: "Write Metrics", sublabel: "Pass rate, score histograms, drift", color: actorColor("cache", "#a78bfa"), appearAt: 1200 },
+    { from: "db", to: "lb", label: "Surface Outliers", sublabel: "Low scores and disagreements", color: actorColor("db", "#f472b6"), appearAt: 1500 },
+    { from: "lb", to: "server", label: "Human Review", sublabel: "Annotate failure modes", color: actorColor("lb", "#fde047"), appearAt: 1800 },
+    { from: "server", to: "client", label: "Improve System", sublabel: "Prompt, chunking, retriever, reranker", color: actorColor("server", "#34d399"), appearAt: 2100 },
+  ],
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Context Assembly Flow
 // ─────────────────────────────────────────────────────────────────────────────
 export const contextAssemblyFlow: FlowConfig = {
@@ -156,5 +181,158 @@ export const contextAssemblyFlow: FlowConfig = {
     { from: "db", to: "lb", label: "Return Chunks",             sublabel: "Candidate passages with metadata",         color: actorColor("db", "#336791") },
     { from: "lb", to: "server", label: "Re-rank Results",       sublabel: "Keep only the strongest evidence",         color: actorColor("lb", "#a78bfa") },
     { from: "server", to: "client", label: "Assemble Context",  sublabel: "Prompt + top chunks + instructions",      color: actorColor("server", "#34d399") },
+  ],
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WebSocket Connection Lifecycle
+// ─────────────────────────────────────────────────────────────────────────────
+export const websocketLifecycleFlow: FlowConfig = {
+  title: "WebSocket Connection Lifecycle",
+  subtitle: "Upgrade, bidirectional messaging, heartbeat, and graceful close",
+  actors: [
+    { id: "client", entityId: ACTOR_ENTITY_MAP.client, label: "Browser",        icon: actorEmoji("client", "🌐"), color: actorColor("client", "#60a5fa") },
+    { id: "lb",     entityId: ACTOR_ENTITY_MAP.lb,     label: "Gateway",        icon: actorEmoji("lb",     "🚪"), color: actorColor("lb",     "#a78bfa") },
+    { id: "server", entityId: ACTOR_ENTITY_MAP.server, label: "WS Server",     icon: actorEmoji("server", "📡"), color: actorColor("server", "#34d399") },
+    { id: "cache",  entityId: ACTOR_ENTITY_MAP.cache,  label: "Pub/Sub Bus",   icon: actorEmoji("cache",  "📢"), color: actorColor("cache",  "#f59e0b") },
+  ],
+  steps: [
+    { from: "client", to: "lb",     label: "HTTP Upgrade",         sublabel: "Connection: Upgrade, Upgrade: websocket", color: actorColor("client", "#60a5fa") },
+    { from: "lb",     to: "server", label: "101 Switching",        sublabel: "Protocol handshake complete",             color: actorColor("lb",     "#a78bfa") },
+    { from: "client", to: "server", label: "Subscribe",            sublabel: "{ action: 'join', room: 'lobby' }",       color: actorColor("client", "#60a5fa") },
+    { from: "server", to: "cache",  label: "Register Listener",    sublabel: "SUBSCRIBE channel:lobby",                 color: actorColor("server", "#34d399") },
+    { from: "cache",  to: "server", label: "Broadcast Event",      sublabel: "New message from another client",         color: actorColor("cache",  "#f59e0b") },
+    { from: "server", to: "client", label: "Push to Client",       sublabel: "{ type: 'message', data: '...' }",        color: actorColor("server", "#34d399") },
+    { from: "server", to: "client", label: "Ping",                 sublabel: "Heartbeat every 30s",                     color: actorColor("server", "#34d399") },
+    { from: "client", to: "server", label: "Pong",                 sublabel: "Connection still alive",                  color: actorColor("client", "#60a5fa") },
+    { from: "client", to: "server", label: "Close Frame",          sublabel: "code: 1000, reason: 'user left'",         color: actorColor("client", "#60a5fa") },
+  ],
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// OAuth 2.0 Authorization Code Flow
+// ─────────────────────────────────────────────────────────────────────────────
+export const oauthCodeFlow: FlowConfig = {
+  title: "OAuth 2.0 Authorization Code Flow",
+  subtitle: "How third-party login works with PKCE",
+  actors: [
+    { id: "client", entityId: ACTOR_ENTITY_MAP.client, label: "User Agent",     icon: actorEmoji("client", "👤"), color: actorColor("client", "#60a5fa") },
+    { id: "server", entityId: ACTOR_ENTITY_MAP.server, label: "App Backend",   icon: actorEmoji("server", "🖥️"), color: actorColor("server", "#34d399") },
+    { id: "cdn",    entityId: ACTOR_ENTITY_MAP.cdn,    label: "Auth Provider",  icon: actorEmoji("cdn",    "🔑"), color: actorColor("cdn",    "#f59e0b") },
+    { id: "db",     entityId: ACTOR_ENTITY_MAP.db,     label: "User Store",     icon: actorEmoji("db",     "🗄️"), color: actorColor("db",     "#f472b6") },
+  ],
+  steps: [
+    { from: "client", to: "server", label: "Click 'Sign in'",      sublabel: "Redirect to authorization URL",          color: actorColor("client", "#60a5fa") },
+    { from: "server", to: "cdn",    label: "Authorize Request",    sublabel: "client_id + redirect_uri + PKCE challenge", color: actorColor("server", "#34d399") },
+    { from: "cdn",    to: "client", label: "Login Prompt",         sublabel: "User enters credentials at provider",    color: actorColor("cdn",    "#f59e0b") },
+    { from: "client", to: "cdn",    label: "Grant Consent",        sublabel: "User approves scopes",                   color: actorColor("client", "#60a5fa") },
+    { from: "cdn",    to: "server", label: "Auth Code",            sublabel: "Redirect with ?code=abc123",             color: actorColor("cdn",    "#f59e0b") },
+    { from: "server", to: "cdn",    label: "Exchange Code",        sublabel: "POST /token with code + PKCE verifier",  color: actorColor("server", "#34d399") },
+    { from: "cdn",    to: "server", label: "Access + ID Token",    sublabel: "JWT with user claims",                   color: actorColor("cdn",    "#f59e0b") },
+    { from: "server", to: "db",     label: "Upsert User",          sublabel: "Create or update profile from claims",   color: actorColor("server", "#34d399") },
+    { from: "server", to: "client", label: "Session Cookie",       sublabel: "Signed, HttpOnly, SameSite=Strict",      color: actorColor("server", "#34d399") },
+  ],
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Event-Driven Order Processing (CQRS + Event Sourcing)
+// ─────────────────────────────────────────────────────────────────────────────
+export const eventDrivenOrderFlow: FlowConfig = {
+  title: "Event-Driven Order Processing",
+  subtitle: "CQRS pattern with event sourcing and async projections",
+  actors: [
+    { id: "client", entityId: ACTOR_ENTITY_MAP.client, label: "API Gateway",     icon: actorEmoji("client", "🚪"), color: actorColor("client", "#60a5fa") },
+    { id: "server", entityId: ACTOR_ENTITY_MAP.server, label: "Command Handler", icon: actorEmoji("server", "⚙️"), color: actorColor("server", "#34d399") },
+    { id: "db",     entityId: ACTOR_ENTITY_MAP.db,     label: "Event Store",     icon: actorEmoji("db",     "📜"), color: actorColor("db",     "#f472b6") },
+    { id: "cache",  entityId: ACTOR_ENTITY_MAP.cache,  label: "Message Broker",  icon: actorEmoji("cache",  "📨"), color: actorColor("cache",  "#f59e0b") },
+    { id: "lb",     entityId: ACTOR_ENTITY_MAP.lb,     label: "Read Projection", icon: actorEmoji("lb",     "📋"), color: actorColor("lb",     "#a78bfa") },
+    { id: "cdn",    entityId: ACTOR_ENTITY_MAP.cdn,    label: "Notification Svc", icon: actorEmoji("cdn",   "🔔"), color: actorColor("cdn",    "#fde047") },
+  ],
+  steps: [
+    { from: "client", to: "server", label: "PlaceOrder Command",   sublabel: "Validate inventory + payment",           color: actorColor("client", "#60a5fa") },
+    { from: "server", to: "db",     label: "Append Event",         sublabel: "OrderPlaced { orderId, items, total }",  color: actorColor("server", "#34d399") },
+    { from: "db",     to: "cache",  label: "Publish Event",        sublabel: "Fan-out to subscribed consumers",        color: actorColor("db",     "#f472b6") },
+    { from: "cache",  to: "lb",     label: "Update Read Model",    sublabel: "Denormalize into query-optimized view",  color: actorColor("cache",  "#f59e0b") },
+    { from: "cache",  to: "cdn",    label: "Trigger Notification", sublabel: "Send confirmation email + push",         color: actorColor("cache",  "#f59e0b") },
+    { from: "cache",  to: "server", label: "Reserve Inventory",    sublabel: "Async saga: decrement stock count",      color: actorColor("cache",  "#f59e0b") },
+    { from: "server", to: "db",     label: "Append Event",         sublabel: "InventoryReserved { orderId, items }",   color: actorColor("server", "#34d399") },
+    { from: "client", to: "lb",     label: "Query Order Status",   sublabel: "GET /orders/123 from read model",        color: actorColor("client", "#60a5fa") },
+  ],
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ReAct Tool-Use Loop  (used by agent-design-patterns series — episode 2)
+// ─────────────────────────────────────────────────────────────────────────────
+export const reactToolUseFlow: FlowConfig = {
+  title: "ReAct Tool-Use Loop",
+  subtitle: "Think → Act → Observe → Repeat until the task is done",
+  actors: [
+    { id: "client", entityId: ACTOR_ENTITY_MAP.client, label: "User",          icon: actorEmoji("client", "👤"), color: actorColor("client", "#60a5fa") },
+    { id: "server", entityId: ACTOR_ENTITY_MAP.server, label: "Agent (LLM)",   icon: actorEmoji("server", "🤖"), color: actorColor("server", "#34d399") },
+    { id: "db",     entityId: ACTOR_ENTITY_MAP.db,     label: "Tool / API",    icon: actorEmoji("db",     "🔧"), color: actorColor("db",     "#f472b6") },
+    { id: "cache",  entityId: ACTOR_ENTITY_MAP.cache,  label: "Scratchpad",    icon: actorEmoji("cache",  "📝"), color: actorColor("cache",  "#f59e0b") },
+  ],
+  steps: [
+    { from: "client", to: "server", label: "Task Request",         sublabel: "\"Find the top 3 open issues\"",         color: actorColor("client", "#60a5fa") },
+    { from: "server", to: "cache",  label: "Think",                sublabel: "I need to list repo issues first",       color: actorColor("server", "#34d399") },
+    { from: "server", to: "db",     label: "Act → Call Tool",      sublabel: "github.listIssues({ state: open })",     color: actorColor("server", "#34d399") },
+    { from: "db",     to: "server", label: "Observe ← Result",    sublabel: "Returns 12 issues with metadata",        color: actorColor("db",     "#f472b6") },
+    { from: "server", to: "cache",  label: "Think Again",          sublabel: "Need to rank by comments + recency",     color: actorColor("server", "#34d399") },
+    { from: "server", to: "db",     label: "Act → Call Tool",      sublabel: "github.getIssueDetails(ids)",            color: actorColor("server", "#34d399") },
+    { from: "db",     to: "server", label: "Observe ← Details",   sublabel: "Comment counts and timestamps",          color: actorColor("db",     "#f472b6") },
+    { from: "server", to: "cache",  label: "Think → Done",         sublabel: "Ranked list ready, format answer",       color: actorColor("server", "#34d399") },
+    { from: "server", to: "client", label: "Final Answer",         sublabel: "Top 3 issues with summaries",            color: actorColor("server", "#34d399") },
+  ],
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Planner-Executor Pipeline  (used by agent-design-patterns series — episode 4)
+// ─────────────────────────────────────────────────────────────────────────────
+export const plannerExecutorFlow: FlowConfig = {
+  title: "Planner-Executor Pipeline",
+  subtitle: "Separate strategic planning from step-by-step execution",
+  actors: [
+    { id: "client", entityId: ACTOR_ENTITY_MAP.client, label: "User",           icon: actorEmoji("client", "👤"), color: actorColor("client", "#60a5fa") },
+    { id: "server", entityId: ACTOR_ENTITY_MAP.server, label: "Planner",        icon: actorEmoji("server", "📋"), color: actorColor("server", "#34d399") },
+    { id: "db",     entityId: ACTOR_ENTITY_MAP.db,     label: "Executor",       icon: actorEmoji("db",     "⚙️"), color: actorColor("db",     "#f472b6") },
+    { id: "cache",  entityId: ACTOR_ENTITY_MAP.cache,  label: "Progress Log",   icon: actorEmoji("cache",  "📊"), color: actorColor("cache",  "#f59e0b") },
+  ],
+  steps: [
+    { from: "client", to: "server", label: "Complex Task",         sublabel: "\"Migrate the API from v1 to v2\"",      color: actorColor("client", "#60a5fa") },
+    { from: "server", to: "cache",  label: "Generate Plan",        sublabel: "Step 1: audit endpoints, Step 2: …",    color: actorColor("server", "#34d399") },
+    { from: "server", to: "db",     label: "Execute Step 1",       sublabel: "Audit existing v1 endpoints",            color: actorColor("server", "#34d399") },
+    { from: "db",     to: "cache",  label: "Report Progress",      sublabel: "✓ Step 1 done — 14 endpoints found",    color: actorColor("db",     "#f472b6") },
+    { from: "server", to: "db",     label: "Execute Step 2",       sublabel: "Generate v2 schemas",                    color: actorColor("server", "#34d399") },
+    { from: "db",     to: "cache",  label: "Report Progress",      sublabel: "✓ Step 2 done — schemas created",       color: actorColor("db",     "#f472b6") },
+    { from: "db",     to: "server", label: "Execution Complete",   sublabel: "All steps finished, check results",      color: actorColor("db",     "#f472b6") },
+    { from: "server", to: "cache",  label: "Verify Plan",          sublabel: "Cross-check outputs against goals",      color: actorColor("server", "#34d399") },
+    { from: "server", to: "client", label: "Deliver Result",       sublabel: "Migration complete — summary + diff",    color: actorColor("server", "#34d399") },
+  ],
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Multi-Agent Handoff  (used by agent-design-patterns series — episode 8)
+// ─────────────────────────────────────────────────────────────────────────────
+export const multiAgentHandoffFlow: FlowConfig = {
+  title: "Multi-Agent Handoff",
+  subtitle: "Supervisor routes work to specialist agents and merges results",
+  actors: [
+    { id: "client", entityId: ACTOR_ENTITY_MAP.client, label: "User",            icon: actorEmoji("client", "👤"), color: actorColor("client", "#60a5fa") },
+    { id: "server", entityId: ACTOR_ENTITY_MAP.server, label: "Supervisor",      icon: actorEmoji("server", "🎯"), color: actorColor("server", "#34d399") },
+    { id: "db",     entityId: ACTOR_ENTITY_MAP.db,     label: "Code Agent",      icon: actorEmoji("db",     "💻"), color: actorColor("db",     "#f472b6") },
+    { id: "cache",  entityId: ACTOR_ENTITY_MAP.cache,  label: "Review Agent",    icon: actorEmoji("cache",  "🔍"), color: actorColor("cache",  "#f59e0b") },
+    { id: "lb",     entityId: ACTOR_ENTITY_MAP.lb,     label: "Test Agent",      icon: actorEmoji("lb",     "🧪"), color: actorColor("lb",     "#a78bfa") },
+  ],
+  steps: [
+    { from: "client", to: "server", label: "Feature Request",       sublabel: "\"Add rate limiting to the API\"",       color: actorColor("client", "#60a5fa") },
+    { from: "server", to: "db",     label: "Handoff → Code",        sublabel: "Write the rate limiter middleware",      color: actorColor("server", "#34d399") },
+    { from: "db",     to: "server", label: "Code Ready",            sublabel: "Returns diff with implementation",       color: actorColor("db",     "#f472b6") },
+    { from: "server", to: "cache",  label: "Handoff → Review",      sublabel: "Check code quality and edge cases",      color: actorColor("server", "#34d399") },
+    { from: "cache",  to: "server", label: "Review Feedback",       sublabel: "Fix: missing per-IP tracking",           color: actorColor("cache",  "#f59e0b") },
+    { from: "server", to: "db",     label: "Handoff → Revise",      sublabel: "Apply reviewer feedback",                color: actorColor("server", "#34d399") },
+    { from: "db",     to: "server", label: "Revised Code",          sublabel: "Updated diff with fix",                  color: actorColor("db",     "#f472b6") },
+    { from: "server", to: "lb",     label: "Handoff → Test",        sublabel: "Generate and run test suite",            color: actorColor("server", "#34d399") },
+    { from: "lb",     to: "server", label: "Tests Pass ✓",          sublabel: "8/8 tests green, coverage 94%",          color: actorColor("lb",     "#a78bfa") },
+    { from: "server", to: "client", label: "Deliver Result",        sublabel: "Code + review + tests complete",         color: actorColor("server", "#34d399") },
   ],
 };

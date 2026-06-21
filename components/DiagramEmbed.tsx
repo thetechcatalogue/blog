@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { getDiagram } from "@/lib/diagrams";
+import { getAllDiagramNames, getDiagram } from "@/lib/diagrams";
 
 const InteractiveDiagram = dynamic(() => import("./InteractiveDiagram"), {
   ssr: false,
@@ -18,9 +18,10 @@ const InteractiveDiagram = dynamic(() => import("./InteractiveDiagram"), {
 export function Diagram({ name }: { name: string }) {
   const data = getDiagram(name);
   if (!data) {
+    const available = getAllDiagramNames().join(", ");
     return (
       <div className="my-8 rounded-xl border border-red-300 bg-red-50 p-4 text-sm text-red-700">
-        Diagram &ldquo;{name}&rdquo; not found. Available: request-flow, event-driven, microservices
+        Diagram &ldquo;{name}&rdquo; not found. Available: {available}
       </div>
     );
   }

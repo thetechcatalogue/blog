@@ -1,0 +1,136 @@
+{
+  "videos": [
+    {
+      "topic": "network protocols",
+      "slug": "network-protocols",
+      "title": "Network Protocols"
+    },
+    {
+      "topic": "design patterns",
+      "slug": "design-patterns",
+      "title": "Design Patterns"
+    },
+    {
+      "topic": "ai agents observability",
+      "slug": "ai-agents-observability-2026",
+      "title": "AI Agents Observability 2026"
+    },
+    {
+      "topic": "interview prep",
+      "slug": "interview-prepchecklist",
+      "title": "Interview Prep Checklist"
+    },
+    {
+      "topic": "agent-to-agent protocols in practice",
+      "slug": "agent-to-agent-protocols-practice",
+      "title": "Agent-to-Agent Protocols in Practice"
+    },
+    {
+      "topic": "vibe coding to reliable software",
+      "slug": "vibe-coding-reliable-software",
+      "title": "Vibe Coding to Reliable Software"
+    },
+    {
+      "topic": "small language models on edge devices",
+      "slug": "small-language-models-edge",
+      "title": "Small Language Models on Edge Devices"
+    },
+    {
+      "topic": "ai browser agents for real workflows",
+      "slug": "ai-browser-agents-workflows",
+      "title": "AI Browser Agents for Real Workflows"
+    },
+    {
+      "topic": "synthetic data for llm evals",
+      "slug": "synthetic-data-llm-evals",
+      "title": "Synthetic Data for LLM Evals"
+    },
+    {
+      "topic": "model context engineering beyond rag",
+      "slug": "model-context-engineering-beyond-rag",
+      "title": "Model Context Engineering Beyond RAG"
+    },
+    {
+      "topic": "ai security red teaming for agents",
+      "slug": "ai-security-red-teaming-agents",
+      "title": "AI Security Red Teaming for Agents"
+    },
+    {
+      "topic": "real-time voice agents architecture",
+      "slug": "real-time-voice-agents-architecture",
+      "title": "Real-Time Voice Agents Architecture"
+    },
+    {
+      "topic": "open-weight model ops",
+      "slug": "open-weight-model-ops",
+      "title": "Open-Weight Model Ops"
+    },
+    {
+      "topic": "ai ux patterns users trust",
+      "slug": "ai-ux-patterns-users-trust",
+      "title": "AI UX Patterns Users Actually Trust"
+    },
+    {
+      "topic": "ai gateway patterns for llm apps",
+      "slug": "ai-gateway-patterns-llm-apps",
+      "title": "AI Gateway Patterns for LLM Apps"
+    }
+  ],
+  "series": [
+    {
+      "topic": "agent design patterns",
+      "slug": "agent-design-patterns",
+      "title": "Agent Design Patterns"
+    },
+    {
+      "topic": "ai coding infrastructure",
+      "slug": "ai-coding-infrastructure",
+      "title": "AI Coding Infrastructure"
+    },
+    {
+      "topic": "ai ecosystem",
+      "slug": "ai-ecosystem",
+      "title": "AI Ecosystem"
+    },
+    {
+      "topic": "ai evals and observability",
+      "slug": "ai-evals-and-observability",
+      "title": "AI Evals and Observability"
+    },
+    {
+      "topic": "auth and identity",
+      "slug": "auth-and-identity",
+      "title": "Auth and Identity"
+    },
+    {
+      "topic": "databases",
+      "slug": "databases",
+      "title": "Databases"
+    },
+    {
+      "topic": "distributed systems",
+      "slug": "distributed-systems",
+      "title": "Distributed Systems"
+    },
+    {
+      "topic": "network fundamentals",
+      "slug": "network-fundamentals",
+      "title": "Network Fundamentals"
+    },
+    {
+      "topic": "rag systems in practice",
+      "slug": "rag-systems-in-practice",
+      "title": "RAG Systems in Practice"
+    },
+    {
+      "topic": "reliability engineering playbook",
+      "slug": "reliability-engineering-playbook",
+      "title": "Reliability Engineering Playbook"
+    },
+    {
+      "topic": "search knowledge and context engineering",
+      "slug": "search-knowledge-and-context-engineering",
+      "title": "Search Knowledge and Context Engineering"
+    }
+  ]
+}

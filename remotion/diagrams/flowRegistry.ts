@@ -1,5 +1,19 @@
 import type { FlowConfig } from "./types";
-import { httpRequestFlow, apiAuthFlow, sqlQueryFlow, contextAssemblyFlow } from "./flows";
+import {
+  httpRequestFlow,
+  apiAuthFlow,
+  sqlQueryFlow,
+  contextAssemblyFlow,
+  ragEvaluationFlow,
+  incidentTriageFlow,
+  safeDeploymentRollbackFlow,
+  websocketLifecycleFlow,
+  oauthCodeFlow,
+  eventDrivenOrderFlow,
+  reactToolUseFlow,
+  plannerExecutorFlow,
+  multiAgentHandoffFlow,
+} from "./flows";
 
 /**
  * Registry mapping flowId strings (used in episode frontmatter) to FlowConfig objects.
@@ -14,4 +28,13 @@ export const FLOW_REGISTRY: Record<string, FlowConfig> = {
   apiAuthFlow,
   sqlQueryFlow,
   contextAssemblyFlow,
+  ragEvaluationFlow,
+  incidentTriageFlow,
+  safeDeploymentRollbackFlow,
+  websocketLifecycleFlow,
+  oauthCodeFlow,
+  eventDrivenOrderFlow,
+  reactToolUseFlow,
+  plannerExecutorFlow,
+  multiAgentHandoffFlow,
 };

@@ -3,6 +3,7 @@ title: Network and Protocols
 slug: network-protocols
 description: A quick reference of network protocols and the OSI layers they operate at.
 accentClass: bg-indigo-600 hover:bg-indigo-500
+category: engineering
 order: 20
 narrationSrc: /audio/videos/network-protocols.mp3
 audioDurationSec: 163.137

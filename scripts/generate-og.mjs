@@ -34,14 +34,23 @@ function getFilesRecursive(dir, base = "") {
 
 function getAllPages() {
   const pages = [];
-  for (const section of ["docs", "blog"]) {
-    const sectionDir = path.join(CONTENT_DIR, section);
+  const sectionConfigs = [
+    { contentDir: "docs", outputDir: "docs" },
+    { contentDir: "blog", outputDir: "blog" },
+    { contentDir: "videos", outputDir: "video" },
+  ];
+
+  for (const sectionConfig of sectionConfigs) {
+    const sectionDir = path.join(CONTENT_DIR, sectionConfig.contentDir);
     for (const file of getFilesRecursive(sectionDir)) {
       const raw = fs.readFileSync(path.join(sectionDir, file), "utf-8");
       const { data } = matter(raw);
-      const slug = file.replace(/\.(md|mdx)$/, "").split(path.sep);
+      const fileSlug = file.replace(/\.(md|mdx)$/, "");
+      const slug = sectionConfig.outputDir === "video"
+        ? [data.slug || path.basename(fileSlug)]
+        : fileSlug.split(path.sep);
       pages.push({
-        section,
+        section: sectionConfig.outputDir,
         slug,
         title: data.title || slug[slug.length - 1],
         description: data.description || "",
@@ -65,8 +74,15 @@ async function loadFontBold() {
 // ── Generate OG image ──
 
 async function generateOgImage(page, fontRegular, fontBold) {
-  const tag = page.section === "blog" ? "BLOG" : "DOCS";
-  const tagColor = page.section === "blog" ? "#f59e0b" : "#3b82f6";
+  const tagBySection = {
+    blog: { label: "BLOG", color: "#f59e0b" },
+    docs: { label: "DOCS", color: "#3b82f6" },
+    video: { label: "VIDEO", color: "#ef4444" },
+    site: { label: "SITE", color: "#14b8a6" },
+  };
+  const tagConfig = tagBySection[page.section] || tagBySection.docs;
+  const tag = tagConfig.label;
+  const tagColor = tagConfig.color;
 
   const svg = await satori(
     {

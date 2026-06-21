@@ -22,9 +22,11 @@ export const ListScene: React.FC<{
       style={{
         background:
           "radial-gradient(circle at 18% 14%, rgba(34, 211, 238, 0.18), transparent 38%), radial-gradient(circle at 84% 24%, rgba(167, 139, 250, 0.18), transparent 40%), linear-gradient(180deg, #080a16, #0f1324)",
-        justifyContent: "center",
-        padding: "0 96px",
+        justifyContent: "flex-start",
+        padding: "60px 80px",
         fontFamily: "Manrope, system-ui, sans-serif",
+        display: "flex",
+        flexDirection: "column",
       }}
     >
       <div
@@ -40,12 +42,12 @@ export const ListScene: React.FC<{
         style={{
           transform: `scale(${headingScale})`,
           color: "#7dd3fc",
-          fontSize: 80,
+          fontSize: 58,
           fontWeight: 800,
           letterSpacing: -1,
-          lineHeight: 1.05,
-          marginBottom: body ? 16 : 36,
-          maxWidth: "92%",
+          lineHeight: 1.1,
+          marginBottom: body ? 18 : 30,
+          maxWidth: "100%",
         }}
       >
         {heading}
@@ -54,16 +56,16 @@ export const ListScene: React.FC<{
         <div
           style={{
             color: "#d6e1f7",
-            fontSize: 40,
-            lineHeight: 1.4,
-            marginBottom: 32,
-            maxWidth: "90%",
+            fontSize: 44,
+            lineHeight: 1.34,
+            marginBottom: 28,
+            maxWidth: "100%",
           }}
         >
           {body}
         </div>
       )}
-      <div style={{ display: "flex", flexDirection: "column", gap: 20, maxWidth: "92%" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 24, maxWidth: "100%" }}>
         {items.map((item, i) => {
           const itemSpring = spring({
             fps,
@@ -80,8 +82,8 @@ export const ListScene: React.FC<{
                 opacity,
                 transform: `translateY(${translateY}px)`,
                 display: "flex",
-                alignItems: "center",
-                gap: 16,
+                alignItems: "flex-start",
+                gap: 18,
               }}
             >
               <div
@@ -92,9 +94,10 @@ export const ListScene: React.FC<{
                   backgroundColor: "#22d3ee",
                   boxShadow: "0 0 18px rgba(34, 211, 238, 0.65)",
                   flexShrink: 0,
+                  marginTop: 14,
                 }}
               />
-              <div style={{ color: "#e2ebff", fontSize: 42, lineHeight: 1.3 }}>{item}</div>
+              <div style={{ color: "#e2ebff", fontSize: 44, lineHeight: 1.28 }}>{item}</div>
             </div>
           );
         })}

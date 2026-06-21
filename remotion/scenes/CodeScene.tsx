@@ -36,7 +36,7 @@ export const CodeScene: React.FC<{
         justifyContent: "center",
         alignItems: "center",
         fontFamily: "Manrope, system-ui, sans-serif",
-        padding: "0 72px",
+        padding: "0 80px",
       }}
     >
       <div
@@ -52,12 +52,12 @@ export const CodeScene: React.FC<{
         style={{
           opacity: headingOpacity,
           color: "#7dd3fc",
-          fontSize: 72,
+          fontSize: 56,
           fontWeight: 800,
           letterSpacing: -1,
-          marginBottom: 26,
+          marginBottom: 20,
           textAlign: "center",
-          maxWidth: "90%",
+          maxWidth: "96%",
         }}
       >
         {heading}
@@ -69,9 +69,8 @@ export const CodeScene: React.FC<{
           borderRadius: 22,
           boxShadow: "0 24px 60px rgba(2, 6, 23, 0.45)",
           backdropFilter: "blur(8px)",
-          padding: 34,
-          width: "92%",
-          minHeight: 680,
+          padding: 36,
+          width: "96%",
           position: "relative",
         }}
       >
@@ -96,9 +95,9 @@ export const CodeScene: React.FC<{
             margin: 0,
             fontFamily: "'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
             fontSize: 34,
-            lineHeight: 1.5,
+            lineHeight: 1.42,
             color: "#e2ebff",
-            paddingTop: 22,
+            paddingTop: 28,
           }}
         >
           {codeLines

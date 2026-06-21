@@ -6,5 +6,5 @@ narrationSrc: /audio/series/ai-coding-infrastructure/codemarker-architecture.mp3
 contentType: "composition"
 compositionId: "codemarker"
 description: "Visual walkthrough of anchor points, graphs, tooling, and troubleshooting workflows"
-audioDurationSec: 9.922
+audioDurationSec: 79.442
 ---

@@ -2,6 +2,8 @@ export const STATIC_VIDEO_IDS = [
   "intro",
   "http-flow",
   "api-auth-flow",
+  "mcp-security-boundaries",
+  "rag-evaluation-flow",
   "agent-architecture",
   "database-types",
   "codemarker",

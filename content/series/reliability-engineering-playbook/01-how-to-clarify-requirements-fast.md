@@ -5,6 +5,7 @@ order: 1
 narrationSrc: /audio/series/reliability-engineering-playbook/slos-slis-and-error-budgets.mp3
 contentType: "markdown"
 description: "How to set measurable reliability targets without guessing"
+audioDurationSec: 93.588
 ---
 
 ## Reliability Starts with a Promise

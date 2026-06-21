@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import { VideoHubSidebarPlayer } from "@/components/VideoHubSidebarPlayer";
 import { getMarkdownVideoContentData } from "@/remotion/videoCatalogData";
 
@@ -27,7 +28,9 @@ export default async function VideoPage() {
             Explore animated walkthroughs of technical concepts
           </p>
 
-          <VideoHubSidebarPlayer markdownVideos={markdownVideos} />
+          <Suspense fallback={null}>
+            <VideoHubSidebarPlayer markdownVideos={markdownVideos} />
+          </Suspense>
         </div>
       </div>
     </div>
