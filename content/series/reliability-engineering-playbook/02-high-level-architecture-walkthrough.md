@@ -6,4 +6,5 @@ narrationSrc: /audio/series/reliability-engineering-playbook/incident-triage-flo
 contentType: "composition"
 compositionId: "incident-triage-flow"
 description: "Visualize how alerts are validated, triaged, mitigated, and resolved"
+audioDurationSec: 25.495
 ---

@@ -1,5 +1,6 @@
 import {
   AbsoluteFill,
+  Audio,
   interpolate,
   spring,
   useCurrentFrame,
@@ -282,7 +283,8 @@ const packetPosition = (fromId: string, toId: string, progress: number) => {
 };
 
 export const DistributedSystemsMap: React.FC<{
-}> = () => {
+  narrationSrc?: string;
+}> = ({ narrationSrc }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
@@ -324,6 +326,7 @@ export const DistributedSystemsMap: React.FC<{
           overflow: "hidden",
         }}
       >
+      {narrationSrc && <Audio src={narrationSrc} volume={1} />}
 
       {/* Background grid */}
       <div

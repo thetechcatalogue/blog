@@ -100,7 +100,7 @@ export async function loadSeriesFromFolder(
   const candidateFolders = [folder, "content/series"];
 
   let fullFolder: string | null = null;
-  let entries: Dirent<string>[] | null = null;
+  let entries: Dirent[] | null = null;
 
   for (const candidate of candidateFolders) {
     const candidatePath = join(root, candidate);

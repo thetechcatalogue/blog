@@ -89,7 +89,19 @@ export function buildSeriesEpisodeCatalog(
         (v) => v.id === episode.compositionId
       );
       if (existing) {
-        return { ...existing, id, label: episode.title };
+        const narrationOverride = episode.narrationSrc
+          ? { narrationSrc: episode.narrationSrc }
+          : {};
+        const durationInFrames = episode.audioDurationSec
+          ? Math.max(existing.durationInFrames, Math.round(episode.audioDurationSec * existing.fps))
+          : existing.durationInFrames;
+        return {
+          ...existing,
+          id,
+          label: episode.title,
+          durationInFrames,
+          inputProps: { ...existing.inputProps, ...narrationOverride },
+        };
       }
     }
 

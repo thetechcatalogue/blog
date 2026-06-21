@@ -84,7 +84,7 @@ export async function loadMarkdownVideosFromFolder(
   const candidateFolders = [folder, "content/videos"];
 
   let fullFolder: string | null = null;
-  let entries: Dirent<string>[] | null = null;
+  let entries: Dirent[] | null = null;
 
   for (const candidate of candidateFolders) {
     const candidatePath = join(root, candidate);

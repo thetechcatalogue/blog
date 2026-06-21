@@ -6,4 +6,5 @@ narrationSrc: /audio/series/reliability-engineering-playbook/safe-deployment-and
 contentType: "composition"
 compositionId: "safe-deployment-and-rollback-flow"
 description: "Visual sequence for canary rollout, health checks, rollback, and recovery"
+audioDurationSec: 33.891
 ---
