@@ -1,6 +1,7 @@
 "use client";
 
 import { MarkdownVideo } from "./MarkdownVideo";
+import { DiagramVideo } from "./DiagramVideo";
 import { ClientServerFlow } from "./diagrams/ClientServerFlow";
 import { FLOW_REGISTRY } from "./diagrams/flowRegistry";
 import { buildVideoCatalog, type VideoDefinition } from "./videoCatalog";
@@ -63,6 +64,23 @@ export function buildSeriesEpisodeCatalog(
           durationInFrames: 60 + flowConfig.steps.length * 60,
         };
       }
+    }
+
+    // ── diagram ────────────────────────────────────────────────────────────
+    if (episode.contentType === "diagram" && episode.diagramId) {
+      const durationInFrames = Math.max(
+        150,
+        episode.audioDurationSec ? Math.round(episode.audioDurationSec * 30) : 450
+      );
+      return {
+        ...base,
+        component: DiagramVideo as React.ComponentType<Record<string, unknown>>,
+        inputProps: {
+          diagramId: episode.diagramId,
+          narrationSrc: episode.narrationSrc,
+        },
+        durationInFrames,
+      };
     }
 
     // ── composition ────────────────────────────────────────────────────────

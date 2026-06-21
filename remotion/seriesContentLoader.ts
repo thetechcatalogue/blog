@@ -150,7 +150,8 @@ export async function loadSeriesFromFolder(
           const contentType: EpisodeContentType =
             rawContentType === "markdown" ||
             rawContentType === "flow" ||
-            rawContentType === "composition"
+            rawContentType === "composition" ||
+            rawContentType === "diagram"
               ? rawContentType
               : "markdown";
           // Prefer explicit order frontmatter, fall back to numeric filename prefix
@@ -184,6 +185,7 @@ export async function loadSeriesFromFolder(
             audioDurationSec,
             ...(contentType === "markdown" ? { scenes } : {}),
             ...(contentType === "flow" ? { flowId: data.flowId?.trim() } : {}),
+            ...(contentType === "diagram" ? { diagramId: data.diagramId?.trim() } : {}),
             ...(contentType === "composition"
               ? { compositionId: data.compositionId?.trim() }
               : {}),

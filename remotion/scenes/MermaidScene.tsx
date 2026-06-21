@@ -1,3 +1,4 @@
+"use client";
 import { AbsoluteFill, interpolate, useCurrentFrame } from "remotion";
 import { useEffect, useRef } from "react";
 import mermaid from "mermaid";

@@ -5,8 +5,9 @@ import type { Scene } from "@/remotion/types";
  *   "markdown"    — body of the .md file is parsed into animated scenes
  *   "flow"        — references a named FlowConfig in the flow registry
  *   "composition" — references an existing static video composition by ID
+ *   "diagram"     — references a named animated diagram component in the diagram registry
  */
-export type EpisodeContentType = "markdown" | "flow" | "composition";
+export type EpisodeContentType = "markdown" | "flow" | "composition" | "diagram";
 
 export type EpisodeContent = {
   id: string;
@@ -26,6 +27,9 @@ export type EpisodeContent = {
 
   // composition
   compositionId?: string;
+
+  // diagram
+  diagramId?: string;
 };
 
 export type SeriesContent = {

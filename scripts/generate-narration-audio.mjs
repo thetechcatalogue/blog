@@ -42,13 +42,13 @@ const FORCE = args.includes("--force");
 const DRY_RUN = args.includes("--dry-run");
 const VOICE = (() => {
   const idx = args.indexOf("--voice");
-  return idx !== -1 ? args[idx + 1] : (process.env.TTS_VOICE ?? "2.mp3");
+  return idx !== -1 ? args[idx + 1] : (process.env.TTS_VOICE ?? "Ethan.mp3");
 })();
 const ONLY_FILTER = (() => {
   const idx = args.indexOf("--only");
   return idx !== -1 ? args[idx + 1] : null;
 })();
-const CHAT_MODEL = process.env.CHAT_MODEL ?? "llama3.1:8b";
+const CHAT_MODEL = process.env.CHAT_MODEL ?? "qwen2.5-14b-instruct-q4_k_m";
 const REQUEST_TIMEOUT_MS = Number(process.env.REQUEST_TIMEOUT_MS ?? 300000);
 const MAX_TTS_CHARS = Number(process.env.MAX_TTS_CHARS ?? 450);
 

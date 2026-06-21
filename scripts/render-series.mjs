@@ -307,7 +307,9 @@ async function loadSeries(seriesSlug) {
         order: Number(data.order ?? fileBase.match(/^(\d+)/)?.[1] ?? 0),
         description: typeof data.description === "string" ? data.description.trim() : undefined,
         contentType:
-          contentType === "flow" || contentType === "composition" ? contentType : "markdown",
+          contentType === "flow" || contentType === "composition" || contentType === "diagram"
+            ? contentType
+            : "markdown",
         narrationSrc: normalizePublicPath(
           typeof data.narrationSrc === "string" && data.narrationSrc.trim()
             ? data.narrationSrc.trim()
@@ -327,6 +329,9 @@ async function loadSeries(seriesSlug) {
           : {}),
         ...(contentType === "composition" && typeof data.compositionId === "string"
           ? { compositionId: data.compositionId.trim() }
+          : {}),
+        ...(contentType === "diagram" && typeof data.diagramId === "string"
+          ? { diagramId: data.diagramId.trim() }
           : {}),
       };
     })
@@ -364,9 +369,8 @@ async function run() {
   const propsPath = join(tempDir, `${seriesSlug}.json`);
   await writeFile(propsPath, JSON.stringify({ series }), "utf8");
 
+  const remotionBin = join(process.cwd(), "node_modules", ".bin", "remotion");
   const renderArgs = [
-    "exec",
-    "remotion",
     "render",
     "remotion/index.ts",
     "SeriesCompilation",
@@ -376,7 +380,7 @@ async function run() {
 
   try {
     await new Promise((resolve, reject) => {
-      const child = spawn("pnpm", renderArgs, {
+      const child = spawn(remotionBin, renderArgs, {
         cwd: process.cwd(),
         stdio: "inherit",
       });
