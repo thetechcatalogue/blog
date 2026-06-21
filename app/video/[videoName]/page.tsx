@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { SingleVideoPlayer } from "@/components/SingleVideoPlayer";
 import { getMarkdownVideoContentData } from "@/remotion/videoCatalogData";
-import { buildVideoCatalog, getVideoById } from "@/remotion/videoCatalog";
+import { buildVideoMeta, getVideoMetaById } from "@/remotion/videoCatalogMeta";
 import { STATIC_VIDEO_IDS, isStaticVideoId } from "@/remotion/videoRouteIds";
 
 type VideoRoutePageProps = {
@@ -21,8 +21,8 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: VideoRoutePageProps): Promise<Metadata> {
   const { videoName } = await params;
   const markdownVideos = await getMarkdownVideoContentData();
-  const videoCatalog = buildVideoCatalog({ markdownVideos });
-  const selectedVideo = getVideoById(videoCatalog, videoName);
+  const videoMeta = buildVideoMeta({ markdownVideos });
+  const selectedVideo = getVideoMetaById(videoMeta, videoName);
 
   if (!selectedVideo) {
     return {};

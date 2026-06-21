@@ -1,4 +1,5 @@
 import { readdir, readFile } from "node:fs/promises";
+import type { Dirent } from "node:fs";
 import { join, basename } from "node:path";
 import { parseMarkdownToScenes } from "@/remotion/parseMarkdown";
 import type { MarkdownVideoContent, VideoCategory } from "@/remotion/videoContentTypes";
@@ -83,7 +84,7 @@ export async function loadMarkdownVideosFromFolder(
   const candidateFolders = [folder, "content/videos"];
 
   let fullFolder: string | null = null;
-  let entries: Awaited<ReturnType<typeof readdir>> | null = null;
+  let entries: Dirent<string>[] | null = null;
 
   for (const candidate of candidateFolders) {
     const candidatePath = join(root, candidate);
